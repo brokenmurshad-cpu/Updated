@@ -27,7 +27,7 @@
   --font-display: var(--font-bricolage), system-ui, -apple-system, sans-serif;
 }
 
-@theme inline {
+[data-theme='inline'] {
   --color-background: #090917;
   --color-foreground: #f2f3f4;
   --color-card: #171721;

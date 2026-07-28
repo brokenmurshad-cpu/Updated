@@ -25,44 +25,34 @@ export default function Header() {
   const previouslyFocused = useRef<HTMLElement | null>(null);
   const { contextSafe } = useGSAP({ scope: scopeRef });
 
-  const openMenu = contextSafe(() => {
-    previouslyFocused.current = document.activeElement as HTMLElement | null;
-    setIsNavbarOpen(true);
-    animateReferenceMenuEnter(
-      "#navbar",
-      ".nav-link-item",
-      ".rounded__div__up",
-    );
-    window.requestAnimationFrame(() => menuRef.current?.focus());
-  });
-
-  const closeMenu = contextSafe(() => {
-    setIsNavbarOpen(false);
-    animateReferenceMenuLeave(
-      "#navbar",
-      ".nav-link-item",
-      ".rounded__div__up",
-    );
-    window.requestAnimationFrame(() => previouslyFocused.current?.focus());
-  });
-
   const toggleMenu = contextSafe(() => {
-    if (isNavbarOpen) {
-      closeMenu();
-      return;
-    }
+    setIsNavbarOpen((open) => {
+      const next = !open;
 
-    openMenu();
+      if (next) {
+        previouslyFocused.current = document.activeElement as HTMLElement | null;
+        animateReferenceMenuEnter(
+          "#navbar",
+          ".nav-link-item",
+          ".rounded__div__up",
+        );
+        window.requestAnimationFrame(() => menuRef.current?.focus());
+      } else {
+        animateReferenceMenuLeave(
+          "#navbar",
+          ".nav-link-item",
+          ".rounded__div__up",
+        );
+        previouslyFocused.current?.focus();
+      }
+
+      return next;
+    });
   });
 
   useGSAP(
     () => {
-      gsap.set("#navbar", {
-        y: 0,
-        autoAlpha: 0,
-        display: "none",
-        clipPath: "circle(0% at calc(100% - 3.25rem) 3.25rem)",
-      });
+      gsap.set("#navbar", { y: "-100%", display: "none" });
       const timer = window.setTimeout(() => {
         if (document.getElementById("hero")) {
           navbarScale("#burger", "#hero");
