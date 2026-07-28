@@ -13,7 +13,6 @@ const featuredProjects = projects.slice(0, 5);
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
-  const previewRef = useRef<HTMLDivElement>(null);
   const [activeProject, setActiveProject] = useState<number | null>(null);
   const [activeFeaturedIndex, setActiveFeaturedIndex] = useState(0);
 
@@ -80,33 +79,6 @@ export default function Projects() {
           });
       }
 
-      const xTo = gsap.quickTo(previewRef.current, "x", {
-        duration: 0.34,
-        ease: "power3.out",
-      });
-      const yTo = gsap.quickTo(previewRef.current, "y", {
-        duration: 0.34,
-        ease: "power3.out",
-      });
-
-      const handlePointerMove = (event: PointerEvent) => {
-        const width = 360;
-        const height = 250;
-        const gap = 24;
-        const x = Math.min(
-          event.clientX + gap,
-          window.innerWidth - width - gap,
-        );
-        const y = Math.min(
-          Math.max(event.clientY - height / 2, gap),
-          window.innerHeight - height - gap,
-        );
-        xTo(x);
-        yTo(y);
-      };
-
-      section.addEventListener("pointermove", handlePointerMove);
-      return () => section.removeEventListener("pointermove", handlePointerMove);
     }, section);
 
     return () => context.revert();
@@ -333,8 +305,7 @@ export default function Projects() {
       </div>
 
       <div
-        ref={previewRef}
-        className="pointer-events-none fixed left-0 top-0 z-[500] hidden md:block"
+        className="pointer-events-none fixed right-6 top-1/2 z-[500] hidden -translate-y-1/2 md:block lg:right-10"
       >
         <AnimatePresence mode="wait">
           {currentPreview ? (
@@ -344,13 +315,13 @@ export default function Projects() {
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               exit={{ opacity: 0, scale: 0.9, rotate: 2 }}
               transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-              className="project-preview-frame relative h-[250px] w-[360px] overflow-hidden rounded-[1.1rem] bg-[#090917]"
+              className="project-preview-frame relative h-[34rem] w-[30rem] overflow-hidden rounded-[1.1rem] bg-[#090917]"
             >
               <Image
                 src={currentPreview.image}
                 alt=""
                 fill
-                sizes="360px"
+                sizes="480px"
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#090917]/75 via-transparent to-transparent" />

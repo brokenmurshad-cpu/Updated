@@ -23,6 +23,8 @@ export default function BurgerMenuBtn({
         type="button"
         aria-label={isOpen ? "Close menu" : "Open menu"}
         aria-expanded={isOpen}
+        aria-controls="navbar"
+        aria-haspopup="dialog"
         onClick={onClick}
         data-cursor="hover"
         className={cn(

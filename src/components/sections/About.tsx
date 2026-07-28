@@ -36,7 +36,7 @@ export default function About() {
         <div className="mt-[clamp(4rem,9vw,9rem)] grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-[8vw]">
           <Reveal>
             <TiltCard maxTilt={3.5} className="mx-auto max-w-[32rem] lg:mx-0">
-              <div className="group relative aspect-[4/3] overflow-hidden rounded-[1.4rem] border border-white/10 bg-[#090917]">
+              <div className="group relative aspect-[8/9] overflow-hidden rounded-[1.4rem] border border-white/10 bg-[#090917]">
                 <Image
                   src="/images/profile.jpg"
                   alt={`${personal.fullName}, ${personal.role}`}
