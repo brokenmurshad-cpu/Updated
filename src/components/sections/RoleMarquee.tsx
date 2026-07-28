@@ -15,7 +15,7 @@ export default function RoleMarquee() {
             <span className="whitespace-nowrap font-display text-[clamp(3.25rem,7vw,8.5rem)] font-extrabold tracking-[-0.065em] text-[#f2f3f4]">
               {word}
             </span>
-            <span className="text-[clamp(2.2rem,5vw,5.5rem)] text-accent">
+            <span className="inline-flex animate-spin text-[clamp(2.2rem,5vw,5.5rem)] text-accent [animation-duration:5s]">
               ✦
             </span>
           </div>

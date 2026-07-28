@@ -222,7 +222,7 @@ export default function Hero() {
 
         <div
           data-hero-reveal
-          className="hero-detail relative z-30 mt-10 flex justify-center gap-3 md:absolute md:left-[8.5%] md:top-[68%] md:mt-0"
+          className="hero-detail relative z-30 mx-auto mt-10 flex w-fit justify-center gap-3 rounded-full border border-white/25 bg-white/[0.07] p-2 shadow-[0_10px_34px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.22)] backdrop-blur-[4px] md:absolute md:left-[8.5%] md:top-[68%] md:mt-0"
         >
           {socialItems.map((item) => (
             <Magnetic key={item.label} strength={24}>
@@ -236,7 +236,7 @@ export default function Hero() {
                 }
                 aria-label={item.label}
                 data-cursor="hover"
-                className="focus-ring flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-[#171721]/90 text-white/75 backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:border-accent hover:bg-accent hover:text-white"
+                className="focus-ring flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-white/[0.09] text-white/90 shadow-[0_8px_26px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.24)] backdrop-blur-[3px] transition duration-300 hover:-translate-y-1 hover:border-[#c69eff] hover:bg-white/[0.18] hover:text-white hover:shadow-[0_0_22px_rgba(133,76,230,0.42)]"
               >
                 <item.icon className="h-4 w-4" />
               </a>
@@ -265,7 +265,7 @@ export default function Hero() {
             variant="outline"
             download
             ariaLabel="Download Muhammad Husnain's CV"
-            className="border-[2px] border-accent px-6 py-3 text-[10px] font-extrabold uppercase tracking-[0.24em] hover:bg-accent"
+            className="border-[2px] border-[#b98cff] bg-transparent px-6 py-3 text-[10px] font-extrabold uppercase tracking-[0.24em] text-white shadow-[0_8px_24px_rgba(0,0,0,0.2)] hover:border-[#d9c4ff] hover:bg-[#854ce6] hover:shadow-[0_0_30px_rgba(169,120,255,0.62)]"
           >
             <Download className="h-3.5 w-3.5" />
             Download CV

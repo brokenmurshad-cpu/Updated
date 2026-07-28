@@ -30,16 +30,9 @@ export default function Contact() {
       id="contact"
       className="reference-contact relative isolate overflow-hidden border-b border-white/10 bg-[#191924] text-white"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-[clamp(7.5rem,10.2vw,12.5rem)] top-[3.65rem] h-14 w-14 rounded-full border border-[#c5a6ff]/35 bg-[#854ce6]/25 shadow-[0_0_0_12px_rgba(133,76,230,0.06),0_0_42px_10px_rgba(133,76,230,0.42)]"
-      >
-        <span className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#c5a6ff] shadow-[0_0_18px_rgba(197,166,255,0.95)]" />
-      </div>
-
       <div className="relative z-10 mx-auto w-full max-w-[128rem] px-7 py-[4.6rem] sm:px-12 lg:min-h-[100svh] lg:px-[3.1vw] lg:py-[5.25rem]">
         <p className="relative z-10 flex items-center gap-2.5 font-sans text-[clamp(1.25rem,1.65vw,2rem)] font-extrabold uppercase leading-none tracking-[-0.055em] text-white">
-          <span className="text-white/65">✦</span>
+          <span className="inline-flex animate-spin text-white/65 [animation-duration:5s]">✦</span>
           Get in <span className="text-[#854ce6]">touch</span>
         </p>
 
@@ -58,7 +51,7 @@ export default function Contact() {
               Let&apos;s connect and create something amazing together.
             </p>
 
-            <div className="mt-10 grid gap-7 border-t border-white/10 pt-8 sm:grid-cols-3 sm:gap-6">
+            <div className="mt-10 space-y-7 border-t border-white/10 pt-8">
               <ContactDetail
                 icon={Mail}
                 label="Email me"
@@ -162,7 +155,7 @@ function ContactDetail({
   href?: string;
 }) {
   const content = (
-    <div className="flex items-center gap-4 sm:flex-col sm:items-start sm:gap-3">
+    <div className="flex items-center gap-4">
       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 text-white/65">
         <Icon className="h-4 w-4" />
       </span>

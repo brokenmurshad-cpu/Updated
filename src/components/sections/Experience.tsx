@@ -84,11 +84,11 @@ export default function Experience() {
           </div>
         </div>
 
-        <div className="relative mt-[clamp(5rem,10vw,10rem)] md:pl-[8vw]">
-          <div className="absolute bottom-0 left-3 top-0 w-px bg-white/10 md:left-[3vw]" />
+        <div className="relative mt-[clamp(5rem,10vw,10rem)]">
+          <div className="absolute bottom-0 left-3 top-0 w-px bg-white/40 shadow-[0_0_16px_rgba(255,255,255,0.14)] md:left-[33%]" />
           <div
             ref={lineRef}
-            className="absolute bottom-0 left-[11px] top-0 w-[3px] origin-top bg-gradient-to-b from-accent via-accent/55 to-transparent shadow-[0_0_22px_rgba(133,76,230,0.55)] md:left-[calc(3vw-1px)]"
+            className="absolute bottom-0 left-[11px] top-0 w-[3px] origin-top bg-gradient-to-b from-white via-[#d6c1ff] to-[#854ce6]/55 shadow-[0_0_18px_rgba(255,255,255,0.6),0_0_50px_rgba(89,37,171,0.95),0_0_92px_rgba(56,19,111,0.68)] md:left-[calc(33%_-_1px)]"
           />
 
           <div className="space-y-16 md:space-y-24">
@@ -96,11 +96,11 @@ export default function Experience() {
               <article
                 key={item.period}
                 data-experience-item
-                className="relative grid gap-5 pl-10 md:grid-cols-[0.42fr_1fr] md:gap-[6vw] md:pl-0"
+                className="relative grid gap-5 pl-10 md:grid-cols-[28%_1fr] md:gap-[10%] md:pl-0"
               >
-                <span className="absolute left-[7px] top-2 h-2.5 w-2.5 rounded-full border-2 border-[#090917] bg-accent shadow-[0_0_18px_rgba(133,76,230,0.9)] md:-left-[calc(5vw+5px)]" />
+                <span className="absolute left-[7px] top-2 h-2.5 w-2.5 rounded-full border-2 border-[#090917] bg-white shadow-[0_0_12px_rgba(255,255,255,0.95),0_0_28px_rgba(133,76,230,0.95)] md:left-[calc(33%_-_5px)]" />
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#c69eff]">
                     {item.period}
                   </p>
                   <p className="mt-3 text-xs font-semibold uppercase tracking-[0.14em] text-white/35">
