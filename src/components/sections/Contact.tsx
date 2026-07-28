@@ -28,20 +28,22 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="reference-contact relative isolate min-h-[100svh] overflow-hidden border-b border-white/10 bg-[#191924] text-white"
+      className="reference-contact relative isolate overflow-hidden border-b border-white/10 bg-[#191924] text-white"
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute left-[14.8%] top-[15.5%] h-10 w-10 rounded-full bg-[#a978ff] shadow-[0_0_0_10px_rgba(133,76,230,0.06),0_0_30px_8px_rgba(133,76,230,0.48)]"
-      />
+        className="pointer-events-none absolute left-[clamp(7.5rem,10.2vw,12.5rem)] top-[3.65rem] h-14 w-14 rounded-full border border-[#c5a6ff]/35 bg-[#854ce6]/25 shadow-[0_0_0_12px_rgba(133,76,230,0.06),0_0_42px_10px_rgba(133,76,230,0.42)]"
+      >
+        <span className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#c5a6ff] shadow-[0_0_18px_rgba(197,166,255,0.95)]" />
+      </div>
 
-      <div className="relative z-10 min-h-[100svh] px-7 pb-12 pt-[4.6rem] sm:px-12 lg:px-[3.1vw]">
-        <p className="flex items-center gap-2.5 font-sans text-[clamp(1.25rem,1.65vw,2rem)] font-extrabold uppercase leading-none tracking-[-0.055em] text-white">
-          <span className="text-white/65">✱</span>
+      <div className="relative z-10 mx-auto w-full max-w-[128rem] px-7 py-[4.6rem] sm:px-12 lg:min-h-[100svh] lg:px-[3.1vw] lg:py-[5.25rem]">
+        <p className="relative z-10 flex items-center gap-2.5 font-sans text-[clamp(1.25rem,1.65vw,2rem)] font-extrabold uppercase leading-none tracking-[-0.055em] text-white">
+          <span className="text-white/65">✦</span>
           Get in <span className="text-[#854ce6]">touch</span>
         </p>
 
-        <div className="mt-[clamp(7.5rem,15.5vh,11.5rem)] max-w-[min(58rem,58vw)]">
+        <div className="mt-[clamp(5.5rem,11vh,9rem)] max-w-[66rem] lg:max-w-[64vw]">
           <h2 className="font-display text-[clamp(4rem,7.9vw,10rem)] font-extrabold uppercase leading-[0.86] tracking-[-0.085em] text-white/95">
             Let&apos;s talk
             <span className="mt-[0.17em] block text-[#854ce6]">about your</span>
@@ -49,65 +51,67 @@ export default function Contact() {
           </h2>
         </div>
 
-        <div className="mt-12 max-w-sm lg:absolute lg:left-[3.1vw] lg:top-[67.5%] lg:mt-0">
-          <p className="text-[clamp(0.9rem,0.9vw,1.1rem)] leading-[1.65] text-white/85">
-            Have a project in mind? Looking for a long-term partner? Or just want to say hi?
-            Let&apos;s connect and create something amazing together.
-          </p>
+        <div className="mt-12 grid items-start gap-14 lg:mt-[clamp(3.5rem,6.5vh,6.5rem)] lg:grid-cols-[minmax(0,1.1fr)_minmax(27rem,0.72fr)] lg:gap-[clamp(4.5rem,10vw,14rem)]">
+          <div className="max-w-3xl">
+            <p className="max-w-2xl text-[clamp(0.95rem,1vw,1.16rem)] leading-[1.7] text-white/85">
+              Have a project in mind? Looking for a long-term partner? Or just want to say hi?
+              Let&apos;s connect and create something amazing together.
+            </p>
 
-          <div className="mt-10 space-y-7">
-            <ContactDetail
-              icon={Mail}
-              label="Email me"
-              value={personal.email}
-              href={`mailto:${personal.email}`}
-            />
-            <ContactDetail
-              icon={Phone}
-              label="WhatsApp"
-              value={personal.phone}
-              href={whatsappUrl}
-            />
-            <ContactDetail icon={MapPin} label="Location" value={personal.location} />
-          </div>
-        </div>
-
-        <form
-          onSubmit={onSubmit}
-          className="mt-16 w-full rounded-[1.65rem] border border-[#854ce6]/45 bg-[#090917]/95 p-7 shadow-[0_20px_55px_rgba(0,0,0,0.48),0_0_32px_rgba(133,76,230,0.16)] sm:p-10 lg:absolute lg:right-[9%] lg:top-[29%] lg:mt-0 lg:w-[min(31vw,36rem)]"
-          aria-label="Contact form"
-        >
-          <Field label="Email address" name="email" type="email" placeholder="Enter your email" required />
-
-          <div className="mt-6">
-            <label
-              htmlFor="contact-message"
-              className="mb-3 block text-xs font-bold uppercase tracking-[0.03em] text-white/65"
-            >
-              How can I help?
-            </label>
-            <textarea
-              id="contact-message"
-              name="message"
-              required
-              rows={5}
-              placeholder="Tell me about your project..."
-              className="w-full resize-none rounded-xl border border-white/[0.04] bg-[#070817] px-4 py-4 text-sm text-white outline-none transition placeholder:text-white/25 focus:border-[#854ce6] focus:ring-2 focus:ring-[#854ce6]/15"
-            />
+            <div className="mt-10 grid gap-7 border-t border-white/10 pt-8 sm:grid-cols-3 sm:gap-6">
+              <ContactDetail
+                icon={Mail}
+                label="Email me"
+                value={personal.email}
+                href={`mailto:${personal.email}`}
+              />
+              <ContactDetail
+                icon={Phone}
+                label="WhatsApp"
+                value={personal.phone}
+                href={whatsappUrl}
+              />
+              <ContactDetail icon={MapPin} label="Location" value={personal.location} />
+            </div>
           </div>
 
-          <button
-            type="submit"
-            data-cursor="hover"
-            className="mt-9 w-full rounded-full border-[3px] border-[#854ce6] bg-[#140928]/55 px-5 py-3.5 text-[11px] font-extrabold uppercase tracking-[0.28em] text-white shadow-[7px_6px_0_rgba(14,6,29,0.55)] transition hover:bg-[#854ce6] hover:shadow-[0_0_26px_rgba(133,76,230,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a978ff]"
+          <form
+            onSubmit={onSubmit}
+            className="w-full rounded-[1.65rem] border border-[#854ce6]/45 bg-[#090917]/95 p-7 shadow-[0_20px_55px_rgba(0,0,0,0.48),0_0_32px_rgba(133,76,230,0.16)] sm:p-10"
+            aria-label="Contact form"
           >
-            Send message
-          </button>
+            <Field label="Email address" name="email" type="email" placeholder="Enter your email" required />
 
-          {status === "sent" ? (
-            <p className="mt-4 text-center text-xs text-[#a978ff]">Opening your mail client...</p>
-          ) : null}
-        </form>
+            <div className="mt-6">
+              <label
+                htmlFor="contact-message"
+                className="mb-3 block text-xs font-bold uppercase tracking-[0.03em] text-white/65"
+              >
+                How can I help?
+              </label>
+              <textarea
+                id="contact-message"
+                name="message"
+                required
+                rows={5}
+                placeholder="Tell me about your project..."
+                className="w-full resize-none rounded-xl border border-white/[0.04] bg-[#070817] px-4 py-4 text-sm text-white outline-none transition placeholder:text-white/25 focus:border-[#854ce6] focus:ring-2 focus:ring-[#854ce6]/15"
+              />
+            </div>
+
+            <button
+              type="submit"
+              data-cursor="hover"
+              className="mt-9 w-full rounded-full border-[3px] border-[#854ce6] bg-[#140928]/55 px-5 py-3.5 text-[11px] font-extrabold uppercase tracking-[0.28em] text-white shadow-[7px_6px_0_rgba(14,6,29,0.55)] transition hover:bg-[#854ce6] hover:shadow-[0_0_26px_rgba(133,76,230,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a978ff]"
+            >
+              Send message
+            </button>
+
+            {status === "sent" ? (
+              <p className="mt-4 text-center text-xs text-[#a978ff]">Opening your mail client...</p>
+            ) : null}
+          </form>
+        </div>
       </div>
     </section>
   );
@@ -158,13 +162,13 @@ function ContactDetail({
   href?: string;
 }) {
   const content = (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-4 sm:flex-col sm:items-start sm:gap-3">
       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 text-white/65">
         <Icon className="h-4 w-4" />
       </span>
       <div>
         <p className="text-[10px] font-extrabold uppercase tracking-[0.1em] text-[#854ce6]">{label}</p>
-        <p className="mt-1 text-sm font-bold text-white">{value}</p>
+        <p className="mt-1 break-words text-sm font-bold text-white">{value}</p>
       </div>
     </div>
   );

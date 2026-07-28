@@ -254,14 +254,11 @@ export default function Hero() {
           <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
             Based in {personal.location}
           </p>
-          <p className="mt-4 max-w-[36rem] text-sm leading-relaxed text-white/55">
-            {personal.heroSubtext}
-          </p>
         </div>
 
         <div
           data-hero-reveal
-          className="hero-detail relative z-30 mt-8 flex flex-wrap justify-center gap-3 md:absolute md:left-[49.8%] md:top-[83%] md:mt-0 md:justify-start"
+          className="hero-detail relative z-30 mt-8 flex flex-wrap justify-center gap-3 md:absolute md:left-[49.8%] md:top-[79%] md:mt-0 md:justify-start"
         >
           <Button
             href={personal.cvUrl}

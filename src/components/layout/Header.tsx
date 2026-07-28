@@ -85,7 +85,7 @@ export default function Header() {
         id="burger"
         isOpen={isNavbarOpen}
         onClick={toggleMenu}
-        className="!z-[7000] border-white/15 bg-[#d4d5d6]/90 text-[#090917] shadow-[0_12px_34px_rgba(0,0,0,0.35)] hover:bg-accent [&_span_span]:bg-[#090917]"
+        className="!z-[7000]"
       />
 
       <header
@@ -132,29 +132,33 @@ export default function Header() {
         role="dialog"
         aria-modal="true"
         aria-label="Site menu"
-        className="fixed inset-0 z-[6000] hidden h-[calc(100svh+5rem)] flex-col overflow-hidden bg-[#090917] outline-none"
+        className="fixed inset-0 z-[6000] hidden h-[100svh] flex-col overflow-hidden bg-[#a978ff] text-[#090917] outline-none"
       >
         <div className="editorial-grid relative flex min-h-0 flex-1 items-center px-6 py-20 sm:px-12 lg:px-[7vw]">
+          <div aria-hidden className="pointer-events-none absolute right-[7%] top-[13%] h-[32vw] w-[32vw] rounded-full border border-[#090917]/10 bg-[#c5a6ff]/30 blur-[2px]" />
           <p className="absolute left-6 top-7 font-display text-sm font-extrabold uppercase sm:left-12 lg:left-[7vw]">
             {personal.fullName}
           </p>
 
           <nav className="relative z-10 w-full" aria-label="Fullscreen navigation">
+            <p className="mb-6 text-[10px] font-extrabold uppercase tracking-[0.24em] text-[#090917]/55">
+              Navigation / {String(navbarLinks.length).padStart(2, "0")}
+            </p>
             <ul className="grid gap-x-16 gap-y-0 lg:grid-cols-2">
               {navbarLinks.map((item, index) => (
                 <li
                   key={item.label}
-                  className="nav-link-item overflow-hidden border-b border-white/10"
+                  className="nav-link-item overflow-hidden border-b border-[#090917]/20"
                 >
                   <Magnetic strength={12}>
                     <a
                       href={item.url}
                       onClick={toggleMenu}
                       data-cursor="hover"
-                      className="group flex items-center justify-between py-3 font-display text-[clamp(2rem,6.5vw,6.5rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.06em] text-white transition-colors hover:text-accent lg:py-4"
+                      className="group flex items-center justify-between py-3 font-display text-[clamp(2rem,6.5vw,6.5rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.06em] text-[#090917] transition-colors hover:text-white lg:py-4"
                     >
                       <span>{item.label}</span>
-                      <span className="text-[10px] font-semibold tracking-[0.16em] text-white/35 group-hover:text-accent">
+                      <span className="text-[10px] font-semibold tracking-[0.16em] text-[#090917]/45 group-hover:text-white">
                         {String(index + 1).padStart(2, "0")}
                       </span>
                     </a>
@@ -164,7 +168,7 @@ export default function Header() {
             </ul>
           </nav>
 
-          <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-end justify-between gap-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/45 sm:left-12 sm:right-12 lg:left-[7vw] lg:right-[7vw]">
+          <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-end justify-between gap-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#090917]/55 sm:left-12 sm:right-12 lg:left-[7vw] lg:right-[7vw]">
             <a
               href={`mailto:${personal.email}`}
               className="transition-colors hover:text-white"
@@ -182,7 +186,7 @@ export default function Header() {
                       ? "noopener noreferrer"
                       : undefined
                   }
-                  className="transition-colors hover:text-accent"
+                  className="transition-colors hover:text-white"
                 >
                   {item.label}
                 </a>
@@ -192,7 +196,7 @@ export default function Header() {
         </div>
 
         <div className="rounded__div__up !relative z-20 -mt-px">
-          <div className="round__bg__up bg-[#090917]" />
+          <div className="round__bg__up bg-[#a978ff]" />
         </div>
       </div>
     </div>

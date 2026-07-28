@@ -10,30 +10,43 @@ export function animateReferenceMenuEnter(
 ) {
   const tl = gsap.timeline({ defaults: { ease: "power4.inOut" } });
 
-  gsap.set(navbar, { display: "flex" });
+  gsap.killTweensOf([navbar, links, curve]);
+  gsap.set(navbar, {
+    display: "flex",
+    autoAlpha: 1,
+    y: 0,
+    clipPath: "circle(0% at calc(100% - 3.25rem) 3.25rem)",
+  });
+  gsap.set(links, { y: 72, autoAlpha: 0, rotate: 1.5 });
+  gsap.set(curve, { y: 48, autoAlpha: 0 });
 
   tl.fromTo(
     navbar,
-    { y: "-100%" },
-    { y: "0%", duration: 0.85 },
+    { clipPath: "circle(0% at calc(100% - 3.25rem) 3.25rem)" },
+    {
+      clipPath: "circle(155% at calc(100% - 3.25rem) 3.25rem)",
+      duration: 1,
+      ease: "power4.inOut",
+    },
   )
     .fromTo(
       curve,
-      { y: 80 },
-      { y: 0, duration: 0.75 },
-      0.05,
+      { y: 48, autoAlpha: 0 },
+      { y: 0, autoAlpha: 1, duration: 0.65 },
+      0.38,
     )
     .fromTo(
       links,
-      { y: 80, opacity: 0 },
+      { y: 72, autoAlpha: 0, rotate: 1.5 },
       {
         y: 0,
-        opacity: 1,
-        duration: 0.7,
-        stagger: 0.08,
+        autoAlpha: 1,
+        rotate: 0,
+        duration: 0.75,
+        stagger: 0.075,
         ease: "power3.out",
       },
-      0.2,
+      0.28,
     );
 
   return tl;
@@ -51,15 +64,26 @@ export function animateReferenceMenuLeave(
     },
   });
 
+  gsap.killTweensOf([navbar, links, curve]);
+
   tl.to(links, {
-    y: -40,
-    opacity: 0,
-    duration: 0.35,
-    stagger: 0.04,
+    y: -30,
+    autoAlpha: 0,
+    rotate: -1,
+    duration: 0.3,
+    stagger: 0.035,
     ease: "power2.in",
   })
-    .to(curve, { y: 80, duration: 0.55 }, 0.05)
-    .to(navbar, { y: "-100%", duration: 0.7 }, 0.08);
+    .to(curve, { y: 48, autoAlpha: 0, duration: 0.4 }, 0)
+    .to(
+      navbar,
+      {
+        clipPath: "circle(0% at calc(100% - 3.25rem) 3.25rem)",
+        duration: 0.72,
+        ease: "power4.inOut",
+      },
+      0.12,
+    );
 
   return tl;
 }
