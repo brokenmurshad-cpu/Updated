@@ -22,7 +22,7 @@ export default function About() {
       <div className="pointer-events-none absolute left-[12%] top-[28%] h-72 w-72 rounded-full bg-accent/10 blur-[130px]" />
 
       <div className="mx-auto w-full max-w-[112rem]">
-        <div className="mb-10 flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.26em] text-white/40">
+        <div className="mb-10 flex flex-col items-center gap-3 text-center text-[10px] font-bold uppercase tracking-[0.26em] text-white/40 sm:flex-row sm:justify-between sm:text-left">
           <span className="text-accent">01 / About</span>
           <span>{personal.location}</span>
         </div>
@@ -30,12 +30,12 @@ export default function About() {
         <RevealText
           as="h2"
           text={personal.aboutTitle}
-          className="max-w-[96rem] font-display text-[clamp(3.3rem,8.3vw,10.5rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.075em] text-[#f2f3f4]"
+          className="mx-auto max-w-[96rem] text-balance text-center font-display text-[clamp(3.3rem,8.3vw,10.5rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.075em] text-[#f2f3f4] lg:mx-0 lg:text-left"
         />
 
         <div className="mt-[clamp(4rem,9vw,9rem)] grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-[8vw]">
           <Reveal>
-            <TiltCard maxTilt={3.5} className="max-w-[32rem]">
+            <TiltCard maxTilt={3.5} className="mx-auto max-w-[32rem] lg:mx-0">
               <div className="group relative aspect-[4/3] overflow-hidden rounded-[1.4rem] border border-white/10 bg-[#090917]">
                 <Image
                   src="/images/profile.jpg"
@@ -62,7 +62,7 @@ export default function About() {
             </TiltCard>
           </Reveal>
 
-          <div>
+          <div className="text-center lg:text-left">
             <Reveal>
               <p className="max-w-[48rem] font-display text-[clamp(1.4rem,2.5vw,3rem)] font-semibold leading-[1.16] tracking-[-0.035em] text-white">
                 {personal.aboutIntro}

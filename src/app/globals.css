@@ -173,32 +173,48 @@ body {
   top: 0;
   left: 0;
   z-index: 99999;
-  mix-blend-mode: difference;
+  mix-blend-mode: normal;
   opacity: 0;
 }
 
 .cursor-dot {
-  width: 10px;
-  height: 10px;
-  background: #a978ff;
+  width: 8px;
+  height: 8px;
+  background: #ffffff;
   border-radius: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
 }
 
 .cursor-outline {
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(203, 166, 255, 0.85);
   border-radius: 50%;
+  background: rgba(133, 76, 230, 0.42);
+  box-shadow:
+    0 0 18px rgba(133, 76, 230, 0.72),
+    0 0 42px rgba(133, 76, 230, 0.34),
+    inset 0 0 14px rgba(228, 212, 255, 0.28);
+  backdrop-filter: blur(2px);
   transform: translate(-50%, -50%);
-  transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+  transition:
+    width 0.3s ease,
+    height 0.3s ease,
+    opacity 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .cursor-outline.cursor-hover {
-  width: 72px;
-  height: 72px;
-  border-color: #a978ff;
-  background: rgba(133, 76, 230, 0.08);
+  width: 78px;
+  height: 78px;
+  border-color: #e2cffd;
+  background: rgba(133, 76, 230, 0.62);
+  box-shadow:
+    0 0 28px rgba(164, 108, 255, 0.92),
+    0 0 64px rgba(133, 76, 230, 0.54),
+    inset 0 0 20px rgba(245, 239, 255, 0.35);
 }
 
 /* ===== Scrollbar ===== */

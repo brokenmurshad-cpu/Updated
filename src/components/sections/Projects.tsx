@@ -2,11 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { getGsap } from "@/lib/gsap";
-import { projects } from "@/data/content";
+import { projects } from "@/data/project-showcase";
 
 const featuredProjects = projects.slice(0, 5);
 
@@ -14,11 +15,12 @@ export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
   const previewRef = useRef<HTMLDivElement>(null);
   const [activeProject, setActiveProject] = useState<number | null>(null);
+  const [activeFeaturedIndex, setActiveFeaturedIndex] = useState(0);
 
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
-    const { gsap } = getGsap();
+    const { gsap, ScrollTrigger } = getGsap();
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
@@ -64,6 +66,20 @@ export default function Projects() {
           });
       }
 
+      if (window.matchMedia("(min-width: 1024px)").matches) {
+        gsap.utils
+          .toArray<HTMLElement>("[data-feature-card]")
+          .forEach((card, index) => {
+            ScrollTrigger.create({
+              trigger: card,
+              start: "top center",
+              end: "bottom center",
+              onEnter: () => setActiveFeaturedIndex(index),
+              onEnterBack: () => setActiveFeaturedIndex(index),
+            });
+          });
+      }
+
       const xTo = gsap.quickTo(previewRef.current, "x", {
         duration: 0.34,
         ease: "power3.out",
@@ -98,6 +114,8 @@ export default function Projects() {
 
   const currentPreview =
     activeProject === null ? null : projects[activeProject];
+  const activeFeaturedProject =
+    featuredProjects[activeFeaturedIndex] ?? featuredProjects[0];
 
   return (
     <section
@@ -120,14 +138,57 @@ export default function Projects() {
       </div>
 
       <div className="border-b border-white/10">
+        <div className="mx-auto grid w-full max-w-[112rem] lg:grid-cols-[0.31fr_1fr]">
+          <aside className="sticky top-0 hidden h-[100svh] self-start border-r border-white/10 lg:flex lg:items-center lg:justify-center">
+            {activeFeaturedProject ? (
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeFeaturedProject.id}
+                  initial={{ opacity: 0, y: 26, filter: "blur(5px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, y: -26, filter: "blur(5px)" }}
+                  transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex max-w-[15rem] flex-col items-center text-center"
+                >
+                  <span className="font-display text-[clamp(7rem,12vw,14rem)] font-extrabold leading-[0.68] tracking-[-0.1em] text-white">
+                    {activeFeaturedProject.index}.
+                  </span>
+                  <div className="mt-10 w-full border-t border-white/10 pt-5">
+                    <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-accent">
+                      Selected project
+                    </p>
+                    <p className="mt-3 font-display text-lg font-semibold leading-tight text-white/85">
+                      {activeFeaturedProject.category}
+                    </p>
+                    <p className="mt-3 text-[9px] font-bold uppercase tracking-[0.16em] text-white/38">
+                      Stack &amp; environment
+                    </p>
+                    <div className="mt-4 flex flex-wrap justify-center gap-1.5">
+                      {activeFeaturedProject.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-white/15 bg-white/[0.025] px-2.5 py-1 text-[8px] font-bold uppercase tracking-[0.11em] text-white/55"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            ) : null}
+          </aside>
+
+          <div>
         {featuredProjects.map((project, index) => (
           <article
             key={project.id}
             data-feature-project
-            className="relative min-h-[100svh] overflow-hidden border-b border-white/10 px-5 py-24 last:border-b-0 sm:px-8 lg:px-[3.2vw]"
+            data-feature-card
+            className="relative flex min-h-[100svh] items-center overflow-hidden border-b border-white/10 px-5 py-24 last:border-b-0 sm:px-8 lg:px-[clamp(2rem,4.7vw,6rem)]"
           >
-            <div className="mx-auto grid min-h-[calc(100svh-12rem)] w-full max-w-[112rem] items-center gap-10 lg:grid-cols-[0.34fr_1.66fr]">
-              <div className="relative z-10 flex items-start gap-3 lg:block">
+            <div className="w-full">
+              <div className="relative z-10 mb-9 flex items-start gap-3 lg:hidden">
                 <span className="font-display text-[clamp(5rem,12vw,14rem)] font-extrabold leading-[0.68] tracking-[-0.1em] text-white">
                   {project.index}.
                 </span>
@@ -137,9 +198,11 @@ export default function Projects() {
               </div>
 
               <div className="relative">
-                <div
+                <Link
+                  href={"/projects/" + project.id}
                   data-feature-media
-                  className="group relative aspect-[16/9.4] overflow-hidden rounded-[1.4rem] border border-white/10 bg-[#090917] shadow-[0_35px_110px_rgba(0,0,0,0.42)]"
+                  aria-label={"Open " + project.title + " case study"}
+                  className="group relative block aspect-[16/9.4] overflow-hidden rounded-[1.4rem] border border-white/10 bg-[#090917] shadow-[0_35px_110px_rgba(0,0,0,0.42)]"
                 >
                   <Image
                     src={project.image}
@@ -153,23 +216,35 @@ export default function Projects() {
                   <p className="absolute left-5 top-5 rounded-full border border-white/10 bg-[#090917]/65 px-4 py-2 text-[8px] font-bold uppercase tracking-[0.18em] text-white/65 backdrop-blur-lg sm:left-7 sm:top-7">
                     Featured case {String(index + 1).padStart(2, "0")}
                   </p>
-                </div>
+                </Link>
 
                 <div
                   data-feature-content
-                  className="relative z-10 -mt-16 ml-auto w-[94%] rounded-[1.2rem] border border-white/10 bg-[#11111b]/92 p-6 shadow-[0_22px_60px_rgba(0,0,0,0.38)] backdrop-blur-xl sm:p-8 lg:w-[82%]"
+                  className="relative z-10 mt-7 w-full px-1 pb-3 sm:mt-9"
                 >
                   <h3 className="max-w-[52rem] font-display text-[clamp(2rem,4vw,5rem)] font-extrabold leading-[0.92] tracking-[-0.06em]">
-                    {project.title}
+                    <Link
+                      href={"/projects/" + project.id}
+                      className="transition-colors duration-300 hover:text-accent"
+                    >
+                      {project.title}
+                    </Link>
                   </h3>
-                  <div className="mt-6 grid gap-6 xl:grid-cols-[1fr_auto] xl:items-end">
+                  <div className="mt-5 grid gap-6 xl:grid-cols-[1fr_auto] xl:items-end">
                     <div>
                       <p className="max-w-[42rem] text-sm leading-[1.75] text-white/55">
                         {project.description}
                       </p>
-                      <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[9px] font-bold uppercase tracking-[0.16em] text-white/45">
+                      <div className="mt-6 flex flex-wrap gap-2">
                         {project.tags.map((tag) => (
-                          <span key={tag}>{tag}</span>
+                          <span
+                            key={tag}
+                            data-cursor="hover"
+                            className="group/tag inline-flex cursor-default items-center gap-2 rounded-full border border-white/15 bg-white/[0.025] px-3.5 py-2 text-[9px] font-bold uppercase tracking-[0.14em] text-white/60 transition duration-300 hover:-translate-y-1 hover:border-accent hover:bg-accent/15 hover:text-white hover:shadow-[0_0_22px_rgba(133,76,230,0.35)]"
+                          >
+                            <span className="h-1.5 w-1.5 rounded-full bg-accent transition duration-300 group-hover/tag:scale-150 group-hover/tag:bg-white group-hover/tag:shadow-[0_0_10px_currentColor]" />
+                            {tag}
+                          </span>
                         ))}
                       </div>
                     </div>
@@ -203,6 +278,8 @@ export default function Projects() {
             </div>
           </article>
         ))}
+          </div>
+        </div>
       </div>
 
       <div className="relative px-5 py-[clamp(7rem,12vw,12rem)] sm:px-8 lg:px-[3.2vw]">
@@ -224,11 +301,9 @@ export default function Projects() {
 
           <div className="border-t border-white/10">
             {projects.map((project, index) => (
-              <a
+              <Link
                 key={project.id}
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={"/projects/" + project.id}
                 onPointerEnter={() => setActiveProject(index)}
                 onPointerLeave={() => setActiveProject(null)}
                 onFocus={() => setActiveProject(index)}
@@ -251,7 +326,7 @@ export default function Projects() {
                 <span className="ml-auto flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-white/45 transition duration-300 group-hover:rotate-45 group-hover:border-accent group-hover:bg-accent group-hover:text-white">
                   <ArrowUpRight className="h-4 w-4" />
                 </span>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

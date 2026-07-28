@@ -30,32 +30,34 @@ export default function Footer() {
 
       <div className="relative z-10 min-h-[100svh] px-7 pb-16 pt-[clamp(9rem,17vh,13rem)] sm:px-12 lg:px-[3.1vw]">
         {/* Main left-aligned statement */}
-        <div className="max-w-[min(62rem,73vw)]">
-          <h2 className="font-display text-[clamp(3.8rem,8.1vw,10rem)] font-extrabold uppercase leading-[0.8] tracking-[-0.078em] text-white/95">
+        <div className="mx-auto max-w-[min(62rem,92vw)] text-center lg:mx-0 lg:max-w-[min(62rem,73vw)] lg:text-left">
+          <h2 className="text-balance font-display text-[clamp(3.8rem,8.1vw,10rem)] font-extrabold uppercase leading-[0.8] tracking-[-0.078em] text-white/95">
             Let&apos;s build
             <span className="mt-[0.16em] block text-[#854ce6]">the future.</span>
           </h2>
 
-          <Magnetic strength={18}>
-            <a
-              href={personal.cvUrl}
-              download
-              data-cursor="hover"
-              className="mt-[clamp(4.5rem,10vh,8rem)] inline-flex items-center gap-2 rounded-full border-[3px] border-[#854ce6] bg-[#160b2b]/55 px-8 py-4 text-xs font-extrabold uppercase tracking-[0.32em] text-white shadow-[10px_8px_0_rgba(10,6,24,0.55)] transition hover:bg-[#854ce6] hover:shadow-[0_0_28px_rgba(133,76,230,0.45)]"
-            >
-              <Download className="h-4 w-4" />
-              Download CV
-            </a>
-          </Magnetic>
+          <div className="flex justify-center lg:justify-start">
+            <Magnetic strength={18}>
+              <a
+                href={personal.cvUrl}
+                download
+                data-cursor="hover"
+                className="mt-[clamp(4.5rem,10vh,8rem)] inline-flex items-center gap-2 rounded-full border-[3px] border-[#854ce6] bg-[#160b2b]/55 px-8 py-4 text-xs font-extrabold uppercase tracking-[0.32em] text-white shadow-[10px_8px_0_rgba(10,6,24,0.55)] transition hover:bg-[#854ce6] hover:shadow-[0_0_28px_rgba(133,76,230,0.45)]"
+              >
+                <Download className="h-4 w-4" />
+                Download CV
+              </a>
+            </Magnetic>
+          </div>
         </div>
 
         {/* The reference keeps social links and email in the right-side corner. */}
-        <div className="mt-20 flex max-w-sm flex-col items-start gap-7 sm:items-end lg:absolute lg:right-[3.1vw] lg:top-[50%] lg:mt-0 lg:text-right">
+        <div className="mx-auto mt-20 flex max-w-sm flex-col items-center gap-7 text-center sm:items-center lg:absolute lg:right-[3.1vw] lg:top-[50%] lg:mt-0 lg:items-end lg:text-right">
           <div>
             <p className="mb-4 text-xs font-extrabold uppercase tracking-[0.17em] text-[#854ce6]">
               Socials
             </p>
-            <div className="flex items-center gap-6 sm:justify-end">
+            <div className="flex items-center justify-center gap-6 lg:justify-end">
               {socialLinks.map((item) => (
                 <Magnetic key={item.label} strength={18}>
                   <a
@@ -87,11 +89,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="absolute bottom-16 left-7 text-sm font-semibold text-[#854ce6] sm:left-12 lg:left-[3.1vw]">
+        <p className="absolute bottom-24 left-1/2 -translate-x-1/2 text-center text-sm font-semibold text-[#854ce6] sm:bottom-16 sm:left-12 sm:translate-x-0 sm:text-left lg:left-[3.1vw]">
           &copy; {year} {personal.fullName}
         </p>
 
-        <p className="absolute bottom-16 right-7 text-xs font-extrabold uppercase tracking-[0.25em] text-[#854ce6] sm:right-12 lg:right-[3.1vw]">
+        <p className="absolute bottom-10 left-1/2 w-max -translate-x-1/2 text-center text-xs font-extrabold uppercase tracking-[0.25em] text-[#854ce6] sm:bottom-16 sm:left-auto sm:right-12 sm:translate-x-0 sm:text-right lg:right-[3.1vw]">
           Build <span className="mx-5">•</span> Ship <span className="mx-5">•</span>
         </p>
       </div>

@@ -190,7 +190,7 @@ export default function Hero() {
 
         <div
           data-hero-reveal
-          className="hero-wordmark relative z-20 mt-[-1.2rem] overflow-hidden md:absolute md:left-[49%] md:top-[9%] md:mt-0"
+          className="hero-wordmark relative z-20 mx-auto mt-7 w-fit overflow-hidden text-center md:absolute md:left-[49%] md:top-[9%] md:mt-0 md:text-left"
         >
           <h1 className="font-display text-[clamp(4.25rem,12vw,12rem)] font-extrabold uppercase leading-[0.72] tracking-[-0.085em] text-[#f2f3f4]">
             <span className="block overflow-hidden">
@@ -207,7 +207,7 @@ export default function Hero() {
         <p
           data-hero-reveal
           aria-label={personal.fullName}
-          className="hero-signature relative z-30 ml-auto mt-5 w-fit -rotate-[5deg] text-[clamp(2.4rem,5.3vw,6.7rem)] leading-none text-white md:absolute md:left-[64%] md:top-[53%] md:mt-0"
+          className="hero-signature relative z-30 mx-auto mt-5 w-fit -rotate-[5deg] text-center text-[clamp(2.4rem,5.3vw,6.7rem)] leading-none text-white md:absolute md:left-[64%] md:top-[53%] md:mt-0 md:text-left"
         >
           {signatureCharacters.map((character, index) => (
             <span
@@ -222,7 +222,7 @@ export default function Hero() {
 
         <div
           data-hero-reveal
-          className="hero-detail relative z-30 mt-10 flex items-center gap-3 md:absolute md:left-[8.5%] md:top-[68%] md:mt-0"
+          className="hero-detail relative z-30 mt-10 flex justify-center gap-3 md:absolute md:left-[8.5%] md:top-[68%] md:mt-0"
         >
           {socialItems.map((item) => (
             <Magnetic key={item.label} strength={24}>
@@ -246,7 +246,7 @@ export default function Hero() {
 
         <div
           data-hero-reveal
-          className="hero-detail relative z-30 mt-8 max-w-md md:absolute md:left-[49.8%] md:top-[66%] md:mt-0 md:max-w-[30rem]"
+          className="hero-detail relative z-30 mx-auto mt-8 max-w-md text-center md:absolute md:left-[49.8%] md:top-[66%] md:mt-0 md:max-w-[30rem] md:text-left"
         >
           <p className="font-display text-[clamp(1rem,1.35vw,1.45rem)] font-semibold leading-tight text-white">
             {personal.roles.slice(0, 3).join(" · ")}
@@ -261,7 +261,7 @@ export default function Hero() {
 
         <div
           data-hero-reveal
-          className="hero-detail relative z-30 mt-8 flex flex-wrap gap-3 md:absolute md:left-[49.8%] md:top-[83%] md:mt-0"
+          className="hero-detail relative z-30 mt-8 flex flex-wrap justify-center gap-3 md:absolute md:left-[49.8%] md:top-[83%] md:mt-0 md:justify-start"
         >
           <Button
             href={personal.cvUrl}
