@@ -17,7 +17,13 @@ export default function BurgerMenuBtn({
   onClick,
 }: BurgerMenuBtnProps) {
   return (
-    <Magnetic strength={30}>
+    <Magnetic
+      strength={30}
+      className={cn(
+        "fixed right-5 top-5 z-[7000] md:right-8 md:top-7",
+        className,
+      )}
+    >
       <button
         id={id}
         type="button"
@@ -28,10 +34,9 @@ export default function BurgerMenuBtn({
         onClick={onClick}
         data-cursor="hover"
         className={cn(
-          "fixed right-5 top-5 z-[7000] flex h-14 w-14 items-center justify-center rounded-full border border-white/15 bg-[#d4d5d6]/90 backdrop-blur-xl md:right-8 md:top-7",
+          "flex h-14 w-14 items-center justify-center rounded-full border border-white/15 bg-[#d4d5d6]/90 backdrop-blur-xl",
           "shadow-[0_10px_40px_rgba(0,0,0,0.35)] transition-[background-color,transform,box-shadow] duration-300 hover:scale-105 hover:shadow-[0_0_0_7px_rgba(169,120,255,0.15),0_10px_40px_rgba(0,0,0,0.38)]",
           isOpen && "border-[#c5a6ff]/50 bg-[#090917] shadow-[0_0_0_7px_rgba(169,120,255,0.17),0_0_28px_rgba(133,76,230,0.6)]",
-          className,
         )}
       >
         <span className="relative block h-3.5 w-6">

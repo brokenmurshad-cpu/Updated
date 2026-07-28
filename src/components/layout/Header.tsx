@@ -5,12 +5,14 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import BurgerMenuBtn from "@/components/ui/BurgerMenuBtn";
 import Magnetic from "@/components/ui/Magnetic";
+import Link from "@/components/ui/Link";
 import {
   animateReferenceMenuEnter,
   animateReferenceMenuLeave,
   navbarScale,
 } from "@/lib/animations";
 import {
+  navbarLinks,
   navLinks,
   personal,
   socialLinks,
@@ -24,7 +26,6 @@ export default function Header() {
   const { contextSafe } = useGSAP({ scope: scopeRef });
 
   const openMenu = contextSafe(() => {
-    if (isNavbarOpen) return;
     previouslyFocused.current = document.activeElement as HTMLElement | null;
     setIsNavbarOpen(true);
     animateReferenceMenuEnter(
@@ -36,16 +37,13 @@ export default function Header() {
   });
 
   const closeMenu = contextSafe(() => {
-    if (!isNavbarOpen) return;
     setIsNavbarOpen(false);
-    const timeline = animateReferenceMenuLeave(
+    animateReferenceMenuLeave(
       "#navbar",
       ".nav-link-item",
       ".rounded__div__up",
     );
-    timeline.eventCallback("onComplete", () =>
-      previouslyFocused.current?.focus(),
-    );
+    window.requestAnimationFrame(() => previouslyFocused.current?.focus());
   });
 
   const toggleMenu = contextSafe(() => {
@@ -123,6 +121,17 @@ export default function Header() {
             </p>
           </div>
 
+          <ul className="ml-auto hidden items-center gap-[clamp(0.8rem,1.5vw,1.8rem)] md:flex">
+            {navLinks.map((item, index) => (
+              <Link
+                key={item.label}
+                tag="li"
+                label={`${item.label}${index < navLinks.length - 1 ? "," : ""}`}
+                url={item.url}
+                className="text-[11px] font-semibold text-white/75 transition-colors hover:text-white lg:text-xs"
+              />
+            ))}
+          </ul>
         </nav>
       </header>
 
@@ -143,31 +152,25 @@ export default function Header() {
 
           <nav className="relative z-10 w-full" aria-label="Fullscreen navigation">
             <p className="mb-6 text-[10px] font-extrabold uppercase tracking-[0.24em] text-[#090917]/55">
-              Navigation / {String(navLinks.length).padStart(2, "0")}
+              Navigation / {String(navbarLinks.length).padStart(2, "0")}
             </p>
             <ul className="grid gap-x-16 gap-y-0 lg:grid-cols-2">
-              {navLinks.map((item, index) => (
+              {navbarLinks.map((item, index) => (
                 <li
                   key={item.label}
                   className="nav-link-item overflow-hidden border-b border-[#090917]/20"
                 >
-                  <Magnetic strength={16}>
+                  <Magnetic strength={12}>
                     <a
                       href={item.url}
-                      onClick={closeMenu}
+                      onClick={toggleMenu}
                       data-cursor="hover"
-                      className="group relative flex items-center justify-between overflow-hidden py-3 font-display text-[clamp(2rem,6.5vw,6.5rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.06em] text-[#090917] transition-colors duration-300 hover:text-white lg:py-4"
+                      className="group flex items-center justify-between py-3 font-display text-[clamp(2rem,6.5vw,6.5rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.06em] text-[#090917] transition-colors hover:text-white lg:py-4"
                     >
-                      <span className="relative z-10 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-3">
-                        {item.label}
-                      </span>
-                      <span className="relative z-10 translate-x-2 text-[10px] font-semibold tracking-[0.16em] text-[#090917]/45 opacity-60 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0 group-hover:text-white group-hover:opacity-100">
+                      <span>{item.label}</span>
+                      <span className="text-[10px] font-semibold tracking-[0.16em] text-[#090917]/45 group-hover:text-white">
                         {String(index + 1).padStart(2, "0")}
                       </span>
-                      <span
-                        aria-hidden="true"
-                        className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-white transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
-                      />
                     </a>
                   </Magnetic>
                 </li>

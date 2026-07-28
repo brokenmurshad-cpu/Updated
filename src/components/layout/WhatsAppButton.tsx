@@ -1,6 +1,6 @@
 "use client";
 
-import { MessageCircle } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { whatsappUrl } from "@/data/content";
 import Magnetic from "@/components/ui/Magnetic";
 
@@ -13,9 +13,9 @@ export default function WhatsAppButton() {
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
         data-cursor="hover"
-        className="whatsapp-pulse glass flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366]/90 text-white shadow-[0_12px_40px_rgba(37,211,102,0.45)] transition-transform duration-300 hover:scale-110"
+        className="whatsapp-pulse flex h-14 w-14 items-center justify-center rounded-full border border-white/25 bg-[#25D366] text-white shadow-[0_12px_40px_rgba(37,211,102,0.5)] transition-transform duration-300 hover:scale-110 hover:bg-[#1fc75c]"
       >
-        <MessageCircle className="h-6 w-6 fill-current" />
+        <FaWhatsapp aria-hidden="true" className="h-7 w-7" />
       </a>
     </Magnetic>
   );

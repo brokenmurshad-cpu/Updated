@@ -20,13 +20,13 @@ export default function Testimonials() {
 
       <Marquee speed={58} className="mb-5">
         {testimonials.map((item) => (
-          <TestimonialCard key={`${item.name}-${item.title}`} item={item} />
+          <TestimonialCard key={item.name + "-" + item.title} item={item} />
         ))}
       </Marquee>
       <Marquee speed={62} reverse>
         {[...testimonials].reverse().map((item) => (
           <TestimonialCard
-            key={`reverse-${item.name}-${item.title}`}
+            key={"reverse-" + item.name + "-" + item.title}
             item={item}
           />
         ))}
@@ -39,13 +39,18 @@ function TestimonialCard({ item }: { item: Testimonial }) {
   return (
     <article className="mx-2.5 flex min-h-[17rem] w-[min(88vw,31rem)] shrink-0 flex-col justify-between rounded-[1.1rem] border border-white/10 bg-[#171721] p-6 shadow-[0_22px_55px_rgba(0,0,0,0.25)] sm:p-8">
       <div className="flex items-center justify-between">
-        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-accent font-display text-lg font-extrabold text-white">
+        <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#d7baff]/70 bg-gradient-to-br from-[#c5a6ff] via-[#854ce6] to-[#4e258f] font-display text-lg font-extrabold text-white shadow-[0_0_20px_rgba(133,76,230,0.6)]">
           {item.initial}
         </span>
-        <span className="text-accent">★★★★★</span>
+        <span
+          aria-label="5 out of 5 stars"
+          className="text-[#ffd54a] drop-shadow-[0_0_8px_rgba(255,213,74,0.45)]"
+        >
+          {"\u2605\u2605\u2605\u2605\u2605"}
+        </span>
       </div>
       <p className="my-8 text-sm leading-[1.75] text-white/60 md:text-[15px]">
-        “{item.quote}”
+        &ldquo;{item.quote}&rdquo;
       </p>
       <div>
         <p className="font-display text-lg font-semibold text-white">
