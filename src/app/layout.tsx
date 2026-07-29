@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Manrope } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Preloader from "@/components/layout/Preloader";
 import Header from "@/components/layout/Header";
@@ -21,6 +22,15 @@ const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-bricolage",
   display: "swap",
+});
+
+const emitha = localFont({
+  src: "./fonts/Emitha-Script.otf",
+  variable: "--font-emitha",
+  weight: "400",
+  style: "normal",
+  display: "swap",
+  fallback: ["cursive"],
 });
 
 export const metadata: Metadata = {
@@ -78,7 +88,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${bricolage.variable}`}>
+    <html
+      lang="en"
+      className={`${manrope.variable} ${bricolage.variable} ${emitha.variable}`}
+    >
       <body>
         <script
           type="application/ld+json"

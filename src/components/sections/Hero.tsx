@@ -56,9 +56,9 @@ export default function Hero() {
           gsap.set("[data-hero-reveal]", { autoAlpha: 1, clearProps: "transform" });
           gsap.set(".hero-name-artwork, .signature-word", {
             autoAlpha: 1,
-            clearProps: "transform,filter,clipPath",
+            clearProps: "transform,clipPath",
           });
-          gsap.set(".clarify-slice, .signature-burst-flare", { autoAlpha: 0 });
+          gsap.set(".clarify-slice", { autoAlpha: 0 });
           return;
         }
 
@@ -126,38 +126,17 @@ export default function Hero() {
             0.78,
           )
           .fromTo(
-            ".signature-burst-flare",
-            { autoAlpha: 0, scale: 0.2 },
-            {
-              autoAlpha: 0.75,
-              scale: 1.7,
-              duration: 0.44,
-              repeat: 1,
-              yoyo: true,
-              ease: "power2.out",
-            },
-            0.7,
-          )
-          .fromTo(
             ".signature-word",
             {
               autoAlpha: 0,
-              scale: 0.18,
-              x: -18,
-              y: 10,
-              rotate: -9,
-              filter: "blur(9px)",
+              scale: 0.05,
             },
             {
               autoAlpha: 1,
               scale: 1,
-              x: 0,
-              y: 0,
-              rotate: 0,
-              filter: "blur(0px)",
-              duration: 0.62,
-              stagger: 0.28,
-              ease: "back.out(1.9)",
+              duration: 0.72,
+              stagger: 0.2,
+              ease: "back.out(3.2)",
             },
             0.72,
           )
@@ -192,7 +171,6 @@ export default function Hero() {
       gsap.set(".hero-name-artwork, .clarify-slice, .signature-word", {
         autoAlpha: 0,
       });
-      gsap.set(".signature-burst-flare", { autoAlpha: 0, scale: 0.2 });
 
       window.addEventListener("app:preloader-complete", reveal);
       fallback = window.setTimeout(reveal, 3000);
@@ -283,9 +261,8 @@ export default function Hero() {
         <p
           data-hero-reveal
           aria-label={personal.fullName}
-          className="hero-signature pointer-events-none relative z-30 mx-auto -mt-6 w-fit -rotate-[5deg] text-center text-[clamp(2.2rem,2.7vw,3.6rem)] leading-none text-white md:absolute md:left-[9%] md:top-[59%] md:mt-0 md:text-left"
+          className="hero-signature pointer-events-none relative z-50 mx-auto -mt-6 w-fit text-center text-[clamp(2.2rem,2.7vw,3.6rem)] leading-none text-white md:absolute md:left-[9%] md:top-[57%] md:mt-0 md:text-left"
         >
-          <span className="signature-burst-flare" aria-hidden="true" />
           {signatureWords.map((word, index) => (
             <span
               key={word}
