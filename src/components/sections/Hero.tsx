@@ -257,7 +257,7 @@ export default function Hero() {
         <div
           data-hero-reveal
           aria-label={personal.fullName}
-          className="hero-wordmark relative z-20 mx-auto mt-2 aspect-square w-[min(92vw,31rem)] text-center md:absolute md:left-[48%] md:top-[7%] md:mt-0 md:w-[clamp(31rem,35vw,43rem)] md:text-left"
+          className="hero-wordmark relative z-20 mx-auto -mt-4 aspect-square w-[min(76vw,25rem)] text-center md:absolute md:left-[49%] md:top-[-3%] md:mt-0 md:w-[clamp(22rem,24vw,29rem)] md:text-left"
         >
           <h1 className="sr-only">{personal.fullName}</h1>
           <div className="hero-name-frame absolute inset-0" aria-hidden="true">
@@ -283,7 +283,7 @@ export default function Hero() {
         <p
           data-hero-reveal
           aria-label={personal.fullName}
-          className="hero-signature relative z-30 mx-auto -mt-8 w-fit -rotate-[5deg] text-center text-[clamp(2.8rem,4.9vw,6.2rem)] leading-none text-white md:absolute md:left-[8.5%] md:top-[56%] md:mt-0 md:text-left"
+          className="hero-signature relative z-30 mx-auto -mt-6 w-fit -rotate-[5deg] text-center text-[clamp(2.2rem,2.7vw,3.6rem)] leading-none text-white md:absolute md:left-[9%] md:top-[57%] md:mt-0 md:text-left"
         >
           <span className="signature-burst-flare" aria-hidden="true" />
           {signatureWords.map((word, index) => (

@@ -357,6 +357,9 @@ body {
 @font-face {
   font-family: "Emitha";
   src:
+    url("/fonts/Emitha.woff2") format("woff2"),
+    url("/fonts/Emitha.ttf") format("truetype"),
+    url("/fonts/Emitha.otf") format("opentype"),
     local("Emitha Script"),
     local("Emitha");
   font-weight: 400;
