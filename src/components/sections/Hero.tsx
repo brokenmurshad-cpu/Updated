@@ -257,7 +257,7 @@ export default function Hero() {
         <div
           data-hero-reveal
           aria-label={personal.fullName}
-          className="hero-wordmark relative z-20 mx-auto -mt-4 aspect-square w-[min(76vw,25rem)] text-center md:absolute md:left-[49%] md:top-[-3%] md:mt-0 md:w-[clamp(22rem,24vw,29rem)] md:text-left"
+          className="hero-wordmark relative z-20 mx-auto -mt-4 aspect-square w-[min(76vw,25rem)] text-center md:absolute md:left-[52%] md:top-[5%] md:mt-0 md:w-[clamp(22rem,24vw,29rem)] md:text-left"
         >
           <h1 className="sr-only">{personal.fullName}</h1>
           <div className="hero-name-frame absolute inset-0" aria-hidden="true">
@@ -283,7 +283,7 @@ export default function Hero() {
         <p
           data-hero-reveal
           aria-label={personal.fullName}
-          className="hero-signature relative z-30 mx-auto -mt-6 w-fit -rotate-[5deg] text-center text-[clamp(2.2rem,2.7vw,3.6rem)] leading-none text-white md:absolute md:left-[9%] md:top-[57%] md:mt-0 md:text-left"
+          className="hero-signature pointer-events-none relative z-30 mx-auto -mt-6 w-fit -rotate-[5deg] text-center text-[clamp(2.2rem,2.7vw,3.6rem)] leading-none text-white md:absolute md:left-[9%] md:top-[59%] md:mt-0 md:text-left"
         >
           <span className="signature-burst-flare" aria-hidden="true" />
           {signatureWords.map((word, index) => (
@@ -300,7 +300,7 @@ export default function Hero() {
 
         <div
           data-hero-reveal
-          className="hero-detail relative z-30 mx-auto mt-10 flex w-fit justify-center gap-3 rounded-full border border-white/25 bg-white/[0.07] p-2 shadow-[0_10px_34px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.22)] backdrop-blur-[4px] md:absolute md:left-[8.5%] md:top-[68%] md:mt-0"
+          className="hero-detail relative z-40 mx-auto mt-10 flex w-fit justify-center gap-3 rounded-full border border-white/25 bg-white/[0.07] p-2 shadow-[0_10px_34px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.22)] backdrop-blur-[4px] md:absolute md:left-[8.5%] md:top-[68%] md:mt-0"
         >
           {socialItems.map((item) => (
             <Magnetic key={item.label} strength={24}>
