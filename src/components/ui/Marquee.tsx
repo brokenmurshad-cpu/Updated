@@ -17,24 +17,19 @@ export default function Marquee({
   reverse = false,
   pauseOnHover = true,
 }: MarqueeProps) {
-
   return (
-
     <div
       className={cn(
         "group relative flex overflow-hidden",
         pauseOnHover &&
           "[&:hover_.marquee-track]:[animation-play-state:paused]",
-        className
+        className,
       )}
     >
-
       <div
         className={cn(
           "marquee-track flex shrink-0 items-center gap-8",
-          reverse
-            ? "animate-marquee-reverse"
-            : "animate-marquee"
+          reverse ? "animate-marquee-reverse" : "animate-marquee",
         )}
         style={{
           animationDuration: `${speed}s`,
@@ -42,17 +37,14 @@ export default function Marquee({
       >
         {children}
       </div>
-
 
       {/* Duplicate for seamless infinite loop */}
-
       <div
         aria-hidden="true"
+        inert
         className={cn(
           "marquee-track flex shrink-0 items-center gap-8",
-          reverse
-            ? "animate-marquee-reverse"
-            : "animate-marquee"
+          reverse ? "animate-marquee-reverse" : "animate-marquee",
         )}
         style={{
           animationDuration: `${speed}s`,
@@ -60,9 +52,6 @@ export default function Marquee({
       >
         {children}
       </div>
-
-
     </div>
-
   );
 }
