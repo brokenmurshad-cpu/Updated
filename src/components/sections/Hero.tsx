@@ -261,7 +261,7 @@ export default function Hero() {
         <p
           data-hero-reveal
           aria-label={personal.fullName}
-          className="hero-signature pointer-events-none relative z-50 mx-auto -mt-6 w-fit text-center text-[clamp(2.6rem,3.4vw,4.25rem)] leading-none text-white md:absolute md:left-[8.5%] md:top-[61.5%] md:mt-0 md:text-left"
+          className="hero-signature pointer-events-none relative z-50 mx-auto -mt-6 w-fit text-center text-[clamp(3.2rem,4.4vw,6rem)] leading-none text-white md:absolute md:left-[8.5%] md:top-[57%] md:mt-0 md:text-left"
         >
           {signatureCharacters.map((character, index) => (
             <span
