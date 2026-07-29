@@ -4,12 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
-import Button from "@/components/ui/Button";
+import { ArrowUpRight } from "lucide-react";
 import { getGsap } from "@/lib/gsap";
-import { projects } from "@/data/project-showcase";
-
-const featuredProjects = projects.slice(0, 5);
+import { projectList, selectedProjects } from "@/data/project-showcase";
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -85,9 +82,9 @@ export default function Projects() {
   }, []);
 
   const currentPreview =
-    activeProject === null ? null : projects[activeProject];
+    activeProject === null ? null : projectList[activeProject];
   const activeFeaturedProject =
-    featuredProjects[activeFeaturedIndex] ?? featuredProjects[0];
+    selectedProjects[activeFeaturedIndex] ?? selectedProjects[0];
 
   return (
     <section
@@ -104,7 +101,7 @@ export default function Projects() {
             Selected <span className="text-accent">Projects</span> /
           </h2>
           <p className="mt-7 font-display text-[clamp(2rem,4vw,5rem)] font-extrabold tracking-[-0.06em] text-white/40">
-            ( {projects.length} )
+            ( {projectList.length} )
           </p>
         </div>
       </div>
@@ -120,39 +117,18 @@ export default function Projects() {
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   exit={{ opacity: 0, y: -26, filter: "blur(5px)" }}
                   transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex max-w-[15rem] flex-col items-center text-center"
+                  className="flex items-center justify-center text-center"
                 >
                   <span className="font-display text-[clamp(7rem,12vw,14rem)] font-extrabold leading-[0.68] tracking-[-0.1em] text-white">
                     {activeFeaturedProject.index}.
                   </span>
-                  <div className="mt-10 w-full border-t border-white/10 pt-5">
-                    <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-accent">
-                      Selected project
-                    </p>
-                    <p className="mt-3 font-display text-lg font-semibold leading-tight text-white/85">
-                      {activeFeaturedProject.category}
-                    </p>
-                    <p className="mt-3 text-[9px] font-bold uppercase tracking-[0.16em] text-white/38">
-                      Stack &amp; environment
-                    </p>
-                    <div className="mt-4 flex flex-wrap justify-center gap-1.5">
-                      {activeFeaturedProject.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full border border-white/15 bg-white/[0.025] px-2.5 py-1 text-[8px] font-bold uppercase tracking-[0.11em] text-white/55"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
                 </motion.div>
               </AnimatePresence>
             ) : null}
           </aside>
 
           <div>
-        {featuredProjects.map((project, index) => (
+        {selectedProjects.map((project, index) => (
           <article
             key={project.id}
             data-feature-project
@@ -160,13 +136,10 @@ export default function Projects() {
             className="relative flex min-h-[100svh] items-center overflow-hidden border-b border-white/10 px-5 py-24 last:border-b-0 sm:px-8 lg:px-[clamp(2rem,4.7vw,6rem)]"
           >
             <div className="w-full">
-              <div className="relative z-10 mb-9 flex items-start gap-3 lg:hidden">
+              <div className="relative z-10 mb-9 lg:hidden">
                 <span className="font-display text-[clamp(5rem,12vw,14rem)] font-extrabold leading-[0.68] tracking-[-0.1em] text-white">
                   {project.index}.
                 </span>
-                <p className="pt-3 text-[9px] font-bold uppercase tracking-[0.2em] text-accent lg:mt-7 lg:pt-0">
-                  {project.category}
-                </p>
               </div>
 
               <div className="relative">
@@ -194,55 +167,34 @@ export default function Projects() {
                   data-feature-content
                   className="relative z-10 mt-7 w-full px-1 pb-3 sm:mt-9"
                 >
-                  <h3 className="max-w-[52rem] font-display text-[clamp(2rem,4vw,5rem)] font-extrabold leading-[0.92] tracking-[-0.06em]">
-                    <Link
-                      href={"/projects/" + project.id}
-                      className="transition-colors duration-300 hover:text-accent"
-                    >
-                      {project.title}
-                    </Link>
-                  </h3>
-                  <div className="mt-5 grid gap-6 xl:grid-cols-[1fr_auto] xl:items-end">
-                    <div>
-                      <p className="max-w-[42rem] text-sm leading-[1.75] text-white/55">
-                        {project.description}
-                      </p>
-                      <div className="mt-6 flex flex-wrap gap-2">
-                        {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            data-cursor="hover"
-                            className="group/tag inline-flex cursor-default items-center gap-2 rounded-full border border-white/15 bg-white/[0.025] px-3.5 py-2 text-[9px] font-bold uppercase tracking-[0.14em] text-white/60 transition duration-300 hover:-translate-y-1 hover:border-accent hover:bg-accent/15 hover:text-white hover:shadow-[0_0_22px_rgba(133,76,230,0.35)]"
-                          >
-                            <span className="h-1.5 w-1.5 rounded-full bg-accent transition duration-300 group-hover/tag:scale-150 group-hover/tag:bg-white group-hover/tag:shadow-[0_0_10px_currentColor]" />
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="flex flex-wrap gap-3">
-                      <Button
-                        href={project.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-5 py-3 text-[9px] font-extrabold uppercase tracking-[0.18em]"
+                  <p className="max-w-[70rem] text-[clamp(0.95rem,1.45vw,1.7rem)] leading-[1.25] text-white/58">
+                    {project.technologyLine}
+                  </p>
+                  <div className="mt-6 grid gap-6 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-end">
+                    <h3 className="max-w-[58rem] font-display text-[clamp(2rem,4vw,5rem)] font-extrabold uppercase leading-[0.92] tracking-[-0.06em]">
+                      <Link
+                        href={"/projects/" + project.id}
+                        className="transition-colors duration-300 hover:text-accent"
                       >
-                        <ExternalLink className="h-3.5 w-3.5" />
-                        Live project
-                      </Button>
-                      {project.github ? (
-                        <Button
-                          href={project.github}
-                          variant="outline"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-5 py-3 text-[9px] font-extrabold uppercase tracking-[0.18em]"
+                        {project.title}
+                      </Link>
+                    </h3>
+
+                    <div className="flex flex-wrap gap-2 xl:max-w-[14rem] xl:justify-end">
+                      {(project.pills ?? project.tags).map((pill, pillIndex) => (
+                        <span
+                          key={pill}
+                          data-cursor="hover"
+                          className={
+                            "inline-flex cursor-default items-center rounded-full border px-4 py-2 text-sm font-semibold transition duration-300 hover:-translate-y-1 " +
+                            (pillIndex === 2
+                              ? "border-white/65 bg-white/70 text-[#191924] hover:bg-white"
+                              : "border-white/45 text-white/78 hover:border-accent hover:bg-accent/15 hover:text-white")
+                          }
                         >
-                          <Github className="h-3.5 w-3.5" />
-                          GitHub
-                        </Button>
-                      ) : null}
+                          {pill}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -272,7 +224,7 @@ export default function Projects() {
           </div>
 
           <div className="border-t border-white/10">
-            {projects.map((project, index) => (
+            {projectList.map((project, index) => (
               <Link
                 key={project.id}
                 href={"/projects/" + project.id}
