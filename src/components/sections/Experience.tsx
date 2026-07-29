@@ -70,11 +70,11 @@ export default function Experience() {
             <RevealText
               as="h2"
               text="A path shaped by craft and shipping"
-              className="max-w-[86rem] font-display text-[clamp(3.6rem,8.5vw,10rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.075em] text-white"
+              className="max-w-[86rem] break-words font-display text-[clamp(2.85rem,8.5vw,10rem)] font-extrabold uppercase leading-[0.88] tracking-[-0.06em] text-white sm:leading-[0.82] sm:tracking-[-0.075em]"
             />
           </div>
 
-          <div className="flex h-32 w-32 shrink-0 flex-col items-center justify-center rounded-full border border-dashed border-accent/60 text-center">
+          <div className="mx-auto flex h-28 w-28 shrink-0 flex-col items-center justify-center rounded-full border border-dashed border-accent/60 text-center sm:h-32 sm:w-32 lg:mx-0">
             <span className="font-display text-4xl font-extrabold text-white">
               {personal.yearsExperience}+
             </span>
@@ -108,7 +108,7 @@ export default function Experience() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-display text-[clamp(2rem,4vw,5rem)] font-extrabold leading-[0.92] tracking-[-0.06em] text-white">
+                  <h3 className="break-words font-display text-[clamp(1.8rem,4vw,5rem)] font-extrabold leading-[0.98] tracking-[-0.045em] text-white sm:leading-[0.92] sm:tracking-[-0.06em]">
                     {item.role}
                   </h3>
                   <p className="mt-5 max-w-[44rem] text-sm leading-[1.8] text-white/50 md:text-base">

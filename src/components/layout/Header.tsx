@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import BurgerMenuBtn from "@/components/ui/BurgerMenuBtn";
@@ -25,35 +25,39 @@ export default function Header() {
   const previouslyFocused = useRef<HTMLElement | null>(null);
   const { contextSafe } = useGSAP({ scope: scopeRef });
 
-  const openMenu = contextSafe(() => {
-    previouslyFocused.current = document.activeElement as HTMLElement | null;
-    setIsNavbarOpen(true);
-    animateReferenceMenuEnter(
-      "#navbar",
-      ".nav-link-item",
-      ".rounded__div__up",
-    );
-    window.requestAnimationFrame(() => menuRef.current?.focus());
-  });
+  const openMenu = useCallback(() => {
+    contextSafe(() => {
+      previouslyFocused.current = document.activeElement as HTMLElement | null;
+      setIsNavbarOpen(true);
+      animateReferenceMenuEnter(
+        "#navbar",
+        ".nav-link-item",
+        ".rounded__div__up",
+      );
+      window.requestAnimationFrame(() => menuRef.current?.focus());
+    })();
+  }, [contextSafe]);
 
-  const closeMenu = contextSafe(() => {
-    setIsNavbarOpen(false);
-    animateReferenceMenuLeave(
-      "#navbar",
-      ".nav-link-item",
-      ".rounded__div__up",
-    );
-    window.requestAnimationFrame(() => previouslyFocused.current?.focus());
-  });
+  const closeMenu = useCallback(() => {
+    contextSafe(() => {
+      setIsNavbarOpen(false);
+      animateReferenceMenuLeave(
+        "#navbar",
+        ".nav-link-item",
+        ".rounded__div__up",
+      );
+      window.requestAnimationFrame(() => previouslyFocused.current?.focus());
+    })();
+  }, [contextSafe]);
 
-  const toggleMenu = contextSafe(() => {
+  const toggleMenu = useCallback(() => {
     if (isNavbarOpen) {
       closeMenu();
       return;
     }
 
     openMenu();
-  });
+  }, [closeMenu, isNavbarOpen, openMenu]);
 
   useGSAP(
     () => {
@@ -109,7 +113,7 @@ export default function Header() {
           <a
             href="#hero"
             data-cursor="hover"
-            className="focus-ring shrink-0 font-display text-sm font-extrabold uppercase tracking-[-0.035em] text-white sm:text-base"
+            className="focus-ring shrink-0 font-display text-[13px] font-extrabold uppercase tracking-[-0.035em] text-white sm:text-base"
           >
             {personal.fullName}
           </a>
@@ -121,14 +125,14 @@ export default function Header() {
             </p>
           </div>
 
-          <ul className="ml-auto hidden items-center gap-[clamp(0.8rem,1.5vw,1.8rem)] md:flex">
+          <ul className="ml-auto hidden items-center gap-[clamp(0.8rem,1.5vw,1.8rem)] lg:flex">
             {navLinks.map((item, index) => (
               <Link
                 key={item.label}
                 tag="li"
                 label={`${item.label}${index < navLinks.length - 1 ? "," : ""}`}
                 url={item.url}
-                className="text-[11px] font-semibold text-white/75 transition-colors hover:text-white lg:text-xs"
+                className="header-nav-item text-[11px] font-semibold text-white/75 lg:text-xs"
               />
             ))}
           </ul>
@@ -165,7 +169,7 @@ export default function Header() {
                       href={item.url}
                       onClick={toggleMenu}
                       data-cursor="hover"
-                      className="group flex items-center justify-between py-3 font-display text-[clamp(2rem,6.5vw,6.5rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.06em] text-[#090917] transition-colors hover:text-white lg:py-4"
+                      className="group flex items-center justify-between py-3 font-display text-[clamp(1.75rem,6.5vw,6.5rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.06em] text-[#090917] transition-colors hover:text-white lg:py-4"
                     >
                       <span>{item.label}</span>
                       <span className="text-[10px] font-semibold tracking-[0.16em] text-[#090917]/45 group-hover:text-white">
@@ -181,7 +185,7 @@ export default function Header() {
           <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-end justify-between gap-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#090917]/55 sm:left-12 sm:right-12 lg:left-[7vw] lg:right-[7vw]">
             <a
               href={`mailto:${personal.email}`}
-              className="transition-colors hover:text-white"
+              className="break-all transition-colors hover:text-white"
             >
               {personal.email}
             </a>

@@ -99,7 +99,7 @@ export default function Services() {
       ref={sectionRef}
       className="relative bg-[#090917]"
     >
-      <div className="editorial-grid flex min-h-[100svh] items-center border-b border-white/10 px-5 py-24 sm:px-8 lg:px-[3.2vw]">
+      <div className="editorial-grid flex min-h-[72svh] items-center border-b border-white/10 px-5 py-20 sm:px-8 md:min-h-[100svh] md:py-24 lg:px-[3.2vw]">
         <div className="mx-auto grid w-full max-w-[112rem] gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
           <div>
             <p className="mb-7 text-[10px] font-bold uppercase tracking-[0.28em] text-accent">
@@ -108,7 +108,7 @@ export default function Services() {
             <RevealText
               as="h2"
               text="What I do /"
-              className="font-display text-[clamp(4.5rem,11.5vw,14rem)] font-extrabold uppercase leading-[0.72] tracking-[-0.085em] text-[#f2f3f4]"
+              className="font-display text-[clamp(3.5rem,11.5vw,14rem)] font-extrabold uppercase leading-[0.78] tracking-[-0.07em] text-[#f2f3f4] sm:leading-[0.72] sm:tracking-[-0.085em]"
             />
           </div>
           <p className="max-w-[35rem] text-sm leading-[1.8] text-white/55 md:text-base lg:pb-4">
@@ -126,16 +126,16 @@ export default function Services() {
             ref={(node) => {
               cardRefs.current[index] = node;
             }}
-            className="service-card relative min-h-[88svh] overflow-hidden md:sticky md:top-0 md:min-h-[100svh]"
+            className="service-card relative min-h-0 overflow-hidden md:sticky md:top-0 md:min-h-[100svh]"
             style={{ zIndex: index + 1, backgroundColor: cardColors[index] }}
           >
             <div
               data-service-surface
-              className="service-card-surface relative flex min-h-[88svh] items-center overflow-hidden border-t border-white/10 px-5 py-24 sm:px-8 md:min-h-[100svh] lg:px-[3.2vw]"
+              className="service-card-surface relative flex min-h-0 items-center overflow-hidden border-t border-white/10 px-5 py-20 sm:px-8 md:min-h-[100svh] md:py-24 lg:px-[3.2vw]"
               style={{ backgroundColor: cardColors[index] }}
             >
-              <div className="mx-auto grid w-full max-w-[112rem] gap-12 lg:grid-cols-[0.12fr_0.92fr_0.96fr] lg:items-center lg:gap-[4vw]">
-                <p className="font-display text-[clamp(3rem,7.5vw,9rem)] font-extrabold leading-none tracking-[-0.08em] text-white/18">
+              <div className="mx-auto grid w-full max-w-[112rem] gap-10 lg:grid-cols-[0.12fr_0.92fr_0.96fr] lg:items-center lg:gap-[4vw]">
+                <p className="font-display text-[clamp(2.5rem,7.5vw,9rem)] font-extrabold leading-none tracking-[-0.08em] text-white/18">
                   {service.index}
                 </p>
 
@@ -143,7 +143,7 @@ export default function Services() {
                   <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.28em] text-accent">
                     Service {service.index}
                   </p>
-                  <h3 className="font-display text-[clamp(3.2rem,7vw,8.5rem)] font-extrabold leading-[0.82] tracking-[-0.07em] text-white">
+                  <h3 className="break-words font-display text-[clamp(2.6rem,7vw,8.5rem)] font-extrabold leading-[0.88] tracking-[-0.055em] text-white sm:leading-[0.82] sm:tracking-[-0.07em]">
                     {service.title}
                   </h3>
                   <p className="mt-8 max-w-[39rem] text-sm leading-[1.8] text-white/55 md:text-base">
@@ -179,7 +179,7 @@ export default function Services() {
                 </div>
               </div>
 
-              <p className="absolute bottom-5 left-5 text-[9px] font-bold uppercase tracking-[0.2em] text-white/30 sm:left-8 lg:left-[3.2vw]">
+              <p className="absolute bottom-5 left-5 hidden text-[9px] font-bold uppercase tracking-[0.2em] text-white/30 md:block sm:left-8 lg:left-[3.2vw]">
                 Smooth stacked panels
               </p>
             </div>

@@ -30,14 +30,14 @@ export default function Contact() {
       id="contact"
       className="reference-contact relative isolate overflow-hidden border-b border-white/10 bg-[#191924] text-white"
     >
-      <div className="relative z-10 mx-auto w-full max-w-[128rem] px-7 py-[4.6rem] sm:px-12 lg:min-h-[100svh] lg:px-[3.1vw] lg:py-[5.25rem]">
+      <div className="relative z-10 mx-auto w-full max-w-[128rem] px-5 py-[4.6rem] sm:px-12 lg:min-h-[100svh] lg:px-[3.1vw] lg:py-[5.25rem]">
         <p className="relative z-10 flex items-center gap-2.5 font-sans text-[clamp(1.25rem,1.65vw,2rem)] font-extrabold uppercase leading-none tracking-[-0.055em] text-white">
           <span className="inline-flex animate-spin text-white/65 [animation-duration:5s]">✦</span>
           Get in <span className="text-[#854ce6]">touch</span>
         </p>
 
-        <div className="mt-[clamp(5.5rem,11vh,9rem)] max-w-[66rem] lg:max-w-[64vw]">
-          <h2 className="font-display text-[clamp(4rem,7.9vw,10rem)] font-extrabold uppercase leading-[0.86] tracking-[-0.085em] text-white/95">
+        <div className="mt-[clamp(4rem,11vh,9rem)] max-w-[66rem] lg:max-w-[64vw]">
+          <h2 className="font-display text-[clamp(3.25rem,7.9vw,10rem)] font-extrabold uppercase leading-[0.9] tracking-[-0.065em] text-white/95 sm:leading-[0.86] sm:tracking-[-0.085em]">
             Let&apos;s talk
             <span className="mt-[0.17em] block text-[#854ce6]">about your</span>
             <span className="mt-[0.17em] block text-[#854ce6]">idea.</span>
@@ -70,7 +70,7 @@ export default function Contact() {
 
           <form
             onSubmit={onSubmit}
-            className="w-full rounded-[1.65rem] border border-[#854ce6]/45 bg-[#090917]/95 p-7 shadow-[0_20px_55px_rgba(0,0,0,0.48),0_0_32px_rgba(133,76,230,0.16)] sm:p-10"
+            className="w-full rounded-[1.35rem] border border-[#854ce6]/45 bg-[#090917]/95 p-5 shadow-[0_20px_55px_rgba(0,0,0,0.48),0_0_32px_rgba(133,76,230,0.16)] sm:rounded-[1.65rem] sm:p-10"
             aria-label="Contact form"
           >
             <Field label="Email address" name="email" type="email" placeholder="Enter your email" required />
@@ -95,7 +95,7 @@ export default function Contact() {
             <button
               type="submit"
               data-cursor="hover"
-              className="mt-9 w-full rounded-full border-[3px] border-[#854ce6] bg-[#140928]/55 px-5 py-3.5 text-[11px] font-extrabold uppercase tracking-[0.28em] text-white shadow-[7px_6px_0_rgba(14,6,29,0.55)] transition hover:bg-[#854ce6] hover:shadow-[0_0_26px_rgba(133,76,230,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a978ff]"
+              className="mt-9 w-full rounded-full border-[3px] border-[#854ce6] bg-[#140928]/55 px-4 py-3.5 text-[10px] font-extrabold uppercase tracking-[0.18em] text-white shadow-[7px_6px_0_rgba(14,6,29,0.55)] transition hover:bg-[#854ce6] hover:shadow-[0_0_26px_rgba(133,76,230,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a978ff] sm:px-5 sm:text-[11px] sm:tracking-[0.28em]"
             >
               Send message
             </button>
@@ -159,9 +159,9 @@ function ContactDetail({
       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 text-white/65">
         <Icon className="h-4 w-4" />
       </span>
-      <div>
+      <div className="min-w-0">
         <p className="text-[10px] font-extrabold uppercase tracking-[0.1em] text-[#854ce6]">{label}</p>
-        <p className="mt-1 break-words text-sm font-bold text-white">{value}</p>
+        <p className="mt-1 break-all text-sm font-bold text-white sm:break-words">{value}</p>
       </div>
     </div>
   );

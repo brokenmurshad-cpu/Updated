@@ -13,7 +13,7 @@ export default function Testimonials() {
         <p className="mb-7 text-[10px] font-bold uppercase tracking-[0.28em] text-accent">
           06 / Testimonials
         </p>
-        <h2 className="max-w-[82rem] font-display text-[clamp(3.6rem,8.3vw,10rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.075em] text-white">
+        <h2 className="max-w-[82rem] break-words font-display text-[clamp(2.8rem,8.3vw,10rem)] font-extrabold uppercase leading-[0.88] tracking-[-0.06em] text-white sm:leading-[0.82] sm:tracking-[-0.075em]">
           Kind words from people I&apos;ve built with /
         </h2>
       </div>

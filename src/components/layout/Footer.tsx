@@ -28,10 +28,10 @@ export default function Footer() {
         </Marquee>
       </div>
 
-      <div className="relative z-10 min-h-[100svh] px-7 pb-16 pt-[clamp(9rem,17vh,13rem)] sm:px-12 lg:px-[3.1vw]">
+      <div className="relative z-10 min-h-[100svh] px-5 pb-44 pt-[clamp(8rem,17vh,13rem)] sm:px-12 sm:pb-16 lg:px-[3.1vw]">
         {/* Main left-aligned statement */}
         <div className="mx-auto max-w-[min(62rem,92vw)] text-center lg:mx-0 lg:max-w-[min(62rem,73vw)] lg:text-left">
-          <h2 className="text-balance font-display text-[clamp(3.8rem,8.1vw,10rem)] font-extrabold uppercase leading-[0.8] tracking-[-0.078em] text-white/95">
+          <h2 className="text-balance font-display text-[clamp(3.15rem,8.1vw,10rem)] font-extrabold uppercase leading-[0.86] tracking-[-0.06em] text-white/95 sm:leading-[0.8] sm:tracking-[-0.078em]">
             Let&apos;s build
             <span className="mt-[0.16em] block text-[#854ce6]">the future.</span>
           </h2>
@@ -42,7 +42,7 @@ export default function Footer() {
                 href={personal.cvUrl}
                 download
                 data-cursor="hover"
-                className="mt-[clamp(4.5rem,10vh,8rem)] inline-flex items-center gap-2 rounded-full border-[3px] border-[#854ce6] bg-[#160b2b]/55 px-8 py-4 text-xs font-extrabold uppercase tracking-[0.32em] text-white shadow-[10px_8px_0_rgba(10,6,24,0.55)] transition hover:bg-[#854ce6] hover:shadow-[0_0_28px_rgba(133,76,230,0.45)]"
+                className="mt-[clamp(4.5rem,10vh,8rem)] inline-flex items-center gap-2 rounded-full border-[3px] border-[#854ce6] bg-[#160b2b]/55 px-6 py-3.5 text-[10px] font-extrabold uppercase tracking-[0.2em] text-white shadow-[10px_8px_0_rgba(10,6,24,0.55)] transition hover:bg-[#854ce6] hover:shadow-[0_0_28px_rgba(133,76,230,0.45)] sm:px-8 sm:py-4 sm:text-xs sm:tracking-[0.32em]"
               >
                 <Download className="h-4 w-4" />
                 Download CV
@@ -82,7 +82,7 @@ export default function Footer() {
             <a
               href={`mailto:${socials.email}`}
               data-cursor="hover"
-              className="font-sans text-[clamp(1.15rem,1.65vw,2rem)] font-bold tracking-[-0.045em] text-white/90 transition hover:text-[#9d6cff]"
+              className="break-all font-sans text-[clamp(1rem,1.65vw,2rem)] font-bold tracking-[-0.035em] text-white/90 transition hover:text-[#9d6cff] sm:break-normal sm:tracking-[-0.045em]"
             >
               {personal.email}
             </a>
@@ -93,7 +93,7 @@ export default function Footer() {
           &copy; {year} {personal.fullName}
         </p>
 
-        <p className="absolute bottom-10 left-1/2 w-max -translate-x-1/2 text-center text-xs font-extrabold uppercase tracking-[0.25em] text-[#854ce6] sm:bottom-16 sm:left-auto sm:right-12 sm:translate-x-0 sm:text-right lg:right-[3.1vw]">
+        <p className="absolute bottom-10 left-1/2 w-max -translate-x-1/2 text-center text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#854ce6] sm:bottom-16 sm:left-auto sm:right-12 sm:translate-x-0 sm:text-right sm:text-xs sm:tracking-[0.25em] lg:right-[3.1vw]">
           Build <span className="mx-5">•</span> Ship <span className="mx-5">•</span>
         </p>
       </div>

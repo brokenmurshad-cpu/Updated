@@ -30,7 +30,7 @@ export default function About() {
         <RevealText
           as="h2"
           text={personal.aboutTitle}
-          className="mx-auto max-w-[96rem] text-balance text-center font-display text-[clamp(3.3rem,8.3vw,10.5rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.075em] text-[#f2f3f4] lg:mx-0 lg:text-left"
+          className="mx-auto max-w-[96rem] break-words text-balance text-center font-display text-[clamp(2.65rem,8.3vw,10.5rem)] font-extrabold uppercase leading-[0.88] tracking-[-0.06em] text-[#f2f3f4] sm:leading-[0.82] sm:tracking-[-0.075em] lg:mx-0 lg:text-left"
         />
 
         <div className="mt-[clamp(4rem,9vw,9rem)] grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-[8vw]">

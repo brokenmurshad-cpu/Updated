@@ -91,19 +91,21 @@ export default function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="relative bg-[#191924] text-white"
+      className="relative overflow-x-clip bg-[#191924] text-white"
     >
-      <div className="editorial-grid flex min-h-[100svh] items-center border-b border-white/10 px-5 py-24 sm:px-8 lg:px-[3.2vw]">
+      <div className="editorial-grid flex min-h-[74svh] items-center border-b border-white/10 px-5 py-20 sm:px-8 md:min-h-[100svh] md:py-24 lg:px-[3.2vw]">
         <div className="mx-auto flex w-full max-w-[112rem] flex-col items-center text-center">
-          <p className="mb-8 text-[10px] font-bold uppercase tracking-[0.3em] text-accent">
+          <p className="mb-6 text-[10px] font-bold uppercase tracking-[0.3em] text-accent sm:mb-8">
             04 / Selected work
           </p>
-          <h2 className="font-display text-[clamp(4rem,10vw,12rem)] font-extrabold uppercase leading-[0.78] tracking-[-0.085em]">
-            Selected <span className="text-accent">Projects</span> /
+          <h2 className="max-w-full font-display text-[clamp(2.85rem,8.2vw,9.5rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.075em] lg:whitespace-nowrap lg:leading-[0.78] lg:tracking-[-0.085em]">
+            <span>Selected </span>
+            <span className="whitespace-nowrap">
+              <span className="text-accent">Projects</span>
+              <span className="text-white"> / </span>
+              <span className="text-white/40">{selectedProjects.length}</span>
+            </span>
           </h2>
-          <p className="mt-7 font-display text-[clamp(2rem,4vw,5rem)] font-extrabold tracking-[-0.06em] text-white/40">
-            ( {selectedProjects.length} )
-          </p>
         </div>
       </div>
 
@@ -134,11 +136,11 @@ export default function Projects() {
             key={project.id}
             data-feature-project
             data-feature-card
-            className="relative flex min-h-[100svh] items-center overflow-hidden border-b border-white/10 px-5 py-24 last:border-b-0 sm:px-8 lg:px-[clamp(2rem,4.7vw,6rem)]"
+            className="relative flex min-h-0 items-center overflow-hidden border-b border-white/10 px-5 py-20 last:border-b-0 sm:px-8 md:min-h-[100svh] md:py-24 lg:px-[clamp(2rem,4.7vw,6rem)]"
           >
             <div className="w-full">
               <div className="relative z-10 mb-9 lg:hidden">
-                <span className="font-display text-[clamp(5rem,12vw,14rem)] font-extrabold leading-[0.68] tracking-[-0.1em] text-white">
+                <span className="font-display text-[clamp(4rem,12vw,14rem)] font-extrabold leading-[0.68] tracking-[-0.1em] text-white">
                   {project.index}.
                 </span>
               </div>
@@ -148,7 +150,7 @@ export default function Projects() {
                   href={"/projects/" + project.id}
                   data-feature-media
                   aria-label={"Open " + project.title + " case study"}
-                  className="group relative block aspect-[16/9.4] overflow-hidden rounded-[1.4rem] border border-white/10 bg-[#090917] shadow-[0_35px_110px_rgba(0,0,0,0.42)]"
+                  className="group relative block aspect-[4/3] overflow-hidden rounded-[1.1rem] border border-white/10 bg-[#090917] shadow-[0_35px_110px_rgba(0,0,0,0.42)] sm:aspect-[16/9.4] sm:rounded-[1.4rem]"
                 >
                   <Image
                     src={project.image}
@@ -168,11 +170,11 @@ export default function Projects() {
                   data-feature-content
                   className="relative z-10 mt-7 w-full px-1 pb-3 sm:mt-9"
                 >
-                  <p className="max-w-[70rem] text-[clamp(0.95rem,1.45vw,1.7rem)] leading-[1.25] text-white/58">
+                  <p className="max-w-[70rem] text-[clamp(0.9rem,1.45vw,1.7rem)] leading-[1.45] text-white/58 sm:leading-[1.25]">
                     {project.technologyLine}
                   </p>
                   <div className="mt-6 grid gap-6 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-end">
-                    <h3 className="max-w-[58rem] font-display text-[clamp(2rem,4vw,5rem)] font-extrabold uppercase leading-[0.92] tracking-[-0.06em]">
+                    <h3 className="max-w-[58rem] break-words font-display text-[clamp(1.75rem,4vw,5rem)] font-extrabold uppercase leading-[0.96] tracking-[-0.05em] sm:leading-[0.92] sm:tracking-[-0.06em]">
                       <Link
                         href={"/projects/" + project.id}
                         className="transition-colors duration-300 hover:text-accent"
@@ -187,7 +189,7 @@ export default function Projects() {
                           key={pill}
                           data-cursor="hover"
                           className={
-                            "inline-flex cursor-default items-center rounded-full border px-4 py-2 text-sm font-semibold transition duration-300 hover:-translate-y-1 " +
+                            "inline-flex cursor-default items-center rounded-full border px-3 py-1.5 text-xs font-semibold transition duration-300 hover:-translate-y-1 sm:px-4 sm:py-2 sm:text-sm " +
                             (pillIndex === 2
                               ? "border-white/65 bg-white/70 text-[#191924] hover:bg-white"
                               : "border-white/45 text-white/78 hover:border-accent hover:bg-accent/15 hover:text-white")
@@ -211,12 +213,12 @@ export default function Projects() {
 
       <div className="relative px-5 py-[clamp(7rem,12vw,12rem)] sm:px-8 lg:px-[3.2vw]">
         <div className="mx-auto w-full max-w-[112rem]">
-          <div className="mb-12 flex items-end justify-between gap-8">
+          <div className="mb-10 flex items-end justify-between gap-8 sm:mb-12">
             <div>
               <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.28em] text-accent">
                 All projects
               </p>
-              <h3 className="font-display text-[clamp(3.5rem,8vw,9rem)] font-extrabold uppercase leading-[0.8] tracking-[-0.075em]">
+              <h3 className="font-display text-[clamp(2.65rem,8vw,9rem)] font-extrabold uppercase leading-[0.84] tracking-[-0.065em] sm:leading-[0.8] sm:tracking-[-0.075em]">
                 Projects list
               </h3>
             </div>
@@ -236,21 +238,21 @@ export default function Projects() {
                 onFocus={() => setActiveProject(index)}
                 onBlur={() => setActiveProject(null)}
                 data-cursor="hover"
-                className="project-row focus-ring group grid gap-3 border-b border-white/10 py-6 transition-colors hover:bg-white/[0.025] md:grid-cols-[3.5rem_1.15fr_0.5fr_0.9fr_auto] md:items-center md:gap-6 md:px-3 lg:py-8"
+                className="project-row focus-ring group grid grid-cols-[minmax(0,1fr)_auto] gap-3 border-b border-white/10 py-6 transition-colors hover:bg-white/[0.025] md:grid-cols-[3.5rem_1.15fr_0.5fr_0.9fr_auto] md:items-center md:gap-6 md:px-3 lg:py-8"
               >
-                <span className="text-[10px] font-bold tracking-[0.18em] text-accent">
+                <span className="col-start-1 row-start-1 text-[10px] font-bold tracking-[0.18em] text-accent md:col-auto md:row-auto">
                   {project.index}.
                 </span>
-                <span className="font-display text-[clamp(1.35rem,2.25vw,2.8rem)] font-semibold leading-tight tracking-[-0.045em] text-white/75 transition-all duration-500 group-hover:translate-x-2 group-hover:text-white">
+                <span className="col-span-2 row-start-2 min-w-0 break-words font-display text-[clamp(1.3rem,2.25vw,2.8rem)] font-semibold leading-tight tracking-[-0.045em] text-white/75 transition-all duration-500 group-hover:translate-x-1 group-hover:text-white md:col-auto md:row-auto md:group-hover:translate-x-2">
                   {project.title}
                 </span>
-                <span className="text-[9px] font-bold uppercase tracking-[0.16em] text-white/38">
+                <span className="col-start-1 row-start-3 text-[9px] font-bold uppercase tracking-[0.16em] text-white/38 md:col-auto md:row-auto">
                   {project.category}
                 </span>
                 <span className="hidden max-w-sm text-xs leading-relaxed text-white/38 lg:block">
                   {project.description}
                 </span>
-                <span className="ml-auto flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-white/45 transition duration-300 group-hover:rotate-45 group-hover:border-accent group-hover:bg-accent group-hover:text-white">
+                <span className="col-start-2 row-start-1 ml-auto flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-white/45 transition duration-300 group-hover:rotate-45 group-hover:border-accent group-hover:bg-accent group-hover:text-white md:col-auto md:row-auto">
                   <ArrowUpRight className="h-4 w-4" />
                 </span>
               </Link>
