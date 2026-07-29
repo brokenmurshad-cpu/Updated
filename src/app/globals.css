@@ -352,6 +352,18 @@ body {
   font-display: block;
 }
 
+/* Use the licensed local Emitha installation when available. Priestacy is the
+   bundled visual fallback, so the signature remains handwritten everywhere. */
+@font-face {
+  font-family: "Emitha";
+  src:
+    local("Emitha Script"),
+    local("Emitha");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 .hero-title-custom {
   font-family: "Priestacy", cursive;
   font-size: clamp(3.2rem, 12vw, 8.5rem);
@@ -665,15 +677,85 @@ body {
 }
 
 .hero-signature {
-  font-family: "Priestacy", cursive;
+  font-family: "Emitha", "Priestacy", cursive;
   font-weight: 400;
   letter-spacing: 0.01em;
-  text-shadow: 0 0 24px rgba(255, 255, 255, 0.2);
+  white-space: nowrap;
+  text-shadow:
+    0 0 24px rgba(255, 255, 255, 0.26),
+    0 8px 28px rgba(0, 0, 0, 0.56);
 }
 
 .hero-wordmark {
-  text-wrap: balance;
-  text-shadow: 0 22px 70px rgba(0, 0, 0, 0.45);
+  filter: drop-shadow(0 22px 70px rgba(0, 0, 0, 0.5));
+  will-change: transform;
+}
+
+.hero-name-frame,
+.hero-name-artwork,
+.clarify-slice {
+  will-change: transform, opacity, filter, clip-path;
+}
+
+.hero-name-artwork {
+  z-index: 1;
+}
+
+.clarify-slice {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  background-image: url("/images/hero-name-clarify.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.clarify-slice-1 {
+  clip-path: inset(0 0 80% 0);
+}
+
+.clarify-slice-2 {
+  clip-path: inset(20% 0 60% 0);
+}
+
+.clarify-slice-3 {
+  clip-path: inset(40% 0 40% 0);
+}
+
+.clarify-slice-4 {
+  clip-path: inset(60% 0 20% 0);
+}
+
+.clarify-slice-5 {
+  clip-path: inset(80% 0 0 0);
+}
+
+.signature-burst-flare {
+  position: absolute;
+  left: 10%;
+  top: 52%;
+  z-index: -1;
+  width: clamp(4rem, 9vw, 10rem);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  pointer-events: none;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.72) 0 2%, transparent 26%),
+    repeating-conic-gradient(
+      from 4deg,
+      rgba(198, 158, 255, 0.85) 0 2deg,
+      transparent 2deg 24deg
+    );
+  filter: blur(0.3px) drop-shadow(0 0 18px rgba(164, 105, 255, 0.7));
+  transform: translate(-50%, -50%);
+  mask-image: radial-gradient(circle, black 0 13%, transparent 70%);
+}
+
+.signature-word {
+  transform-origin: 20% 70%;
+  will-change: transform, opacity, filter;
 }
 
 .link-underline {

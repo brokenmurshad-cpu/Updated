@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import {
   ChevronDown,
   Download,
@@ -26,7 +27,8 @@ const socialItems = [
   { href: `mailto:${socials.email}`, icon: Mail, label: "Email" },
   { href: whatsappUrl, icon: MessageCircle, label: "WhatsApp" },
 ];
-const signatureCharacters = Array.from(personal.fullName);
+const signatureWords = personal.fullName.split(" ");
+const clarifySlices = [0, 1, 2, 3, 4];
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -52,6 +54,11 @@ export default function Hero() {
 
         if (reduceMotion) {
           gsap.set("[data-hero-reveal]", { autoAlpha: 1, clearProps: "transform" });
+          gsap.set(".hero-name-artwork, .signature-word", {
+            autoAlpha: 1,
+            clearProps: "transform,filter,clipPath",
+          });
+          gsap.set(".clarify-slice, .signature-burst-flare", { autoAlpha: 0 });
           return;
         }
 
@@ -60,6 +67,7 @@ export default function Hero() {
         });
 
         timeline
+          .set(".hero-wordmark, .hero-signature", { autoAlpha: 1 }, 0)
           .fromTo(
             ".hero-media",
             { autoAlpha: 0, scale: 1.08, clipPath: "inset(0 100% 0 0)" },
@@ -72,30 +80,86 @@ export default function Hero() {
             0,
           )
           .fromTo(
-            ".hero-word-line",
-            { yPercent: 115, rotate: 2 },
+            ".clarify-slice",
             {
-              yPercent: 0,
-              rotate: 0,
-              duration: 1.15,
-              stagger: 0.09,
+              autoAlpha: 0,
+              x: (index) => (index % 2 === 0 ? -72 : 72),
+              filter: "blur(16px)",
             },
-            0.18,
-          )
-          .fromTo(
-            ".signature-char",
-            { autoAlpha: 0, x: -8, y: 5, rotate: -8, filter: "blur(5px)" },
             {
               autoAlpha: 1,
+              x: 0,
+              filter: "blur(0px)",
+              duration: 0.72,
+              stagger: 0.055,
+              ease: "expo.out",
+            },
+            0.14,
+          )
+          .fromTo(
+            ".hero-name-artwork",
+            {
+              autoAlpha: 0,
+              scale: 0.985,
+              filter: "blur(12px)",
+              clipPath: "inset(0 48% 0 48%)",
+            },
+            {
+              autoAlpha: 1,
+              scale: 1,
+              filter: "blur(0px)",
+              clipPath: "inset(0 0% 0 0%)",
+              duration: 0.62,
+              ease: "power3.out",
+            },
+            0.69,
+          )
+          .to(
+            ".clarify-slice",
+            {
+              autoAlpha: 0,
+              x: (index) => (index % 2 === 0 ? 18 : -18),
+              duration: 0.3,
+              stagger: 0.025,
+              ease: "power2.in",
+            },
+            0.78,
+          )
+          .fromTo(
+            ".signature-burst-flare",
+            { autoAlpha: 0, scale: 0.2 },
+            {
+              autoAlpha: 0.75,
+              scale: 1.7,
+              duration: 0.44,
+              repeat: 1,
+              yoyo: true,
+              ease: "power2.out",
+            },
+            0.7,
+          )
+          .fromTo(
+            ".signature-word",
+            {
+              autoAlpha: 0,
+              scale: 0.18,
+              x: -18,
+              y: 10,
+              rotate: -9,
+              filter: "blur(9px)",
+            },
+            {
+              autoAlpha: 1,
+              scale: 1,
               x: 0,
               y: 0,
               rotate: 0,
               filter: "blur(0px)",
-              duration: 0.16,
-              stagger: 0.045,
-              ease: "power2.out",
+              duration: 0.62,
+              stagger: 0.28,
+              ease: "back.out(1.9)",
             },
-            0.62,
+            0.72,
           )
           .fromTo(
             ".hero-detail",
@@ -125,8 +189,10 @@ export default function Hero() {
       };
 
       gsap.set("[data-hero-reveal]", { autoAlpha: 0 });
-      gsap.set(".hero-word-line", { yPercent: 115 });
-      gsap.set(".signature-char", { autoAlpha: 0 });
+      gsap.set(".hero-name-artwork, .clarify-slice, .signature-word", {
+        autoAlpha: 0,
+      });
+      gsap.set(".signature-burst-flare", { autoAlpha: 0, scale: 0.2 });
 
       window.addEventListener("app:preloader-complete", reveal);
       fallback = window.setTimeout(reveal, 3000);
@@ -190,32 +256,44 @@ export default function Hero() {
 
         <div
           data-hero-reveal
-          className="hero-wordmark relative z-20 mx-auto mt-7 w-fit overflow-hidden text-center md:absolute md:left-[49%] md:top-[9%] md:mt-0 md:text-left"
+          aria-label={personal.fullName}
+          className="hero-wordmark relative z-20 mx-auto mt-2 aspect-square w-[min(92vw,31rem)] text-center md:absolute md:left-[48%] md:top-[7%] md:mt-0 md:w-[clamp(31rem,35vw,43rem)] md:text-left"
         >
-          <h1 className="font-display text-[clamp(4.25rem,12vw,12rem)] font-extrabold uppercase leading-[0.72] tracking-[-0.085em] text-[#f2f3f4]">
-            <span className="block overflow-hidden">
-              <span className="hero-word-line block">{personal.firstName}</span>
-            </span>
-            <span className="block overflow-hidden">
-              <span className="hero-word-line block text-[#f2f3f4]">
-                {personal.lastName}
-              </span>
-            </span>
-          </h1>
+          <h1 className="sr-only">{personal.fullName}</h1>
+          <div className="hero-name-frame absolute inset-0" aria-hidden="true">
+            <Image
+              src="/images/hero-name-clarify.png"
+              alt=""
+              fill
+              priority
+              sizes="(min-width: 768px) 35vw, 92vw"
+              className="hero-name-artwork object-contain"
+            />
+            <div className="absolute inset-0">
+              {clarifySlices.map((slice) => (
+                <span
+                  key={slice}
+                  className={`clarify-slice clarify-slice-${slice + 1}`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
 
         <p
           data-hero-reveal
           aria-label={personal.fullName}
-          className="hero-signature relative z-30 mx-auto mt-5 w-fit -rotate-[5deg] text-center text-[clamp(2.4rem,5.3vw,6.7rem)] leading-none text-white md:absolute md:left-[64%] md:top-[53%] md:mt-0 md:text-left"
+          className="hero-signature relative z-30 mx-auto -mt-8 w-fit -rotate-[5deg] text-center text-[clamp(2.8rem,4.9vw,6.2rem)] leading-none text-white md:absolute md:left-[8.5%] md:top-[56%] md:mt-0 md:text-left"
         >
-          {signatureCharacters.map((character, index) => (
+          <span className="signature-burst-flare" aria-hidden="true" />
+          {signatureWords.map((word, index) => (
             <span
-              key={`${character}-${index}`}
+              key={word}
               aria-hidden="true"
-              className="signature-char inline-block"
+              className="signature-word relative inline-block"
             >
-              {character === " " ? "\u00A0" : character}
+              {word}
+              {index < signatureWords.length - 1 ? "\u00A0" : null}
             </span>
           ))}
         </p>
