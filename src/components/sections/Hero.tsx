@@ -27,7 +27,7 @@ const socialItems = [
   { href: `mailto:${socials.email}`, icon: Mail, label: "Email" },
   { href: whatsappUrl, icon: MessageCircle, label: "WhatsApp" },
 ];
-const signatureWords = personal.fullName.split(" ");
+const signatureCharacters = Array.from(personal.fullName);
 const clarifySlices = [0, 1, 2, 3, 4];
 
 export default function Hero() {
@@ -54,7 +54,7 @@ export default function Hero() {
 
         if (reduceMotion) {
           gsap.set("[data-hero-reveal]", { autoAlpha: 1, clearProps: "transform" });
-          gsap.set(".hero-name-artwork, .signature-word", {
+          gsap.set(".hero-name-artwork, .signature-letter", {
             autoAlpha: 1,
             clearProps: "transform,clipPath",
           });
@@ -126,7 +126,7 @@ export default function Hero() {
             0.78,
           )
           .fromTo(
-            ".signature-word",
+            ".signature-letter",
             {
               autoAlpha: 0,
               scale: 0.05,
@@ -134,8 +134,8 @@ export default function Hero() {
             {
               autoAlpha: 1,
               scale: 1,
-              duration: 0.72,
-              stagger: 0.2,
+              duration: 0.56,
+              stagger: 0.06,
               ease: "back.out(3.2)",
             },
             0.72,
@@ -168,7 +168,7 @@ export default function Hero() {
       };
 
       gsap.set("[data-hero-reveal]", { autoAlpha: 0 });
-      gsap.set(".hero-name-artwork, .clarify-slice, .signature-word", {
+      gsap.set(".hero-name-artwork, .clarify-slice, .signature-letter", {
         autoAlpha: 0,
       });
 
@@ -261,16 +261,19 @@ export default function Hero() {
         <p
           data-hero-reveal
           aria-label={personal.fullName}
-          className="hero-signature pointer-events-none relative z-50 mx-auto -mt-6 w-fit text-center text-[clamp(2.2rem,2.7vw,3.6rem)] leading-none text-white md:absolute md:left-[9%] md:top-[57%] md:mt-0 md:text-left"
+          className="hero-signature pointer-events-none relative z-50 mx-auto -mt-6 w-fit text-center text-[clamp(2.6rem,3.4vw,4.25rem)] leading-none text-white md:absolute md:left-[8.5%] md:top-[61.5%] md:mt-0 md:text-left"
         >
-          {signatureWords.map((word, index) => (
+          {signatureCharacters.map((character, index) => (
             <span
-              key={word}
+              key={`${character}-${index}`}
               aria-hidden="true"
-              className="signature-word relative inline-block"
+              className={
+                character === " "
+                  ? "signature-space inline-block"
+                  : "signature-letter relative inline-block"
+              }
             >
-              {word}
-              {index < signatureWords.length - 1 ? "\u00A0" : null}
+              {character === " " ? "\u00A0" : character}
             </span>
           ))}
         </p>

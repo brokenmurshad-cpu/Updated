@@ -720,8 +720,8 @@ body {
   clip-path: inset(80% 0 0 0);
 }
 
-.signature-word {
-  transform-origin: center;
+.signature-letter {
+  transform-origin: center bottom;
   will-change: transform, opacity;
 }
 
