@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import TechStack from "@/components/sections/TechStack";
 import { getGsap } from "@/lib/gsap";
 import { projectList, selectedProjects } from "@/data/project-showcase";
 
@@ -101,7 +102,7 @@ export default function Projects() {
             Selected <span className="text-accent">Projects</span> /
           </h2>
           <p className="mt-7 font-display text-[clamp(2rem,4vw,5rem)] font-extrabold tracking-[-0.06em] text-white/40">
-            ( {projectList.length} )
+            ( {selectedProjects.length} )
           </p>
         </div>
       </div>
@@ -206,6 +207,8 @@ export default function Projects() {
         </div>
       </div>
 
+      <TechStack />
+
       <div className="relative px-5 py-[clamp(7rem,12vw,12rem)] sm:px-8 lg:px-[3.2vw]">
         <div className="mx-auto w-full max-w-[112rem]">
           <div className="mb-12 flex items-end justify-between gap-8">
@@ -267,17 +270,17 @@ export default function Projects() {
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               exit={{ opacity: 0, scale: 0.9, rotate: 2 }}
               transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-              className="project-preview-frame relative h-[34rem] w-[30rem] overflow-hidden rounded-[1.1rem] bg-[#090917]"
+              className="project-preview-frame relative aspect-[2.08/1] w-[min(46vw,48rem)] overflow-hidden rounded-[1.1rem] bg-[#090917]"
             >
               <Image
                 src={currentPreview.image}
                 alt=""
                 fill
-                sizes="480px"
-                className="object-cover"
+                unoptimized
+                sizes="(min-width: 1280px) 48rem, 46vw"
+                className="object-contain"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#090917]/75 via-transparent to-transparent" />
-              <p className="absolute bottom-4 left-4 right-4 font-display text-lg font-semibold leading-tight text-white">
+              <p className="absolute bottom-4 left-4 right-4 w-fit max-w-[calc(100%-2rem)] rounded-full border border-white/10 bg-[#090917]/78 px-4 py-2 font-display text-sm font-semibold leading-tight text-white shadow-xl backdrop-blur-md">
                 {currentPreview.title}
               </p>
             </motion.div>

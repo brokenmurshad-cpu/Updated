@@ -194,7 +194,7 @@ export const projectList: ShowcaseProject[] = [
     description:
       "An earlier personal portfolio combining 3D interaction, project storytelling, and responsive presentation.",
     tags: ["React", "Vite", "Three.js"],
-    image: sourceImage("portfolio.v1"),
+    image: "/og.png",
     href: "https://new-olive-tau.vercel.app/",
   },
   {

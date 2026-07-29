@@ -20,7 +20,7 @@ export default function BurgerMenuBtn({
     <Magnetic
       strength={30}
       className={cn(
-        "fixed right-5 top-5 z-[7000] md:right-8 md:top-7",
+        "fixed right-5 top-2.5 z-[7000] md:right-8 md:top-2.5",
         className,
       )}
     >
