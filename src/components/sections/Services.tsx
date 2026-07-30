@@ -53,7 +53,7 @@ export default function Services() {
         className="service-stack relative isolate"
         style={
           {
-            "--service-stack-tail": "210svh",
+            "--service-stack-tail": "42svh",
           } as ServiceStackStyle
         }
       >
@@ -104,7 +104,7 @@ export default function Services() {
                       {service.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-full border border-white/12 bg-white/[0.035] px-4 py-2 text-[9px] font-bold uppercase tracking-[0.16em] text-white/65"
+                          className="service-tag rounded-full border border-white/12 bg-white/[0.035] px-4 py-2 text-[9px] font-bold uppercase tracking-[0.16em] text-white/65"
                         >
                           {tag}
                         </span>
