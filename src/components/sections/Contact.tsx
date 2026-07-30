@@ -4,6 +4,8 @@ import { FormEvent, useState } from "react";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { personal, whatsappUrl } from "@/data/content";
 
+const WEB3FORMS_ACCESS_KEY = "0cede430-6fdf-4abc-aa9e-39bd3b0e2d50";
+
 export default function Contact() {
   const [status, setStatus] = useState<
     "idle" | "sending" | "sent" | "error"
@@ -17,17 +19,22 @@ export default function Contact() {
     setStatus("sending");
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: "New portfolio inquiry",
+          from_name: "Muhammad Husnain Portfolio",
           email: String(data.get("email") || ""),
           message: String(data.get("message") || ""),
-          website: String(data.get("website") || ""),
+          botcheck: String(data.get("botcheck") || ""),
         }),
       });
 
-      if (!response.ok) {
+      const result = (await response.json()) as { success?: boolean };
+
+      if (!response.ok || !result.success) {
         throw new Error("Message delivery failed");
       }
 
@@ -87,10 +94,10 @@ export default function Contact() {
             aria-label="Contact form"
           >
             <div className="absolute -left-[9999px]" aria-hidden="true">
-              <label htmlFor="contact-website">Website</label>
+              <label htmlFor="contact-botcheck">Leave this field empty</label>
               <input
-                id="contact-website"
-                name="website"
+                id="contact-botcheck"
+                name="botcheck"
                 type="text"
                 tabIndex={-1}
                 autoComplete="off"
