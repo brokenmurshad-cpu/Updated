@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { personal, whatsappUrl } from "@/data/content";
 
@@ -8,50 +8,24 @@ export default function Contact() {
   const [status, setStatus] = useState<
     "idle" | "sending" | "sent" | "error"
   >("idle");
-  const [errorMessage, setErrorMessage] = useState("");
+  const redirectRef = useRef<HTMLInputElement>(null);
 
-  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  useEffect(() => {
+    const url = new URL(window.location.href);
 
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-    formData.append("name", String(formData.get("email") || "Website visitor"));
-    formData.append("subject", "New portfolio inquiry");
-    formData.append("from_name", "Muhammad Husnain Portfolio");
-
-    const payload = Object.fromEntries(formData);
-    setStatus("sending");
-    setErrorMessage("");
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const result = (await response.json()) as {
-        success?: boolean;
-        message?: string;
-      };
-
-      if (!response.ok || !result.success) {
-        throw new Error(result.message || "Message delivery failed.");
-      }
-
-      setStatus("sent");
-      form.reset();
-    } catch (error) {
-      setErrorMessage(
-        error instanceof Error
-          ? error.message
-          : "Message could not be sent. Please try again.",
-      );
-      setStatus("error");
+    if (url.searchParams.get("contact") === "success") {
+      queueMicrotask(() => setStatus("sent"));
+      url.searchParams.delete("contact");
+      window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
     }
+  }, []);
+
+  const prepareSubmission = () => {
+    if (redirectRef.current) {
+      redirectRef.current.value = `${window.location.origin}/?contact=success#contact`;
+    }
+
+    setStatus("sending");
   };
 
   return (
@@ -98,10 +72,26 @@ export default function Contact() {
           </div>
 
           <form
-            onSubmit={onSubmit}
+            action="https://api.web3forms.com/submit"
+            method="POST"
+            onSubmit={prepareSubmission}
             className="w-full rounded-[1.35rem] border border-[#854ce6]/45 bg-[#090917]/95 p-5 shadow-[0_20px_55px_rgba(0,0,0,0.48),0_0_32px_rgba(133,76,230,0.16)] sm:rounded-[1.65rem] sm:p-10"
             aria-label="Contact form"
           >
+            <input
+              type="hidden"
+              name="access_key"
+              value="0cede430-6fdf-4abc-aa9e-39bd3b0e2d50"
+            />
+            <input type="hidden" name="subject" value="New portfolio inquiry" />
+            <input
+              type="hidden"
+              name="from_name"
+              value="Muhammad Husnain Portfolio"
+            />
+            <input type="hidden" name="name" value="Website Visitor" />
+            <input ref={redirectRef} type="hidden" name="redirect" />
+
             <div className="absolute -left-[9999px]" aria-hidden="true">
               <label htmlFor="contact-botcheck">Leave this field unchecked</label>
               <input
@@ -145,11 +135,6 @@ export default function Contact() {
               {status === "sent" ? (
                 <p className="mt-4 text-center text-xs text-[#a978ff]">
                   Message sent successfully. I&apos;ll get back to you soon.
-                </p>
-              ) : null}
-              {status === "error" ? (
-                <p className="mt-4 text-center text-xs text-red-300">
-                  {errorMessage || "Message could not be sent. Please try again."}
                 </p>
               ) : null}
             </div>
