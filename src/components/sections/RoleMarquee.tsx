@@ -11,11 +11,17 @@ export default function RoleMarquee() {
     >
       <Marquee speed={32} pauseOnHover={false}>
         {marqueeWords.map((word) => (
-          <div key={word} className="flex shrink-0 items-center gap-8 px-4">
-            <span className="whitespace-nowrap font-display text-[clamp(3.25rem,7vw,8.5rem)] font-extrabold tracking-[-0.065em] text-[#f2f3f4]">
+          <div
+            key={word}
+            className="flex shrink-0 items-center gap-[clamp(2.5rem,5vw,7rem)] px-5"
+          >
+            <span className="whitespace-nowrap font-sans text-[clamp(3.25rem,7vw,8.5rem)] font-extrabold tracking-[-0.055em] text-[#f2f3f4]">
               {word}
             </span>
-            <span className="inline-flex animate-spin text-[clamp(2.2rem,5vw,5.5rem)] text-accent [animation-duration:5s]">
+            <span
+              aria-hidden="true"
+              className="inline-flex shrink-0 animate-spin text-[clamp(3.4rem,6.4vw,7.25rem)] leading-none text-[#f2f3f4] [animation-duration:5s] motion-reduce:animate-none"
+            >
               ✦
             </span>
           </div>

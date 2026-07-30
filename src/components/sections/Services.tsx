@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import { ArrowDownRight } from "lucide-react";
 import RevealText from "@/components/ui/RevealText";
 import { services } from "@/data/content";
-import { getGsap } from "@/lib/gsap";
 
 const serviceMedia = [
   "/images/services/web-development.webp",
@@ -15,90 +14,20 @@ const serviceMedia = [
 ];
 
 const cardColors = ["#171721", "#14141f", "#11111b", "#0d0d18"];
+const serviceMarks = ["✦", "✤", "✶", "✥"];
+
+type ServiceCardStyle = CSSProperties & {
+  "--service-card-color": string;
+  "--service-stack-top": string;
+};
+
+type ServiceStackStyle = CSSProperties & {
+  "--service-stack-tail": string;
+};
 
 export default function Services() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const cardRefs = useRef<(HTMLElement | null)[]>([]);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-    const { gsap } = getGsap();
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (reduceMotion) return;
-
-    const context = gsap.context(() => {
-      if (!window.matchMedia("(min-width: 768px)").matches) return;
-
-      const cards = cardRefs.current.filter(
-        (card): card is HTMLElement => Boolean(card),
-      );
-
-      cards.forEach((card, index) => {
-        const surface = card.querySelector<HTMLElement>(
-          "[data-service-surface]",
-        );
-        if (!surface) return;
-
-        gsap.set(surface, {
-          transformOrigin: "center top",
-          willChange: "transform, border-radius",
-        });
-
-        if (index > 0) {
-          gsap.fromTo(
-            surface,
-            {
-              yPercent: 10,
-              scale: 0.975,
-              borderRadius: "1.75rem 1.75rem 0 0",
-            },
-            {
-              yPercent: 0,
-              scale: 1,
-              borderRadius: "0rem 0rem 0rem 0rem",
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: card,
-                start: "top 92%",
-                end: "top top",
-                scrub: 1,
-                invalidateOnRefresh: true,
-              },
-            },
-          );
-        }
-
-        const nextCard = cards[index + 1];
-        if (nextCard) {
-          gsap.to(surface, {
-            scale: 0.965,
-            y: -18,
-            borderRadius: "0 0 1.75rem 1.75rem",
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: nextCard,
-              start: "top 92%",
-              end: "top top",
-              scrub: 1,
-              invalidateOnRefresh: true,
-            },
-          });
-        }
-      });
-    }, section);
-
-    return () => context.revert();
-  }, []);
-
   return (
-    <section
-      id="services"
-      ref={sectionRef}
-      className="relative bg-[#090917]"
-    >
+    <section id="services" className="relative bg-[#090917]">
       <div className="editorial-grid flex min-h-[72svh] items-center border-b border-white/10 px-5 py-20 sm:px-8 md:min-h-[100svh] md:py-24 lg:px-[3.2vw]">
         <div className="mx-auto grid w-full max-w-[112rem] gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
           <div>
@@ -120,69 +49,86 @@ export default function Services() {
         </div>
       </div>
 
-      <div className="relative">
+      <div
+        className="service-stack relative isolate"
+        style={
+          {
+            "--service-stack-tail": `calc(100svh - ${services.length * 4.75}rem)`,
+          } as ServiceStackStyle
+        }
+      >
         {services.map((service, index) => (
           <article
             key={service.index}
-            ref={(node) => {
-              cardRefs.current[index] = node;
-            }}
-            className="service-card relative min-h-0 overflow-hidden md:sticky md:top-0 md:min-h-[100svh]"
-            style={{ zIndex: index + 1, backgroundColor: cardColors[index] }}
+            className="service-stack-card relative overflow-hidden"
+            style={
+              {
+                "--service-card-color": cardColors[index],
+                "--service-stack-top": `${(index + 1) * 4.75}rem`,
+                zIndex: index + 1,
+              } as ServiceCardStyle
+            }
           >
             <div
               data-service-surface
-              className="service-card-surface relative flex min-h-0 items-center overflow-hidden border-t border-white/10 px-5 py-20 sm:px-8 md:min-h-[100svh] md:py-24 lg:px-[3.2vw]"
-              style={{ backgroundColor: cardColors[index] }}
+              className="service-stack-card__surface relative flex flex-col overflow-hidden"
             >
-              <div className="mx-auto grid w-full max-w-[112rem] gap-10 lg:grid-cols-[0.12fr_0.92fr_0.96fr] lg:items-center lg:gap-[4vw]">
-                <p className="font-display text-[clamp(2.5rem,7.5vw,9rem)] font-extrabold leading-none tracking-[-0.08em] text-white/18">
-                  {service.index}
+              <header className="service-stack-card__header grid shrink-0 grid-cols-[auto_1fr_auto] items-center gap-5 border-b border-white/10 px-5 sm:px-8 lg:grid-cols-[0.31fr_0.58fr_auto] lg:gap-[3vw] lg:px-[3.2vw]">
+                <p className="font-sans text-[clamp(1.35rem,3vw,3.5rem)] font-extrabold leading-none tracking-[-0.055em] text-white">
+                  ( {service.index} )
                 </p>
+                <h3 className="min-w-0 break-words font-sans text-[clamp(1.5rem,3.35vw,4.25rem)] font-extrabold leading-[0.95] tracking-[-0.055em] text-white">
+                  {service.title}
+                </h3>
+                <span
+                  aria-hidden="true"
+                  className="inline-flex w-10 shrink-0 animate-spin items-center justify-center text-[clamp(1.5rem,2.7vw,3.35rem)] leading-none text-white/55 [animation-duration:5s] motion-reduce:animate-none sm:w-14"
+                >
+                  {serviceMarks[index]}
+                </span>
+              </header>
 
-                <div className="relative z-10">
-                  <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.28em] text-accent">
-                    Service {service.index}
-                  </p>
-                  <h3 className="break-words font-display text-[clamp(2.6rem,7vw,8.5rem)] font-extrabold leading-[0.88] tracking-[-0.055em] text-white sm:leading-[0.82] sm:tracking-[-0.07em]">
-                    {service.title}
-                  </h3>
-                  <p className="mt-8 max-w-[39rem] text-sm leading-[1.8] text-white/55 md:text-base">
-                    {service.description}
-                  </p>
+              <div className="relative z-10 flex min-h-0 flex-1 items-center px-5 py-12 sm:px-8 md:py-14 lg:px-[3.2vw] lg:py-[clamp(2.5rem,5vh,5rem)]">
+                <div className="mx-auto grid w-full max-w-[112rem] gap-10 lg:grid-cols-[0.31fr_0.34fr_0.35fr] lg:items-center lg:gap-[3vw]">
+                  <div className="hidden lg:block" aria-hidden="true" />
 
-                  <div className="mt-9 flex flex-wrap gap-2">
-                    {service.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full border border-white/12 bg-white/[0.035] px-4 py-2 text-[9px] font-bold uppercase tracking-[0.16em] text-white/65"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                  <div className="relative z-10">
+                    <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.28em] text-accent">
+                      Service {service.index}
+                    </p>
+                    <p className="max-w-[39rem] text-sm leading-[1.8] text-white/55 md:text-base">
+                      {service.description}
+                    </p>
+
+                    <div className="mt-8 flex flex-wrap gap-2">
+                      {service.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-white/12 bg-white/[0.035] px-4 py-2 text-[9px] font-bold uppercase tracking-[0.16em] text-white/65"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
 
-                <div className="relative z-10">
-                  <div className="group relative aspect-[4/3] overflow-hidden rounded-[1.35rem] border border-white/10 bg-[#090917] shadow-[0_28px_90px_rgba(0,0,0,0.38)]">
-                    <Image
-                      src={serviceMedia[index]}
-                      alt={`${service.title} service preview`}
-                      fill
-                      sizes="(max-width: 1024px) 92vw, 38vw"
-                      className="object-cover transition duration-700 group-hover:scale-[1.045]"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#090917]/55 via-transparent to-transparent" />
-                    <span className="absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full bg-accent text-white shadow-[0_12px_30px_rgba(133,76,230,0.42)]">
-                      <ArrowDownRight className="h-5 w-5" />
-                    </span>
+                  <div className="relative z-10">
+                    <div className="group relative aspect-[4/3] overflow-hidden rounded-[1.35rem] border border-white/10 bg-[#090917] shadow-[0_28px_90px_rgba(0,0,0,0.38)]">
+                      <Image
+                        src={serviceMedia[index]}
+                        alt={`${service.title} service preview`}
+                        fill
+                        sizes="(max-width: 1024px) 92vw, 34vw"
+                        className="object-cover transition duration-700 group-hover:scale-[1.045]"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#090917]/55 via-transparent to-transparent" />
+                      <span className="absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full bg-accent text-white shadow-[0_12px_30px_rgba(133,76,230,0.42)]">
+                        <ArrowDownRight className="h-5 w-5" />
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <p className="absolute bottom-5 left-5 hidden text-[9px] font-bold uppercase tracking-[0.2em] text-white/30 md:block sm:left-8 lg:left-[3.2vw]">
-                Smooth stacked panels
-              </p>
             </div>
           </article>
         ))}
