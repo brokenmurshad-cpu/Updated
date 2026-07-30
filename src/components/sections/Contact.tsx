@@ -4,8 +4,6 @@ import { FormEvent, useState } from "react";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { personal, whatsappUrl } from "@/data/content";
 
-const WEB3FORMS_ACCESS_KEY = "0cede430-6fdf-4abc-aa9e-39bd3b0e2d50";
-
 export default function Contact() {
   const [status, setStatus] = useState<
     "idle" | "sending" | "sent" | "error"
@@ -18,7 +16,6 @@ export default function Contact() {
     const form = event.currentTarget;
     const formData = new FormData(form);
     formData.append("name", String(formData.get("email") || "Website visitor"));
-    formData.append("access_key", WEB3FORMS_ACCESS_KEY);
     formData.append("subject", "New portfolio inquiry");
     formData.append("from_name", "Muhammad Husnain Portfolio");
 
@@ -27,7 +24,7 @@ export default function Contact() {
     setErrorMessage("");
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

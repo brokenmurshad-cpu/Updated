@@ -1,12 +1,14 @@
-import { personal } from "@/data/content";
-
+const WEB3FORMS_ACCESS_KEY = "0cede430-6fdf-4abc-aa9e-39bd3b0e2d50";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MAX_MESSAGE_LENGTH = 5000;
 
 type ContactPayload = {
+  name?: unknown;
   email?: unknown;
   message?: unknown;
-  website?: unknown;
+  subject?: unknown;
+  from_name?: unknown;
+  botcheck?: unknown;
 };
 
 export async function POST(request: Request) {
@@ -15,84 +17,75 @@ export async function POST(request: Request) {
   try {
     payload = (await request.json()) as ContactPayload;
   } catch {
-    return Response.json({ error: "Invalid request." }, { status: 400 });
+    return Response.json({ success: false, message: "Invalid request." }, { status: 400 });
   }
 
   const email = typeof payload.email === "string" ? payload.email.trim() : "";
-  const message =
-    typeof payload.message === "string" ? payload.message.trim() : "";
-  const website =
-    typeof payload.website === "string" ? payload.website.trim() : "";
+  const message = typeof payload.message === "string" ? payload.message.trim() : "";
+  const botcheck = typeof payload.botcheck === "string" ? payload.botcheck.trim() : "";
 
-  // Silently accept bot submissions caught by the hidden honeypot field.
-  if (website) {
-    return Response.json({ ok: true });
+  if (botcheck) {
+    return Response.json({ success: true, message: "Message sent successfully." });
   }
 
   if (!EMAIL_PATTERN.test(email) || email.length > 254) {
     return Response.json(
-      { error: "Please enter a valid email address." },
+      { success: false, message: "Please enter a valid email address." },
       { status: 400 },
     );
   }
 
   if (message.length < 3 || message.length > MAX_MESSAGE_LENGTH) {
     return Response.json(
-      { error: "Message must contain between 3 and 5000 characters." },
+      { success: false, message: "Message must contain between 3 and 5000 characters." },
       { status: 400 },
     );
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-
-  if (!apiKey) {
-    return Response.json(
-      { error: "Email service is not configured." },
-      { status: 503 },
-    );
-  }
-
-  const recipient = process.env.CONTACT_TO_EMAIL || personal.email;
-  const from =
-    process.env.CONTACT_FROM_EMAIL ||
-    "Muhammad Husnain Portfolio <onboarding@resend.dev>";
-
   try {
-    const response = await fetch("https://api.resend.com/emails", {
+    const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
-        "Idempotency-Key": crypto.randomUUID(),
+        Accept: "application/json",
       },
       body: JSON.stringify({
-        from,
-        to: [recipient],
-        reply_to: email,
-        subject: `New portfolio inquiry from ${email}`,
-        text: [
-          "New message from the Muhammad Husnain portfolio contact form.",
-          "",
-          `Visitor email: ${email}`,
-          "",
-          "Message:",
-          message,
-        ].join("\n"),
+        access_key: WEB3FORMS_ACCESS_KEY,
+        name: email,
+        email,
+        message,
+        subject: "New portfolio inquiry",
+        from_name: "Muhammad Husnain Portfolio",
       }),
+      cache: "no-store",
     });
 
-    if (!response.ok) {
-      console.error("Contact email delivery failed:", response.status);
+    const result = (await response.json()) as {
+      success?: boolean;
+      message?: string;
+    };
+
+    if (!response.ok || !result.success) {
       return Response.json(
-        { error: "Message delivery failed." },
-        { status: 502 },
+        {
+          success: false,
+          message: result.message || "Web3Forms rejected the submission.",
+        },
+        { status: response.status >= 400 ? response.status : 502 },
       );
     }
 
-    return Response.json({ ok: true });
-  } catch {
+    return Response.json({
+      success: true,
+      message: result.message || "Message sent successfully.",
+    });
+  } catch (error) {
+    console.error("Web3Forms delivery failed:", error);
     return Response.json(
-      { error: "Message delivery failed." },
+      {
+        success: false,
+        message: "The email service could not be reached. Please try again.",
+      },
       { status: 502 },
     );
   }
