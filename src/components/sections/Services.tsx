@@ -108,6 +108,7 @@ export default function Services() {
             <RevealText
               as="h2"
               text="What I do /"
+              accentWords={["do"]}
               className="font-display text-[clamp(3.5rem,11.5vw,14rem)] font-extrabold uppercase leading-[0.78] tracking-[-0.07em] text-[#f2f3f4] sm:leading-[0.72] sm:tracking-[-0.085em]"
             />
           </div>

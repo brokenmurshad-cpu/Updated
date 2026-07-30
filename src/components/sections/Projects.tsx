@@ -117,20 +117,27 @@ export default function Projects() {
         <div className="mx-auto grid w-full max-w-[112rem] lg:grid-cols-[0.31fr_1fr]">
           <aside className="sticky top-0 hidden h-[100svh] self-start border-r border-white/10 lg:flex lg:items-center lg:justify-center">
             {activeFeaturedProject ? (
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeFeaturedProject.id}
-                  initial={{ opacity: 0, y: 26, filter: "blur(5px)" }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, y: -26, filter: "blur(5px)" }}
-                  transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex items-center justify-center text-center"
-                >
-                  <span className="font-display text-[clamp(7rem,12vw,14rem)] font-extrabold leading-[0.68] tracking-[-0.1em] text-white">
-                    {activeFeaturedProject.index}.
-                  </span>
-                </motion.div>
-              </AnimatePresence>
+              <div
+                aria-live="polite"
+                aria-label={`Project ${activeFeaturedProject.index}`}
+                className="flex items-center justify-center text-center font-display text-[clamp(7rem,12vw,14rem)] font-extrabold leading-[0.68] tracking-[-0.1em] text-white"
+              >
+                <span aria-hidden="true">0</span>
+                <AnimatePresence initial={false} mode="wait">
+                  <motion.span
+                    key={activeFeaturedProject.id}
+                    aria-hidden="true"
+                    initial={{ opacity: 0, y: 26, filter: "blur(5px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, y: -26, filter: "blur(5px)" }}
+                    transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+                    className="inline-block min-w-[0.52em]"
+                  >
+                    {activeFeaturedProject.index.slice(-1)}
+                  </motion.span>
+                </AnimatePresence>
+                <span aria-hidden="true">.</span>
+              </div>
             ) : null}
           </aside>
 

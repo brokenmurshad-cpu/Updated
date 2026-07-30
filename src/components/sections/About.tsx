@@ -30,12 +30,13 @@ export default function About() {
         <RevealText
           as="h2"
           text={personal.aboutTitle}
+          accentWords={["Craftsman"]}
           className="mx-auto max-w-[96rem] break-words text-balance text-center font-display text-[clamp(2.65rem,8.3vw,10.5rem)] font-extrabold uppercase leading-[0.88] tracking-[-0.06em] text-[#f2f3f4] sm:leading-[0.82] sm:tracking-[-0.075em] lg:mx-0 lg:text-left"
         />
 
         <div className="mt-[clamp(4rem,9vw,9rem)] grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-[8vw]">
-          <Reveal>
-            <TiltCard maxTilt={3.5} className="mx-auto max-w-[32rem] lg:mx-0">
+          <Reveal y={120}>
+            <TiltCard maxTilt={5} className="mx-auto max-w-[32rem] lg:mx-0">
               <div className="group relative aspect-[8/9] overflow-hidden rounded-[1.4rem] border border-white/10 bg-[#090917]">
                 <Image
                   src="/images/profile.jpg"

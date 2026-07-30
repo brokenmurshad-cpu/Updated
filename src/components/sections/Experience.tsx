@@ -70,6 +70,7 @@ export default function Experience() {
             <RevealText
               as="h2"
               text="A path shaped by craft and shipping"
+              accentWords={["craft", "and", "shipping"]}
               className="max-w-[86rem] break-words font-display text-[clamp(2.85rem,8.5vw,10rem)] font-extrabold uppercase leading-[0.88] tracking-[-0.06em] text-white sm:leading-[0.82] sm:tracking-[-0.075em]"
             />
           </div>

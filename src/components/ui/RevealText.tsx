@@ -8,14 +8,19 @@ type RevealTextProps = {
   text: string;
   as?: "h1" | "h2" | "h3" | "p" | "span";
   className?: string;
+  accentWords?: string[];
   delay?: number;
   once?: boolean;
 };
+
+const normalizeWord = (word: string) =>
+  word.toLowerCase().replace(/[^a-z0-9]/g, "");
 
 export default function RevealText({
   text,
   as: Tag = "p",
   className,
+  accentWords = [],
   delay = 0,
   once = true,
 }: RevealTextProps) {
@@ -52,12 +57,19 @@ export default function RevealText({
   }, [delay, once, text]);
 
   const words = text.split(" ");
+  const accentWordSet = new Set(accentWords.map(normalizeWord));
 
   return (
     <Tag ref={ref as never} className={cn(className)}>
       {words.map((word, i) => (
         <span key={`${word}-${i}`} className="inline-block overflow-hidden pb-1 align-bottom">
-          <span data-word className="inline-block will-change-transform">
+          <span
+            data-word
+            className={cn(
+              "inline-block will-change-transform",
+              accentWordSet.has(normalizeWord(word)) && "text-accent",
+            )}
+          >
             {word}
             {i < words.length - 1 ? "\u00A0" : ""}
           </span>

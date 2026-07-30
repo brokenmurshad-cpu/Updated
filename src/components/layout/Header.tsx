@@ -154,7 +154,10 @@ export default function Header() {
             {personal.fullName}
           </p>
 
-          <nav className="relative z-10 w-full" aria-label="Fullscreen navigation">
+          <nav
+            className="relative z-10 w-full -translate-y-3 sm:-translate-y-6 lg:-translate-y-10"
+            aria-label="Fullscreen navigation"
+          >
             <p className="mb-6 text-[10px] font-extrabold uppercase tracking-[0.24em] text-[#090917]/55">
               Navigation / {String(navbarLinks.length).padStart(2, "0")}
             </p>

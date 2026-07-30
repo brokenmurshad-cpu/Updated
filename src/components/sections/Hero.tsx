@@ -304,7 +304,7 @@ export default function Hero() {
 
         <div
           data-hero-reveal
-          className="hero-detail relative z-30 mx-auto mt-8 max-w-md text-center md:absolute md:left-[49.8%] md:top-[66%] md:mt-0 md:max-w-[30rem] md:text-left"
+          className="hero-detail relative z-30 mx-auto mt-5 max-w-md text-center md:absolute md:left-[49.8%] md:top-[60%] md:mt-0 md:max-w-[30rem] md:text-left"
         >
           <p className="font-display text-[clamp(1rem,1.35vw,1.45rem)] font-semibold leading-tight text-white">
             {personal.roles.slice(0, 3).join(" · ")}
@@ -316,7 +316,7 @@ export default function Hero() {
 
         <div
           data-hero-reveal
-          className="hero-detail relative z-30 mt-8 flex flex-wrap justify-center gap-3 md:absolute md:left-[49.8%] md:top-[79%] md:mt-0 md:justify-start"
+          className="hero-detail relative z-30 mt-6 flex flex-wrap justify-center gap-3 md:absolute md:left-[49.8%] md:top-[74%] md:mt-0 md:justify-start"
         >
           <Button
             href={personal.cvUrl}
