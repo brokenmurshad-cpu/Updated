@@ -73,9 +73,7 @@ html.lenis {
 }
 
 body {
-  background:
-    radial-gradient(circle at 50% -10%, rgba(133, 76, 230, 0.08), transparent 34rem),
-    var(--color-background);
+  background: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
   cursor: none;
@@ -159,7 +157,7 @@ body {
   margin-left: -10px;
   margin-top: -10px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.55), transparent 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.42), transparent 70%);
   pointer-events: none;
   z-index: 9998;
 }
@@ -178,8 +176,8 @@ body {
 }
 
 .cursor-dot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background: #ffffff;
   border-radius: 50%;
   transform: translate(-50%, -50%);
@@ -187,16 +185,18 @@ body {
 }
 
 .cursor-outline {
-  width: 42px;
-  height: 42px;
-  border: 1px solid rgba(203, 166, 255, 0.85);
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.44);
   border-radius: 50%;
-  background: rgba(133, 76, 230, 0.42);
+  background: rgba(255, 255, 255, 0.09);
   box-shadow:
-    0 0 18px rgba(133, 76, 230, 0.72),
-    0 0 42px rgba(133, 76, 230, 0.34),
-    inset 0 0 14px rgba(228, 212, 255, 0.28);
-  backdrop-filter: blur(2px);
+    0 0 18px rgba(255, 255, 255, 0.13),
+    0 10px 34px rgba(0, 0, 0, 0.18),
+    inset 0 1px 1px rgba(255, 255, 255, 0.42),
+    inset 0 -8px 18px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(8px) brightness(0.74) saturate(0.72);
+  -webkit-backdrop-filter: blur(8px) brightness(0.74) saturate(0.72);
   transform: translate(-50%, -50%);
   transition:
     width 0.3s ease,
@@ -207,14 +207,15 @@ body {
 }
 
 .cursor-outline.cursor-hover {
-  width: 78px;
-  height: 78px;
-  border-color: #e2cffd;
-  background: rgba(133, 76, 230, 0.62);
+  width: 76px;
+  height: 76px;
+  border-color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.13);
   box-shadow:
-    0 0 28px rgba(164, 108, 255, 0.92),
-    0 0 64px rgba(133, 76, 230, 0.54),
-    inset 0 0 20px rgba(245, 239, 255, 0.35);
+    0 0 26px rgba(255, 255, 255, 0.2),
+    0 18px 48px rgba(0, 0, 0, 0.24),
+    inset 0 1px 2px rgba(255, 255, 255, 0.55),
+    inset 0 -12px 24px rgba(0, 0, 0, 0.14);
 }
 
 /* ===== Scrollbar ===== */
@@ -621,6 +622,11 @@ body {
   will-change: transform;
 }
 
+.marquee-shell:hover .marquee-track,
+.marquee-shell:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee,
   .animate-marquee-reverse {
@@ -823,9 +829,7 @@ body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    linear-gradient(115deg, rgba(255, 255, 255, 0.045), transparent 30%),
-    radial-gradient(circle at 82% 20%, rgba(133, 76, 230, 0.22), transparent 28rem);
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.045), transparent 30%);
 }
 
 .service-stack-card__header {

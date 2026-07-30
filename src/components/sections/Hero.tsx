@@ -222,8 +222,6 @@ export default function Hero() {
       ref={sectionRef}
       className="editorial-grid relative min-h-[100svh] overflow-hidden border-b border-white/10 bg-[#090917] px-5 pb-14 pt-24 sm:px-8 md:pt-28 lg:px-[3.2vw]"
     >
-      <div className="pointer-events-none absolute left-[54%] top-[18%] h-[28rem] w-[28rem] rounded-full bg-[#6714b4]/20 blur-[150px]" />
-
       <div className="relative mx-auto min-h-[calc(100svh-9.5rem)] w-full max-w-[112rem]">
         <div
           data-hero-reveal

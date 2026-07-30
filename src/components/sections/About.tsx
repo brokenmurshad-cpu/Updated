@@ -91,8 +91,6 @@ export default function About() {
       ref={sectionRef}
       className="relative overflow-hidden border-b border-white/10 bg-[#191924] px-5 py-[clamp(6rem,12vw,11rem)] sm:px-8 lg:px-[3.2vw]"
     >
-      <div className="pointer-events-none absolute left-[12%] top-[28%] h-72 w-72 rounded-full bg-accent/10 blur-[130px]" />
-
       <div className="mx-auto w-full max-w-[112rem]">
         <div className="mb-10 flex flex-col items-center gap-3 text-center text-[10px] font-bold uppercase tracking-[0.26em] text-white/40 sm:flex-row sm:justify-between sm:text-left">
           <span className="text-accent">01 / About</span>

@@ -20,15 +20,14 @@ export default function Marquee({
   return (
     <div
       className={cn(
-        "group relative flex overflow-hidden",
-        pauseOnHover &&
-          "[&:hover_.marquee-track]:[animation-play-state:paused]",
+        "group relative flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]",
+        pauseOnHover && "marquee-shell",
         className,
       )}
     >
       <div
         className={cn(
-          "marquee-track flex shrink-0 items-center gap-8",
+          "marquee-track flex shrink-0 items-center gap-5 pr-5",
           reverse ? "animate-marquee-reverse" : "animate-marquee",
         )}
         style={{
@@ -43,7 +42,7 @@ export default function Marquee({
         aria-hidden="true"
         inert
         className={cn(
-          "marquee-track flex shrink-0 items-center gap-8",
+          "marquee-track flex shrink-0 items-center gap-5 pr-5",
           reverse ? "animate-marquee-reverse" : "animate-marquee",
         )}
         style={{

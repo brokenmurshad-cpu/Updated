@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, X } from "lucide-react";
+import { ArrowUpRight, ExternalLink, X } from "lucide-react";
 import Marquee from "@/components/ui/Marquee";
 import RotatingStar from "@/components/ui/RotatingStar";
+import { projectById } from "@/data/project-showcase";
 import {
   portfolioTestimonials,
   type PortfolioTestimonial,
@@ -14,7 +15,7 @@ import {
 const reviewMidpoint = Math.ceil(portfolioTestimonials.length / 2);
 const firstReviewRow = portfolioTestimonials.slice(0, reviewMidpoint);
 const secondReviewRow = portfolioTestimonials.slice(reviewMidpoint);
-const clientFlags = portfolioTestimonials.slice(0, 4);
+const clientFlags = portfolioTestimonials.slice(0, 5);
 
 export default function Testimonials() {
   const [activeReview, setActiveReview] =
@@ -37,20 +38,31 @@ export default function Testimonials() {
     };
   }, [activeReview]);
 
+  const activeProject = activeReview
+    ? projectById(activeReview.projectId)
+    : undefined;
+
   return (
     <section
       id="testimonials"
-      className="editorial-grid relative overflow-hidden border-b border-white/10 bg-[#191924] py-[clamp(7rem,12vw,12rem)]"
+      className="editorial-grid relative overflow-hidden border-b border-white/10 bg-[#111119] py-[clamp(7rem,12vw,12rem)]"
     >
       <div className="mx-auto mb-[clamp(4rem,7vw,7rem)] w-full max-w-[112rem] px-5 sm:px-8 lg:px-[3.2vw]">
-        <div className="flex items-center gap-3 sm:gap-5">
-          <RotatingStar className="text-[clamp(2.1rem,4vw,4.8rem)] text-white/85" />
-          <p className="font-display text-[clamp(1.5rem,3.5vw,3.4rem)] font-extrabold uppercase tracking-[-0.045em] text-white">
-            <span style={{ color: "var(--color-accent, #854ce6)" }}>
-              Testi
-            </span>
-            monials
-          </p>
+        <div className="flex flex-wrap items-center justify-between gap-6">
+          <div className="flex items-center gap-3 sm:gap-5">
+            <RotatingStar className="text-[clamp(2.1rem,4vw,4.8rem)] text-white/85" />
+            <p className="font-display text-[clamp(1.5rem,3.5vw,3.4rem)] font-extrabold uppercase tracking-[-0.045em] text-white">
+              <span className="text-accent">Testi</span>monials
+            </p>
+          </div>
+
+          <Link
+            href="/reviews"
+            className="focus-ring inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.035] px-5 py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-white/72 transition duration-300 hover:-translate-y-1 hover:border-accent hover:bg-accent hover:text-white"
+          >
+            View review profile
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
         </div>
 
         <h2 className="mx-auto mt-[clamp(4rem,8vw,8rem)] max-w-[92rem] break-words text-center font-display text-[clamp(2.8rem,6.6vw,8rem)] font-extrabold leading-[0.92] tracking-[-0.06em] text-white sm:leading-[0.88] sm:tracking-[-0.07em]">
@@ -65,7 +77,7 @@ export default function Testimonials() {
                 key={item.id}
                 role="img"
                 aria-label={item.country}
-                className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#191924] bg-[#251341] text-sm shadow-[0_0_14px_rgba(133,76,230,0.34)]"
+                className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#111119] bg-[#181820] text-sm shadow-[0_0_14px_rgba(255,255,255,0.08)]"
               >
                 {item.flag}
               </span>
@@ -75,12 +87,12 @@ export default function Testimonials() {
             <span className="text-white">
               {portfolioTestimonials.length}
             </span>{" "}
-            sample reviews
+            client reviews
           </p>
         </div>
       </div>
 
-      <Marquee speed={82} pauseOnHover className="mb-5">
+      <Marquee speed={92} pauseOnHover className="mb-5">
         {firstReviewRow.map((item) => (
           <TestimonialCard
             key={item.id}
@@ -90,7 +102,7 @@ export default function Testimonials() {
         ))}
       </Marquee>
 
-      <Marquee speed={86} reverse pauseOnHover>
+      <Marquee speed={98} reverse pauseOnHover>
         {secondReviewRow.map((item) => (
           <TestimonialCard
             key={item.id}
@@ -103,7 +115,7 @@ export default function Testimonials() {
       <AnimatePresence>
         {activeReview ? (
           <motion.div
-            className="fixed inset-0 z-[8000] flex items-center justify-center bg-[#05050c]/88 p-4 backdrop-blur-xl sm:p-8"
+            className="fixed inset-0 z-[8000] flex items-center justify-center bg-[#05050c]/90 p-4 backdrop-blur-xl sm:p-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -113,7 +125,7 @@ export default function Testimonials() {
               role="dialog"
               aria-modal="true"
               aria-labelledby="review-dialog-title"
-              className="relative max-h-[90svh] w-full max-w-2xl overflow-y-auto rounded-[1.5rem] border border-accent/45 bg-[#11101e] p-6 text-left shadow-[0_30px_120px_rgba(0,0,0,0.7),0_0_55px_rgba(133,76,230,0.2)] sm:p-10"
+              className="relative max-h-[90svh] w-full max-w-2xl overflow-y-auto rounded-[1.5rem] border border-white/14 bg-[#111119] p-6 text-left shadow-[0_30px_120px_rgba(0,0,0,0.72)] sm:p-10"
               initial={{ opacity: 0, y: 28, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.97 }}
@@ -132,7 +144,7 @@ export default function Testimonials() {
 
               <div
                 aria-label="5 out of 5 stars"
-                className="text-lg tracking-[0.14em] text-accent drop-shadow-[0_0_12px_rgba(133,76,230,0.62)]"
+                className="text-lg tracking-[0.14em] text-[#f8c94e] drop-shadow-[0_0_12px_rgba(248,201,78,0.28)]"
               >
                 ★★★★★
               </div>
@@ -147,9 +159,9 @@ export default function Testimonials() {
                 “{activeReview.quote}”
               </blockquote>
 
-              <div className="mt-9 flex flex-col gap-5 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+              <div className="mt-9 border-t border-white/10 pt-6">
                 <div className="flex items-center gap-4">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full border border-accent/45 bg-[#251341] font-display text-lg font-extrabold text-white">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/14 bg-white/[0.045] font-display text-lg font-extrabold text-white">
                     {activeReview.name.charAt(0)}
                   </span>
                   <div>
@@ -169,14 +181,35 @@ export default function Testimonials() {
                   </div>
                 </div>
 
-                <Link
-                  href={`/projects/${activeReview.projectId}`}
-                  onClick={() => setActiveReview(null)}
-                  className="focus-ring inline-flex w-fit items-center gap-2 rounded-full border border-accent/50 bg-accent/10 px-5 py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#caa9ff] transition hover:-translate-y-1 hover:bg-accent hover:text-white"
-                >
-                  Open project
-                  <ArrowUpRight className="h-4 w-4" />
-                </Link>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {activeProject ? (
+                    <a
+                      href={activeProject.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#111119] transition hover:-translate-y-1 hover:bg-[#f8c94e]"
+                    >
+                      Live demo
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  ) : null}
+                  <Link
+                    href={`/projects/${activeReview.projectId}`}
+                    onClick={() => setActiveReview(null)}
+                    className="focus-ring inline-flex items-center gap-2 rounded-full border border-accent/50 bg-accent/10 px-5 py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#caa9ff] transition hover:-translate-y-1 hover:bg-accent hover:text-white"
+                  >
+                    Project details
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/reviews"
+                    onClick={() => setActiveReview(null)}
+                    className="focus-ring inline-flex items-center gap-2 rounded-full border border-white/14 px-5 py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-white/65 transition hover:-translate-y-1 hover:border-white/35 hover:text-white"
+                  >
+                    Review profile
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -198,31 +231,31 @@ function TestimonialCard({
       type="button"
       onClick={() => onOpen(item)}
       data-cursor="hover"
-      aria-label={`Open review for ${item.projectName}`}
-      className="group relative flex min-h-[21rem] w-[min(86vw,28rem)] shrink-0 flex-col justify-between overflow-hidden rounded-[1.15rem] border border-white/10 bg-[#0d0c19] p-6 text-left shadow-[0_22px_55px_rgba(0,0,0,0.3)] transition duration-500 hover:-translate-y-1 hover:border-accent/55 hover:shadow-[0_26px_70px_rgba(0,0,0,0.42),0_0_32px_rgba(133,76,230,0.16)] focus-visible:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:min-h-[22rem] sm:p-8"
+      aria-label={`View review for ${item.projectName}`}
+      className="group relative flex min-h-[20rem] w-[min(86vw,27rem)] shrink-0 flex-col justify-between overflow-hidden rounded-[1.15rem] border border-white/10 bg-[#0b0b12] p-6 text-left shadow-[0_22px_55px_rgba(0,0,0,0.3)] transition duration-500 hover:-translate-y-1 hover:border-white/24 hover:shadow-[0_26px_70px_rgba(0,0,0,0.48)] focus-visible:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:min-h-[21rem] sm:p-7"
     >
-      <span className="pointer-events-none absolute -right-6 -top-10 font-display text-[9rem] leading-none text-accent/[0.045]">
+      <span className="pointer-events-none absolute -right-6 -top-10 font-display text-[9rem] leading-none text-white/[0.035]">
         “
       </span>
 
       <div>
         <div
           aria-label="5 out of 5 stars"
-          className="text-sm tracking-[0.12em] text-accent drop-shadow-[0_0_10px_rgba(133,76,230,0.5)]"
+          className="text-sm tracking-[0.12em] text-[#f8c94e] drop-shadow-[0_0_10px_rgba(248,201,78,0.22)]"
         >
           ★★★★★
         </div>
-        <p className="mt-6 line-clamp-5 text-sm leading-[1.75] text-white/65 sm:text-[15px]">
+        <p className="mt-6 line-clamp-5 text-sm leading-[1.75] text-white/68 sm:text-[15px]">
           “{item.quote}”
         </p>
-        <span className="mt-2 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.12em] text-accent transition group-hover:text-[#c9a8ff]">
-          View full review
+        <span className="mt-4 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white/42 transition group-hover:text-[#f8c94e]">
+          View review
           <ArrowUpRight className="h-3.5 w-3.5" />
         </span>
       </div>
 
       <div className="mt-7 flex items-center gap-4 border-t border-white/[0.07] pt-5">
-        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-accent/35 bg-[#251341] font-display text-base font-extrabold text-white transition group-hover:border-accent group-hover:shadow-[0_0_18px_rgba(133,76,230,0.35)]">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/14 bg-white/[0.045] font-display text-base font-extrabold text-white transition group-hover:border-accent">
           {item.name.charAt(0)}
         </span>
         <div className="min-w-0">
@@ -233,7 +266,7 @@ function TestimonialCard({
             </span>
           </p>
           <p className="mt-1 truncate text-[9px] font-bold uppercase tracking-[0.12em] text-accent/80">
-            {item.title} · {item.projectName}
+            {item.projectName}
           </p>
         </div>
       </div>

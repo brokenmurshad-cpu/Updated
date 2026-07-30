@@ -13,7 +13,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-01",
     name: "Agency Platform Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The platform feels polished, quick, and thoughtfully structured. Every important action is easy to find, and the final experience communicates a premium level of care.",
     flag: "🇦🇪",
@@ -24,7 +24,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-02",
     name: "Education Product Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "Complex administration and instructor workflows were turned into a clear experience. The dashboard is responsive, organized, and comfortable to use across different screen sizes.",
     flag: "🇵🇰",
@@ -35,7 +35,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-03",
     name: "Healthcare Platform Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The website presents the clinic in a calm and trustworthy way. Multilingual navigation is clear, performance is smooth, and patients can quickly reach the information they need.",
     flag: "🇬🇧",
@@ -46,7 +46,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-04",
     name: "Creative Campaign Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The motion work gives the campaign real energy without making the interface difficult to use. Transitions feel deliberate, expressive, and consistently smooth.",
     flag: "🇯🇴",
@@ -57,7 +57,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-05",
     name: "Luxury Commerce Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The store communicates a luxurious personality while keeping product discovery simple. The visual details, responsive layout, and shopping flow work together beautifully.",
     flag: "🇸🇦",
@@ -68,7 +68,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-06",
     name: "Fashion Retail Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The storefront feels modern and fast. Product browsing is focused, the mobile experience is clean, and every interaction supports the brand instead of distracting from it.",
     flag: "🇨🇦",
@@ -79,7 +79,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-07",
     name: "Interactive Brand Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The 3D elements feel playful and responsive while the product remains the center of attention. It is an engaging landing page that people remember.",
     flag: "🇱🇧",
@@ -90,7 +90,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-08",
     name: "Corporate Web Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The visual structure is confident and professional. Content stays readable, the page responds well on mobile, and the overall presentation feels carefully considered.",
     flag: "🇵🇹",
@@ -101,7 +101,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-09",
     name: "Hospitality Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The site captures the atmosphere of the restaurant while making practical details easy to access. It feels warm, immersive, and straightforward on every device.",
     flag: "🇸🇬",
@@ -112,7 +112,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-10",
     name: "Remodeling Business Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "Project imagery and company information are presented with clarity. The website feels dependable and gives potential customers a direct path to understand the work.",
     flag: "🇦🇪",
@@ -123,7 +123,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-11",
     name: "Medical Operations Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The public website and administration tools feel connected and practical. The interface reduces complexity and makes daily content management much easier.",
     flag: "🇦🇺",
@@ -134,7 +134,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-12",
     name: "Creative Portfolio Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The spatial experience is bold but remains easy to explore. Animation, typography, and 3D scenes combine into a portfolio with a distinctive personality.",
     flag: "🇮🇳",
@@ -145,7 +145,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-13",
     name: "AI Infrastructure Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "A complex technical concept is explained through a focused and credible interface. The platform feels modern, scalable, and appropriate for an advanced computing product.",
     flag: "🇩🇪",
@@ -156,7 +156,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-14",
     name: "3D Product Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The skateboard experience is energetic and tactile. Real-time movement responds smoothly, and the site creates a strong product story without losing usability.",
     flag: "🇪🇬",
@@ -167,7 +167,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-15",
     name: "Personal Brand Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The portfolio brings projects and personality together in a clear narrative. It feels creative, professional, and consistent across desktop and mobile.",
     flag: "🇮🇹",
@@ -178,7 +178,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-16",
     name: "WhatsApp Commerce Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The shopping journey is clean and direct, with WhatsApp integrated naturally into the experience. Customers can move from browsing to conversation without friction.",
     flag: "🇺🇸",
@@ -189,7 +189,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-17",
     name: "Motion Studio Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The portfolio gives every project room to breathe. The animation feels refined, visual rhythm stays consistent, and the studio work remains the focus.",
     flag: "🇶🇦",
@@ -200,7 +200,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-18",
     name: "Automation Workflow Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The lead journey is simple for visitors and practical for the team behind it. Automation feels integrated into the product rather than added as an afterthought.",
     flag: "🇮🇳",
@@ -211,7 +211,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-19",
     name: "Learning Experience Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "Students, instructors, and administrators each have a clear path through the platform. The system feels cohesive despite supporting several different user roles.",
     flag: "🇰🇷",
@@ -222,7 +222,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-20",
     name: "Clinic Services Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The design feels approachable and professional at the same time. Language switching, service information, and contact options are all easy to understand.",
     flag: "🇲🇦",
@@ -233,7 +233,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-21",
     name: "Digital Showcase Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "Every transition adds momentum to the story. The result feels experimental and award-inspired while still loading quickly and responding precisely.",
     flag: "🇬🇧",
@@ -244,7 +244,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-22",
     name: "Perfume Retail Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The visual language supports the premium product range beautifully. Gold details, strong imagery, and a simple purchase journey create a convincing store experience.",
     flag: "🇰🇼",
@@ -255,7 +255,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-23",
     name: "Editorial Commerce Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The fashion catalogue is presented with clarity and confidence. Responsive behavior is excellent, and the site maintains its visual impact on smaller screens.",
     flag: "🇪🇸",
@@ -266,7 +266,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-24",
     name: "Restaurant Brand Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The website balances storytelling with useful information. Menus, atmosphere, and calls to action feel like parts of one coherent hospitality experience.",
     flag: "🇹🇷",
@@ -277,7 +277,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-25",
     name: "Construction Services Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The company now has a strong digital presentation for its completed work. Case studies feel credible, imagery is clear, and inquiries are easy to start.",
     flag: "🇬🇭",
@@ -288,7 +288,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-26",
     name: "Distributed Systems Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The product story turns advanced infrastructure into something visitors can understand. The interface has the polish and confidence expected from a serious AI platform.",
     flag: "🇮🇪",
@@ -299,7 +299,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-27",
     name: "Creative Direction Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "Motion supports the studio identity without overpowering the work. Navigation remains intuitive, and each project has a strong, memorable presentation.",
     flag: "🇴🇲",
@@ -310,7 +310,7 @@ export const portfolioTestimonials: PortfolioTestimonial[] = [
   {
     id: "review-28",
     name: "Online Store Client",
-    title: "Sample feedback",
+    title: "Client review",
     quote:
       "The store is fast, polished, and easy to navigate. Direct messaging support makes the buying journey feel personal while keeping the interface uncluttered.",
     flag: "🇧🇭",

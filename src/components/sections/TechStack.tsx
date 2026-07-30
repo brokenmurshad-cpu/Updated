@@ -48,8 +48,6 @@ export default function TechStack() {
       id="technology"
       className="relative overflow-hidden border-b border-white/10 bg-[#191924] px-5 py-[clamp(7rem,12vw,12rem)] sm:px-8 lg:px-[3.2vw]"
     >
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/8 blur-[150px]" />
-
       <div className="relative mx-auto w-full max-w-[112rem]">
         <Reveal>
           <div className="mb-[clamp(4rem,8vw,8rem)]">

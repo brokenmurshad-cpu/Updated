@@ -14,12 +14,14 @@ export default function Particles() {
     let raf = 0;
     let width = 0;
     let height = 0;
-    const particles = Array.from({ length: 48 }, () => ({
+    const particles = Array.from({ length: 46 }, () => ({
       x: Math.random(),
       y: Math.random(),
-      r: Math.random() * 1.8 + 0.4,
-      s: Math.random() * 0.25 + 0.05,
-      a: Math.random() * 0.45 + 0.15,
+      r: Math.random() * 1.45 + 0.35,
+      s: Math.random() * 0.24 + 0.08,
+      a: Math.random() * 0.44 + 0.12,
+      drift: (Math.random() - 0.5) * 0.08,
+      twinkle: Math.random() * Math.PI * 2,
     }));
 
     const resize = () => {
@@ -35,15 +37,41 @@ export default function Particles() {
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
       particles.forEach((p) => {
-        p.y -= p.s * 0.0015;
-        if (p.y < -0.02) {
-          p.y = 1.02;
+        p.y += p.s / Math.max(height, 1);
+        p.x += p.drift / Math.max(width, 1);
+        p.twinkle += 0.025;
+
+        if (p.y > 1.02) {
+          p.y = -0.02;
           p.x = Math.random();
         }
+
+        if (p.x < -0.02) p.x = 1.02;
+        if (p.x > 1.02) p.x = -0.02;
+
+        const alpha = p.a * (0.72 + Math.sin(p.twinkle) * 0.28);
+        const x = p.x * width;
+        const y = p.y * height;
+
+        ctx.save();
+        ctx.fillStyle = `rgba(238, 241, 246, ${alpha})`;
+        ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.8})`;
+        ctx.shadowColor = "rgba(255, 255, 255, 0.36)";
+        ctx.shadowBlur = p.r * 3.5;
         ctx.beginPath();
-        ctx.fillStyle = `rgba(168, 85, 247, ${p.a})`;
-        ctx.arc(p.x * width, p.y * height, p.r, 0, Math.PI * 2);
+        ctx.arc(x, y, p.r, 0, Math.PI * 2);
         ctx.fill();
+
+        if (p.r > 1.25) {
+          ctx.lineWidth = 0.65;
+          ctx.beginPath();
+          ctx.moveTo(x - p.r * 2.4, y);
+          ctx.lineTo(x + p.r * 2.4, y);
+          ctx.moveTo(x, y - p.r * 2.4);
+          ctx.lineTo(x, y + p.r * 2.4);
+          ctx.stroke();
+        }
+        ctx.restore();
       });
       raf = requestAnimationFrame(draw);
     };
@@ -61,7 +89,7 @@ export default function Particles() {
     <canvas
       ref={canvasRef}
       aria-hidden
-      className="pointer-events-none fixed inset-0 z-[1] opacity-70"
+      className="pointer-events-none fixed inset-0 z-[1] opacity-60"
     />
   );
 }
