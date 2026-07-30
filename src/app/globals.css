@@ -840,7 +840,13 @@ body {
   .service-stack-card {
     position: sticky;
     top: var(--service-stack-top);
-    min-height: calc(100svh - var(--service-stack-top));
+    height: calc(100svh - var(--service-stack-top));
+    min-height: 0;
+  }
+
+  .service-stack-card__surface {
+    height: 100%;
+    min-height: 0;
   }
 
   .service-stack-hold {

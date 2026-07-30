@@ -2,27 +2,40 @@
 
 import { FormEvent, useState } from "react";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { personal, socials, whatsappUrl } from "@/data/content";
+import { personal, whatsappUrl } from "@/data/content";
 
 export default function Contact() {
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "sent" | "error"
+  >("idle");
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const form = event.currentTarget;
     const data = new FormData(form);
-    const email = String(data.get("email") || "");
-    const message = String(data.get("message") || "");
-    const body = encodeURIComponent(
-      `Hi Muhammad,\n\nMy email: ${email}\n\n${message}`,
-    );
+    setStatus("sending");
 
-    window.location.href = `mailto:${socials.email}?subject=${encodeURIComponent(
-      "Portfolio Inquiry",
-    )}&body=${body}`;
-    setStatus("sent");
-    form.reset();
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: String(data.get("email") || ""),
+          message: String(data.get("message") || ""),
+          website: String(data.get("website") || ""),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Message delivery failed");
+      }
+
+      setStatus("sent");
+      form.reset();
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -73,6 +86,17 @@ export default function Contact() {
             className="w-full rounded-[1.35rem] border border-[#854ce6]/45 bg-[#090917]/95 p-5 shadow-[0_20px_55px_rgba(0,0,0,0.48),0_0_32px_rgba(133,76,230,0.16)] sm:rounded-[1.65rem] sm:p-10"
             aria-label="Contact form"
           >
+            <div className="absolute -left-[9999px]" aria-hidden="true">
+              <label htmlFor="contact-website">Website</label>
+              <input
+                id="contact-website"
+                name="website"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
+
             <Field label="Email address" name="email" type="email" placeholder="Enter your email" required />
 
             <div className="mt-6">
@@ -94,15 +118,25 @@ export default function Contact() {
 
             <button
               type="submit"
+              disabled={status === "sending"}
               data-cursor="hover"
-              className="mt-9 w-full rounded-full border-[3px] border-[#854ce6] bg-[#140928]/55 px-4 py-3.5 text-[10px] font-extrabold uppercase tracking-[0.18em] text-white shadow-[7px_6px_0_rgba(14,6,29,0.55)] transition hover:bg-[#854ce6] hover:shadow-[0_0_26px_rgba(133,76,230,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a978ff] sm:px-5 sm:text-[11px] sm:tracking-[0.28em]"
+              className="mt-9 w-full rounded-full border-[3px] border-[#854ce6] bg-[#140928]/55 px-4 py-3.5 text-[10px] font-extrabold uppercase tracking-[0.18em] text-white shadow-[7px_6px_0_rgba(14,6,29,0.55)] transition hover:bg-[#854ce6] hover:shadow-[0_0_26px_rgba(133,76,230,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a978ff] disabled:cursor-wait disabled:opacity-60 sm:px-5 sm:text-[11px] sm:tracking-[0.28em]"
             >
-              Send message
+              {status === "sending" ? "Sending..." : "Send message"}
             </button>
 
-            {status === "sent" ? (
-              <p className="mt-4 text-center text-xs text-[#a978ff]">Opening your mail client...</p>
-            ) : null}
+            <div className="min-h-8" aria-live="polite">
+              {status === "sent" ? (
+                <p className="mt-4 text-center text-xs text-[#a978ff]">
+                  Message sent successfully. I&apos;ll get back to you soon.
+                </p>
+              ) : null}
+              {status === "error" ? (
+                <p className="mt-4 text-center text-xs text-red-300">
+                  Message could not be sent. Please try again.
+                </p>
+              ) : null}
+            </div>
           </form>
         </div>
       </div>

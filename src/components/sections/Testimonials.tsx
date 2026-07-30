@@ -54,7 +54,9 @@ export default function Testimonials() {
             <RotatingStar className="text-[clamp(2.1rem,4vw,4.8rem)] text-white/85" />
             <p className="font-display text-[clamp(1.5rem,3.5vw,3.4rem)] font-extrabold uppercase tracking-[-0.045em] text-white">
               <span className="text-white">Testi</span>
-              <span className="text-accent">monials</span>
+              <span style={{ color: "var(--color-accent, #854ce6)" }}>
+                monials
+              </span>
             </p>
           </div>
 
