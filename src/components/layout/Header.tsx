@@ -155,7 +155,7 @@ export default function Header() {
           </p>
 
           <nav
-            className="relative z-10 w-full -translate-y-3 sm:-translate-y-6 lg:-translate-y-10"
+            className="relative z-10 w-full -translate-y-3 sm:-translate-y-4 lg:-translate-y-5"
             aria-label="Fullscreen navigation"
           >
             <p className="mb-6 text-[10px] font-extrabold uppercase tracking-[0.24em] text-[#090917]/55">
@@ -184,36 +184,36 @@ export default function Header() {
               ))}
             </ul>
           </nav>
-
-          <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-end justify-between gap-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#090917]/55 sm:left-12 sm:right-12 lg:left-[7vw] lg:right-[7vw]">
-            <a
-              href={`mailto:${personal.email}`}
-              className="break-all transition-colors hover:text-white"
-            >
-              {personal.email}
-            </a>
-            <div className="flex flex-wrap gap-5">
-              {socialLinks.slice(0, 3).map((item) => (
-                <a
-                  key={item.label}
-                  href={item.url}
-                  target={item.url.startsWith("http") ? "_blank" : undefined}
-                  rel={
-                    item.url.startsWith("http")
-                      ? "noopener noreferrer"
-                      : undefined
-                  }
-                  className="transition-colors hover:text-white"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
-          </div>
         </div>
 
         <div className="rounded__div__up !relative z-20 -mt-px">
           <div className="round__bg__up bg-[#a978ff]" />
+        </div>
+
+        <div className="absolute bottom-6 left-6 right-6 z-30 flex flex-wrap items-end justify-between gap-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#090917]/55 sm:bottom-8 sm:left-12 sm:right-12 lg:bottom-9 lg:left-[7vw] lg:right-[7vw]">
+          <a
+            href={`mailto:${personal.email}`}
+            className="break-all transition-colors hover:text-white"
+          >
+            {personal.email}
+          </a>
+          <div className="flex flex-wrap gap-5">
+            {socialLinks.slice(0, 3).map((item) => (
+              <a
+                key={item.label}
+                href={item.url}
+                target={item.url.startsWith("http") ? "_blank" : undefined}
+                rel={
+                  item.url.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+                className="transition-colors hover:text-white"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </div>

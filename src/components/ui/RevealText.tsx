@@ -65,10 +65,12 @@ export default function RevealText({
         <span key={`${word}-${i}`} className="inline-block overflow-hidden pb-1 align-bottom">
           <span
             data-word
-            className={cn(
-              "inline-block will-change-transform",
-              accentWordSet.has(normalizeWord(word)) && "text-accent",
-            )}
+            className="inline-block will-change-transform"
+            style={
+              accentWordSet.has(normalizeWord(word))
+                ? { color: "var(--color-accent, #854ce6)" }
+                : undefined
+            }
           >
             {word}
             {i < words.length - 1 ? "\u00A0" : ""}

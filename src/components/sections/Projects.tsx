@@ -104,7 +104,9 @@ export default function Projects() {
             <h2 className="max-w-full font-display text-[clamp(2.85rem,8.2vw,9.5rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.075em] lg:whitespace-nowrap lg:leading-[0.78] lg:tracking-[-0.085em]">
               <span>Selected </span>
               <span className="whitespace-nowrap">
-                <span className="text-accent">Projects</span>
+                <span style={{ color: "var(--color-accent, #854ce6)" }}>
+                  Projects
+                </span>
                 <span className="text-white"> / </span>
                 <span className="text-white/40">{selectedProjects.length}</span>
               </span>
@@ -232,7 +234,9 @@ export default function Projects() {
               <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
                 <RotatingStar className="text-[clamp(2rem,4vw,4.75rem)] text-white/85" />
                 <h3 className="font-display text-[clamp(2.65rem,8vw,9rem)] font-extrabold uppercase leading-[0.84] tracking-[-0.065em] sm:leading-[0.8] sm:tracking-[-0.075em]">
-                  <span className="text-accent">Projects</span>{" "}
+                  <span style={{ color: "var(--color-accent, #854ce6)" }}>
+                    Projects
+                  </span>{" "}
                   <span className="text-white">list</span>
                 </h3>
               </div>

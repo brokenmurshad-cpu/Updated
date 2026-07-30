@@ -1,10 +1,12 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
 import RevealText from "@/components/ui/RevealText";
 import TiltCard from "@/components/ui/TiltCard";
 import { personal } from "@/data/content";
+import { getGsap } from "@/lib/gsap";
 
 const capabilities = [
   ["01", "Full Stack Web Development"],
@@ -14,9 +16,79 @@ const capabilities = [
 ];
 
 export default function About() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const portraitRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const portrait = portraitRef.current;
+    if (!section || !portrait) return;
+
+    const { gsap } = getGsap();
+    const portraitImage =
+      portrait.querySelector<HTMLElement>("[data-about-portrait-image]");
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (reduceMotion) {
+      gsap.set([portrait, portraitImage], {
+        autoAlpha: 1,
+        clearProps: "transform,filter,clipPath",
+      });
+      return;
+    }
+
+    const context = gsap.context(() => {
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: portrait,
+          start: "top 96%",
+          end: "top 52%",
+          scrub: 1.1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      timeline.fromTo(
+        portrait,
+        {
+          autoAlpha: 0,
+          y: 180,
+          scale: 0.86,
+          rotate: -3,
+          filter: "blur(12px)",
+          clipPath: "inset(24% 0 0 0 round 1.4rem)",
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          rotate: 0,
+          filter: "blur(0px)",
+          clipPath: "inset(0% 0 0 0 round 1.4rem)",
+          ease: "none",
+        },
+        0,
+      );
+
+      if (portraitImage) {
+        timeline.fromTo(
+          portraitImage,
+          { scale: 1.16, y: 48 },
+          { scale: 1, y: 0, ease: "none" },
+          0,
+        );
+      }
+    }, section);
+
+    return () => context.revert();
+  }, []);
+
   return (
     <section
       id="about"
+      ref={sectionRef}
       className="relative overflow-hidden border-b border-white/10 bg-[#191924] px-5 py-[clamp(6rem,12vw,11rem)] sm:px-8 lg:px-[3.2vw]"
     >
       <div className="pointer-events-none absolute left-[12%] top-[28%] h-72 w-72 rounded-full bg-accent/10 blur-[130px]" />
@@ -35,10 +107,14 @@ export default function About() {
         />
 
         <div className="mt-[clamp(4rem,9vw,9rem)] grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-[8vw]">
-          <Reveal y={120}>
-            <TiltCard maxTilt={5} className="mx-auto max-w-[32rem] lg:mx-0">
+          <div
+            ref={portraitRef}
+            className="mx-auto w-full max-w-[32rem] lg:mx-0"
+          >
+            <TiltCard maxTilt={5} className="w-full">
               <div className="group relative aspect-[8/9] overflow-hidden rounded-[1.4rem] border border-white/10 bg-[#090917]">
                 <Image
+                  data-about-portrait-image
                   src="/images/profile.jpg"
                   alt={`${personal.fullName}, ${personal.role}`}
                   fill
@@ -61,7 +137,7 @@ export default function About() {
                 </div>
               </div>
             </TiltCard>
-          </Reveal>
+          </div>
 
           <div className="text-center lg:text-left">
             <Reveal>
