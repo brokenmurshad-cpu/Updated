@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, ExternalLink, X } from "lucide-react";
 import Marquee from "@/components/ui/Marquee";
 import RotatingStar from "@/components/ui/RotatingStar";
+import CountryFlag from "@/components/ui/CountryFlag";
 import { projectById } from "@/data/project-showcase";
 import {
   portfolioTestimonials,
@@ -75,11 +76,13 @@ export default function Testimonials() {
             {clientFlags.map((item) => (
               <span
                 key={item.id}
-                role="img"
-                aria-label={item.country}
                 className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#111119] bg-[#181820] text-sm shadow-[0_0_14px_rgba(255,255,255,0.08)]"
               >
-                {item.flag}
+                <CountryFlag
+                  flag={item.flag}
+                  country={item.country}
+                  className="h-[14px] w-5"
+                />
               </span>
             ))}
           </div>
@@ -165,15 +168,12 @@ export default function Testimonials() {
                     {activeReview.name.charAt(0)}
                   </span>
                   <div>
-                    <p className="font-display text-base font-semibold text-white">
-                      {activeReview.name}{" "}
-                      <span
-                        role="img"
-                        aria-label={activeReview.country}
-                        title={activeReview.country}
-                      >
-                        {activeReview.flag}
-                      </span>
+                    <p className="flex items-center gap-2 font-display text-base font-semibold text-white">
+                      <span>{activeReview.name}</span>
+                      <CountryFlag
+                        flag={activeReview.flag}
+                        country={activeReview.country}
+                      />
                     </p>
                     <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white/38">
                       {activeReview.projectName}
@@ -258,12 +258,10 @@ function TestimonialCard({
         <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/14 bg-white/[0.045] font-display text-base font-extrabold text-white transition group-hover:border-accent">
           {item.name.charAt(0)}
         </span>
-        <div className="min-w-0">
-          <p className="truncate font-display text-sm font-semibold text-white">
-            {item.name}{" "}
-            <span role="img" aria-label={item.country} title={item.country}>
-              {item.flag}
-            </span>
+        <div className="min-w-0 flex-1">
+          <p className="flex min-w-0 items-center gap-2 font-display text-sm font-semibold text-white">
+            <span className="min-w-0 truncate">{item.name}</span>
+            <CountryFlag flag={item.flag} country={item.country} />
           </p>
           <p className="mt-1 truncate text-[9px] font-bold uppercase tracking-[0.12em] text-accent/80">
             {item.projectName}

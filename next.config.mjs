@@ -15,6 +15,11 @@ const nextConfig = {
         hostname: "ahmedragab-div.vercel.app",
         pathname: "/images/projects/**",
       },
+      {
+        protocol: "https",
+        hostname: "flagcdn.com",
+        pathname: "/w40/**",
+      },
     ],
   },
 

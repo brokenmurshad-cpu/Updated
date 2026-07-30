@@ -13,6 +13,7 @@ import {
 import { personal, socials, whatsappUrl } from "@/data/content";
 import { projectById, projects } from "@/data/project-showcase";
 import { portfolioTestimonials } from "@/data/testimonials";
+import CountryFlag from "@/components/ui/CountryFlag";
 
 export const metadata: Metadata = {
   title: "Client Reviews | Muhammad Husnain",
@@ -170,16 +171,15 @@ export default function ReviewsPage() {
                       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/14 bg-white/[0.04] font-display text-sm font-extrabold">
                         {review.name.charAt(0)}
                       </span>
-                      <div className="min-w-0">
-                        <p className="truncate font-display text-sm font-semibold">
-                          {review.name}{" "}
-                          <span
-                            role="img"
-                            aria-label={review.country}
-                            title={review.country}
-                          >
-                            {review.flag}
+                      <div className="min-w-0 flex-1">
+                        <p className="flex min-w-0 items-center gap-2 font-display text-sm font-semibold">
+                          <span className="min-w-0 truncate">
+                            {review.name}
                           </span>
+                          <CountryFlag
+                            flag={review.flag}
+                            country={review.country}
+                          />
                         </p>
                         <p className="mt-1 text-[9px] font-bold uppercase tracking-[0.14em] text-white/34">
                           {review.country}

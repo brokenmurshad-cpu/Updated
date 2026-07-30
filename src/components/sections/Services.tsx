@@ -53,7 +53,7 @@ export default function Services() {
         className="service-stack relative isolate"
         style={
           {
-            "--service-stack-tail": `calc(100svh - ${services.length * 4.75}rem)`,
+            "--service-stack-tail": "210svh",
           } as ServiceStackStyle
         }
       >
@@ -132,6 +132,7 @@ export default function Services() {
             </div>
           </article>
         ))}
+        <div className="service-stack-hold" aria-hidden="true" />
       </div>
     </section>
   );

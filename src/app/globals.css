@@ -837,14 +837,14 @@ body {
 }
 
 @media (min-width: 768px) {
-  .service-stack {
-    padding-bottom: var(--service-stack-tail);
-  }
-
   .service-stack-card {
     position: sticky;
     top: var(--service-stack-top);
     min-height: calc(100svh - var(--service-stack-top));
+  }
+
+  .service-stack-hold {
+    height: var(--service-stack-tail);
   }
 }
 
