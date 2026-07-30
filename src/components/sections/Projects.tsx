@@ -234,10 +234,10 @@ export default function Projects() {
               <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
                 <RotatingStar className="text-[clamp(2rem,4vw,4.75rem)] text-white/85" />
                 <h3 className="font-display text-[clamp(2.65rem,8vw,9rem)] font-extrabold uppercase leading-[0.84] tracking-[-0.065em] sm:leading-[0.8] sm:tracking-[-0.075em]">
+                  <span className="text-white">Project</span>{" "}
                   <span style={{ color: "var(--color-accent, #854ce6)" }}>
-                    Projects
-                  </span>{" "}
-                  <span className="text-white">list</span>
+                    List
+                  </span>
                 </h3>
               </div>
             </div>

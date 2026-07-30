@@ -53,7 +53,7 @@ export default function Services() {
         className="service-stack relative isolate"
         style={
           {
-            "--service-stack-tail": "42svh",
+            "--service-stack-tail": "72svh",
           } as ServiceStackStyle
         }
       >
