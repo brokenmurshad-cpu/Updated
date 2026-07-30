@@ -6,7 +6,7 @@ export const personal = {
   roles: ["Full Stack Developer", "AI Engineer", "SaaS Builder", "Creative Developer"],
   location: "Dubai, UAE",
   locationLine: "based in Dubai, UAE",
-  email: "Mhusnain027@outlook.com",
+  email: "Mhusnain0027@outlook.com",
   phone: "+971 50 5677 023",
   whatsapp: "+971505677023",
   whatsappDigits: "971505677023",
@@ -25,7 +25,7 @@ export const personal = {
 
 export const socials = {
   whatsapp: "971505677023",
-  email: "Mhusnain027@outlook.com",
+  email: "Mhusnain0027@outlook.com",
   github: "https://www.github.com/Mhusnain0027",
   linkedin:
     "https://www.linkedin.com/in/muhammad-husnain-4556233a1?utm_source=share_via&utm_content=profile&utm_medium=member_android",

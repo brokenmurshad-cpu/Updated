@@ -81,4 +81,4 @@ Edit branding, projects, experience, and social links in:
 - WhatsApp: +971 50 5677 023
 - LinkedIn: https://www.linkedin.com/in/muhammad-husnain-4556233a1
 - GitHub: https://www.github.com/Mhusnain0027
-- Email: Mhusnain027@outlook.com
+- Email: Mhusnain0027@outlook.com
