@@ -10,37 +10,49 @@ export default function Contact() {
   const [status, setStatus] = useState<
     "idle" | "sending" | "sent" | "error"
   >("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const form = event.currentTarget;
-    const data = new FormData(form);
+    const formData = new FormData(form);
+    formData.append("name", String(formData.get("email") || "Website visitor"));
+    formData.append("access_key", WEB3FORMS_ACCESS_KEY);
+    formData.append("subject", "New portfolio inquiry");
+    formData.append("from_name", "Muhammad Husnain Portfolio");
+
+    const payload = Object.fromEntries(formData);
     setStatus("sending");
+    setErrorMessage("");
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: "New portfolio inquiry",
-          from_name: "Muhammad Husnain Portfolio",
-          email: String(data.get("email") || ""),
-          message: String(data.get("message") || ""),
-          botcheck: String(data.get("botcheck") || ""),
-        }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
       });
 
-      const result = (await response.json()) as { success?: boolean };
+      const result = (await response.json()) as {
+        success?: boolean;
+        message?: string;
+      };
 
       if (!response.ok || !result.success) {
-        throw new Error("Message delivery failed");
+        throw new Error(result.message || "Message delivery failed.");
       }
 
       setStatus("sent");
       form.reset();
-    } catch {
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "Message could not be sent. Please try again.",
+      );
       setStatus("error");
     }
   };
@@ -94,11 +106,11 @@ export default function Contact() {
             aria-label="Contact form"
           >
             <div className="absolute -left-[9999px]" aria-hidden="true">
-              <label htmlFor="contact-botcheck">Leave this field empty</label>
+              <label htmlFor="contact-botcheck">Leave this field unchecked</label>
               <input
                 id="contact-botcheck"
                 name="botcheck"
-                type="text"
+                type="checkbox"
                 tabIndex={-1}
                 autoComplete="off"
               />
@@ -140,7 +152,7 @@ export default function Contact() {
               ) : null}
               {status === "error" ? (
                 <p className="mt-4 text-center text-xs text-red-300">
-                  Message could not be sent. Please try again.
+                  {errorMessage || "Message could not be sent. Please try again."}
                 </p>
               ) : null}
             </div>
