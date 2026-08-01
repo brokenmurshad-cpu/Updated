@@ -157,10 +157,10 @@ export default function Header() {
         role="dialog"
         aria-modal="true"
         aria-label="Site menu"
-        className="fixed inset-0 z-[6000] hidden h-[100svh] flex-col overflow-hidden bg-[#a978ff] text-[#090917] outline-none"
+        className="fixed inset-0 z-[6000] hidden h-[100svh] flex-col overflow-hidden bg-[#0a8f87] text-[#090917] outline-none"
       >
         <div className="editorial-grid relative flex min-h-0 flex-1 items-center px-6 py-20 sm:px-12 lg:px-[7vw]">
-          <div aria-hidden className="pointer-events-none absolute right-[7%] top-[13%] h-[32vw] w-[32vw] rounded-full border border-[#090917]/10 bg-[#c5a6ff]/30 blur-[2px]" />
+          <div aria-hidden className="pointer-events-none absolute right-[7%] top-[13%] h-[32vw] w-[32vw] rounded-full border border-[#090917]/10 bg-[#31b8ae]/30 blur-[2px]" />
           <p className="absolute left-6 top-7 font-display text-sm font-extrabold uppercase sm:left-12 lg:left-[7vw]">
             {personal.fullName}
           </p>
@@ -198,7 +198,7 @@ export default function Header() {
         </div>
 
         <div className="rounded__div__up !relative z-20 -mt-px">
-          <div className="round__bg__up bg-[#a978ff]" />
+          <div className="round__bg__up bg-[#0a8f87]" />
         </div>
 
         <div className="absolute bottom-6 left-6 right-6 z-30 flex flex-wrap items-end justify-between gap-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#090917]/55 sm:bottom-8 sm:left-12 sm:right-12 lg:bottom-9 lg:left-[7vw] lg:right-[7vw]">

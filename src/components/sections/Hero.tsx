@@ -25,6 +25,7 @@ const galleryRotation = [-1.2, -0.5, 0.25, 0.75, 1.15, 0.55, -0.35, -0.8];
 type GalleryStyle = CSSProperties & {
   "--gallery-offset": string;
   "--gallery-rotation": string;
+  "--gallery-scale": string;
 };
 
 export default function Hero() {
@@ -87,6 +88,82 @@ export default function Hero() {
     };
   }, []);
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const cards = Array.from(
+      section.querySelectorAll<HTMLElement>(".hero-project-card"),
+    );
+    if (cards.length === 0) return;
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (reduceMotion) {
+      cards.forEach((card) => card.style.setProperty("--gallery-scale", "1"));
+      return;
+    }
+
+    let animationFrame = 0;
+    let isActive = false;
+
+    const updateGalleryDepth = () => {
+      if (!isActive) return;
+
+      const viewportWidth = Math.max(window.innerWidth, 1);
+      const viewportCenter = viewportWidth / 2;
+      const edgeDistance = viewportWidth / 2;
+
+      const cardScales = cards.map((card) => {
+        const bounds = card.getBoundingClientRect();
+        const cardCenter = bounds.left + bounds.width / 2;
+        const distanceFromCenter = Math.min(
+          Math.abs(cardCenter - viewportCenter) / edgeDistance,
+          1,
+        );
+        const easedDistance = Math.pow(distanceFromCenter, 0.82);
+        return (0.62 + easedDistance * 0.38).toFixed(3);
+      });
+
+      cards.forEach((card, index) => {
+        card.style.setProperty("--gallery-scale", cardScales[index] ?? "1");
+      });
+
+      animationFrame = window.requestAnimationFrame(updateGalleryDepth);
+    };
+
+    const startDepthAnimation = () => {
+      if (isActive) return;
+      isActive = true;
+      animationFrame = window.requestAnimationFrame(updateGalleryDepth);
+    };
+
+    const stopDepthAnimation = () => {
+      isActive = false;
+      window.cancelAnimationFrame(animationFrame);
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          startDepthAnimation();
+        } else {
+          stopDepthAnimation();
+        }
+      },
+      { threshold: 0.01 },
+    );
+
+    observer.observe(section);
+
+    return () => {
+      stopDepthAnimation();
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <section
       id="hero"
@@ -126,6 +203,7 @@ export default function Hero() {
               const style: GalleryStyle = {
                 "--gallery-offset": `${galleryWave[index % galleryWave.length]}px`,
                 "--gallery-rotation": `${galleryRotation[index % galleryRotation.length]}deg`,
+                "--gallery-scale": "1",
               };
 
               return (
@@ -157,7 +235,7 @@ export default function Hero() {
           data-hero-actions
           className="relative z-20 mx-auto mt-4 flex w-full flex-col items-center sm:mt-5"
         >
-          <div className="flex items-center justify-center gap-2.5 rounded-full border border-white/20 bg-white/[0.055] p-1.5 shadow-[0_10px_34px_rgba(0,0,0,0.24),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-md sm:gap-3 sm:p-2">
+          <div className="flex items-center justify-center gap-2.5 sm:gap-3">
             {socialItems.map((item) => (
               <Magnetic key={item.label} strength={22}>
                 <a
