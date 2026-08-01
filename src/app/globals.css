@@ -945,6 +945,7 @@ body {
 @media (min-width: 768px) {
   .service-stack-intro {
     height: calc(100svh - 4.75rem);
+    margin-bottom: clamp(16rem, 50svh, 32rem);
   }
 
   .service-stack-intro-panel {
