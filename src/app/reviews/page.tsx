@@ -5,11 +5,11 @@ import {
   ArrowLeft,
   ArrowUpRight,
   ExternalLink,
-  Github,
   Linkedin,
   Mail,
   MessageCircle,
 } from "lucide-react";
+import { SiTiktok } from "react-icons/si";
 import { personal, socials, whatsappUrl } from "@/data/content";
 import { projectById, projects } from "@/data/project-showcase";
 import { portfolioTestimonials } from "@/data/testimonials";
@@ -33,9 +33,9 @@ const profileLinks = [
     icon: Linkedin,
   },
   {
-    label: "GitHub",
-    href: socials.github,
-    icon: Github,
+    label: "TikTok",
+    href: socials.tiktok,
+    icon: SiTiktok,
   },
   {
     label: "Email",

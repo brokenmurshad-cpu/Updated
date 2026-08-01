@@ -18,7 +18,7 @@ Full Stack Developer · AI Engineer · SaaS Builder · Dubai, UAE
 - Scribble preloader transition
 - Fullscreen hamburger menu with curved reveal
 - Editorial hero with overlapping video, animated wordmark, and handwritten signature
-- Custom cursor + purple click ripples
+- Custom cursor + Cypress click ripples
 - Magnetic buttons, tilt cards, marquee roles
 - Full-screen GSAP sticky service card stack
 - Five cinematic project cases plus a 13-project cursor-preview index
@@ -80,5 +80,5 @@ Edit branding, projects, experience, and social links in:
 
 - WhatsApp: +971 50 5677 023
 - LinkedIn: https://www.linkedin.com/in/muhammad-husnain-4556233a1
-- GitHub: https://www.github.com/Mhusnain0027
+- TikTok: https://www.tiktok.com/@mh.dev11
 - Email: Mhusnain0027@outlook.com

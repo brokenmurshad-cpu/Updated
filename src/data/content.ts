@@ -26,7 +26,7 @@ export const personal = {
 export const socials = {
   whatsapp: "971505677023",
   email: "Mhusnain0027@outlook.com",
-  github: "https://www.github.com/Mhusnain0027",
+  tiktok: "https://www.tiktok.com/@mh.dev11",
   linkedin:
     "https://www.linkedin.com/in/muhammad-husnain-4556233a1?utm_source=share_via&utm_content=profile&utm_medium=member_android",
   twitter: "",
@@ -59,7 +59,7 @@ export const navLinks = [
 ];
 
 export const socialLinks = [
-  { label: "GitHub", url: socials.github },
+  { label: "TikTok", url: socials.tiktok },
   { label: "LinkedIn", url: socials.linkedin },
   { label: "WhatsApp", url: whatsappUrl },
   { label: "Email", url: `mailto:${socials.email}` },
@@ -160,7 +160,7 @@ export type Project = {
   tags: string[];
   image: string;
   href: string;
-  github?: string;
+  tiktok?: string;
 };
 
 export const projects: Project[] = [
@@ -172,8 +172,8 @@ export const projects: Project[] = [
     description: "A fast, conversion-focused storefront with a custom cart flow and animated product grid.",
     tags: ["Next.js", "TypeScript", "Stripe"],
     image: "/images/project-ecommerce.jpg",
-    href: socials.github,
-    github: socials.github,
+    href: socials.tiktok,
+    tiktok: socials.tiktok,
   },
   {
     id: "dashboard",
@@ -183,8 +183,8 @@ export const projects: Project[] = [
     description: "A real-time analytics dashboard with animated charts and a fully themeable design system.",
     tags: ["React", "Tailwind CSS", "Recharts"],
     image: "/images/project-dashboard.jpg",
-    href: socials.github,
-    github: socials.github,
+    href: socials.tiktok,
+    tiktok: socials.tiktok,
   },
   {
     id: "agency",
@@ -194,8 +194,8 @@ export const projects: Project[] = [
     description: "A bold agency landing experience with GSAP-driven scroll storytelling and case studies.",
     tags: ["Next.js", "GSAP", "Framer Motion"],
     image: "/images/project-agency.jpg",
-    href: socials.github,
-    github: socials.github,
+    href: socials.tiktok,
+    tiktok: socials.tiktok,
   },
   {
     id: "mobile",
@@ -205,8 +205,8 @@ export const projects: Project[] = [
     description: "A clean, motion-rich mobile UI concept focused on delightful micro-interactions.",
     tags: ["React Native", "TypeScript", "Reanimated"],
     image: "/images/project-mobileapp.jpg",
-    href: socials.github,
-    github: socials.github,
+    href: socials.tiktok,
+    tiktok: socials.tiktok,
   },
   {
     id: "portfolio",
@@ -216,8 +216,8 @@ export const projects: Project[] = [
     description: "An image-first portfolio template with a masonry gallery and buttery-smooth transitions.",
     tags: ["Next.js", "Lenis", "GSAP"],
     image: "/images/project-portfolio.jpg",
-    href: socials.github,
-    github: socials.github,
+    href: socials.tiktok,
+    tiktok: socials.tiktok,
   },
   {
     id: "neural-desk",
@@ -227,8 +227,8 @@ export const projects: Project[] = [
     description: "An intelligent support workspace that summarizes conversations and prepares grounded replies.",
     tags: ["Next.js", "OpenAI", "PostgreSQL"],
     image: "/images/project-dashboard.jpg",
-    href: socials.github,
-    github: socials.github,
+    href: socials.tiktok,
+    tiktok: socials.tiktok,
   },
   {
     id: "launchpad",
@@ -238,8 +238,8 @@ export const projects: Project[] = [
     description: "A guided onboarding system with progressive setup, contextual education, and activation analytics.",
     tags: ["React", "Framer Motion", "Analytics"],
     image: "/images/project-agency.jpg",
-    href: socials.github,
-    github: socials.github,
+    href: socials.tiktok,
+    tiktok: socials.tiktok,
   },
   {
     id: "meridian",
@@ -249,8 +249,8 @@ export const projects: Project[] = [
     description: "A high-density finance interface that turns complex portfolio data into fast, legible decisions.",
     tags: ["TypeScript", "Charts", "Design System"],
     image: "/images/project-dashboard.jpg",
-    href: socials.github,
-    github: socials.github,
+    href: socials.tiktok,
+    tiktok: socials.tiktok,
   },
   {
     id: "orbit",
@@ -260,8 +260,8 @@ export const projects: Project[] = [
     description: "A collaborative planning canvas with presence, optimistic updates, and smooth shared-state motion.",
     tags: ["Next.js", "WebSockets", "GSAP"],
     image: "/images/project-mobileapp.jpg",
-    href: socials.github,
-    github: socials.github,
+    href: socials.tiktok,
+    tiktok: socials.tiktok,
   },
   {
     id: "studio-grid",
@@ -271,8 +271,8 @@ export const projects: Project[] = [
     description: "A premium discovery and booking flow for studios, creators, and production teams.",
     tags: ["Next.js", "Stripe", "Prisma"],
     image: "/images/project-portfolio.jpg",
-    href: socials.github,
-    github: socials.github,
+    href: socials.tiktok,
+    tiktok: socials.tiktok,
   },
   {
     id: "relay",
@@ -282,8 +282,8 @@ export const projects: Project[] = [
     description: "A visual workflow builder that connects AI steps, approvals, and external business tools.",
     tags: ["Agents", "Node.js", "Automation"],
     image: "/images/project-agency.jpg",
-    href: socials.github,
-    github: socials.github,
+    href: socials.tiktok,
+    tiktok: socials.tiktok,
   },
   {
     id: "nomad",
@@ -293,8 +293,8 @@ export const projects: Project[] = [
     description: "A story-led travel experience combining editorial layouts, map moments, and cinematic transitions.",
     tags: ["Next.js", "WebGL", "Motion"],
     image: "/images/project-ecommerce.jpg",
-    href: socials.github,
-    github: socials.github,
+    href: socials.tiktok,
+    tiktok: socials.tiktok,
   },
   {
     id: "prism",
@@ -304,8 +304,8 @@ export const projects: Project[] = [
     description: "A scalable component and token foundation built for consistent product delivery across teams.",
     tags: ["React", "Storybook", "Accessibility"],
     image: "/images/project-portfolio.jpg",
-    href: socials.github,
-    github: socials.github,
+    href: socials.tiktok,
+    tiktok: socials.tiktok,
   },
 ];
 

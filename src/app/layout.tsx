@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Manrope } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -10,7 +10,7 @@ import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import ClickRipple from "@/components/layout/ClickRipple";
 import Particles from "@/components/layout/Particles";
-import { seo, personal } from "@/data/content";
+import { seo, personal, socials } from "@/data/content";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -66,6 +66,17 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#090917" },
+    { media: "(prefers-color-scheme: light)", color: "#f0ede5" },
+  ],
+};
+
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -79,7 +90,7 @@ const personJsonLd = {
     addressCountry: "UAE",
   },
   email: personal.email,
-  sameAs: ["https://www.github.com/Mhusnain0027", personal.website],
+  sameAs: [socials.tiktok, personal.website],
 };
 
 export default function RootLayout({
@@ -90,9 +101,18 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-theme="dark"
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
       className={`${manrope.variable} ${bricolage.variable} ${emitha.variable}`}
     >
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{document.documentElement.dataset.theme=localStorage.getItem('portfolio-theme')==='light'?'light':'dark'}catch(e){}",
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}

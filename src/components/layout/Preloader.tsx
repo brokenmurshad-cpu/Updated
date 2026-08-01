@@ -18,7 +18,7 @@ declare global {
 
 // Cinematic entrance transition. Logic, timing and structure are ported
 // 1:1 from the approved reference "scribble wipe" implementation, with the
-// color palette uses premium purple and beige tones and the wordmark swapped to
+// color palette uses Cypress and Sand tones and the wordmark swapped to
 // Muhammad Husnain. A solid curtain backs the stroke so the reveal never
 // shows an unfinished frame on any aspect ratio, then it dispatches
 // "app:preloader-complete" so the Hero can start its own entrance timeline.
@@ -43,11 +43,11 @@ export default function Preloader() {
     // Preloader stroke animates in light beige/cream tones; the wordmark
     // text itself always stays pure white (set separately below).
  const transitionColors = [
-  "#7C3AED", // Premium Purple
-  "#A855F7", // Soft Purple
-  "#D6B98C", // Beige Gold
-  "#F5E6C8", // Warm Beige
-  "#6D28D9", // Deep Purple
+  "#004643", // Cypress
+  "#0A8F87", // Cypress highlight
+  "#F0EDE5", // Sand
+  "#D8D4C9", // Warm Sand
+  "#003A37", // Deep Cypress
 ];
     const runScribbleAnimation = () => {
       const config = ANIMATION_CONFIG.transitionScribble;
@@ -62,7 +62,7 @@ export default function Preloader() {
       const randomColor = transitionColors[Math.floor(Math.random() * transitionColors.length)];
       transitionScribbleSvg.style.color = randomColor;
 
-      const logoColor = "#FFF7ED";
+      const logoColor = "#F0EDE5";
 
       let transitionLogo = document.querySelector(".transition-logo") as HTMLElement | null;
       if (!transitionLogo) {
@@ -80,7 +80,7 @@ nameNode.style.fontSize = "clamp(2.5rem, 6vw, 4.5rem)";
 nameNode.style.fontWeight = "900";
 nameNode.style.lineHeight = "1.05";
 nameNode.style.letterSpacing = "0.12em";
-nameNode.style.color = "#FFF7ED";
+nameNode.style.color = "#F0EDE5";
 nameNode.style.textTransform = "uppercase";
 nameNode.style.whiteSpace = "nowrap";
 nameNode.style.textAlign = "center";

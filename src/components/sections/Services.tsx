@@ -60,7 +60,8 @@ export default function Services() {
         {services.map((service, index) => (
           <article
             key={service.index}
-            className="service-stack-card relative overflow-hidden"
+            tabIndex={0}
+            className="service-stack-card group/service relative overflow-hidden outline-none"
             style={
               {
                 "--service-card-color": cardColors[index],
@@ -112,8 +113,8 @@ export default function Services() {
                     </div>
                   </div>
 
-                  <div className="relative z-10">
-                    <div className="group relative aspect-[4/3] overflow-hidden rounded-[1.35rem] border border-white/10 bg-[#090917] shadow-[0_28px_90px_rgba(0,0,0,0.38)]">
+                  <div className="relative z-10 hidden lg:block">
+                    <div className="service-hover-preview group invisible relative aspect-[4/3] translate-y-5 overflow-hidden rounded-[1.35rem] border border-white/10 bg-[#090917] opacity-0 shadow-[0_28px_90px_rgba(0,0,0,0.38)] transition duration-500 ease-out group-hover/service:visible group-hover/service:translate-y-0 group-hover/service:opacity-100 group-focus-within/service:visible group-focus-within/service:translate-y-0 group-focus-within/service:opacity-100">
                       <Image
                         src={serviceMedia[index]}
                         alt={`${service.title} service preview`}
@@ -122,7 +123,7 @@ export default function Services() {
                         className="object-cover transition duration-700 group-hover:scale-[1.045]"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#090917]/55 via-transparent to-transparent" />
-                      <span className="absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full bg-accent text-white shadow-[0_12px_30px_rgba(133,76,230,0.42)]">
+                      <span className="absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full bg-accent text-white shadow-[0_12px_30px_rgba(10,143,135,0.42)]">
                         <ArrowDownRight className="h-5 w-5" />
                       </span>
                     </div>

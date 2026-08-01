@@ -68,7 +68,7 @@ export default function RevealText({
             className="inline-block will-change-transform"
             style={
               accentWordSet.has(normalizeWord(word))
-                ? { color: "var(--color-accent, #854ce6)" }
+                ? { color: "var(--color-accent, #0a8f87)" }
                 : undefined
             }
           >

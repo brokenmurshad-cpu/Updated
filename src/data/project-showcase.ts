@@ -9,7 +9,7 @@ export type ShowcaseProject = {
   href: string;
   technologyLine?: string;
   pills?: string[];
-  github?: string;
+  tiktok?: string;
 };
 
 const sourceImage = (name: string) =>

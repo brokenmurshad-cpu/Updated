@@ -55,7 +55,7 @@ export default function HeroVideoCard() {
       </div>
 
       <div className="absolute bottom-5 left-5 flex items-center gap-3 rounded-full border border-white/10 bg-[#090917]/65 px-4 py-2 text-[9px] font-bold uppercase tracking-[0.24em] text-white/70 backdrop-blur-xl sm:bottom-7 sm:left-7">
-        <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_12px_rgba(133,76,230,0.95)]" />
+        <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_12px_rgba(10,143,135,0.95)]" />
         Design · Engineering · Motion
       </div>
     </motion.div>

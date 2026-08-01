@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { SiTiktok } from "react-icons/si";
 import Button from "@/components/ui/Button";
 import { getGsap } from "@/lib/gsap";
 import { projects } from "@/data/project-showcase";
@@ -212,7 +213,7 @@ export default function Projects() {
                           <span
                             key={tag}
                             data-cursor="hover"
-                            className="group/tag inline-flex cursor-default items-center gap-2 rounded-full border border-white/15 bg-white/[0.025] px-3.5 py-2 text-[9px] font-bold uppercase tracking-[0.14em] text-white/60 transition duration-300 hover:-translate-y-1 hover:border-accent hover:bg-accent/15 hover:text-white hover:shadow-[0_0_22px_rgba(133,76,230,0.35)]"
+                            className="group/tag inline-flex cursor-default items-center gap-2 rounded-full border border-white/15 bg-white/[0.025] px-3.5 py-2 text-[9px] font-bold uppercase tracking-[0.14em] text-white/60 transition duration-300 hover:-translate-y-1 hover:border-accent hover:bg-accent/15 hover:text-white hover:shadow-[0_0_22px_rgba(10,143,135,0.35)]"
                           >
                             <span className="h-1.5 w-1.5 rounded-full bg-accent transition duration-300 group-hover/tag:scale-150 group-hover/tag:bg-white group-hover/tag:shadow-[0_0_10px_currentColor]" />
                             {tag}
@@ -231,16 +232,16 @@ export default function Projects() {
                         <ExternalLink className="h-3.5 w-3.5" />
                         Live project
                       </Button>
-                      {project.github ? (
+                      {project.tiktok ? (
                         <Button
-                          href={project.github}
+                          href={project.tiktok}
                           variant="outline"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="px-5 py-3 text-[9px] font-extrabold uppercase tracking-[0.18em]"
                         >
-                          <Github className="h-3.5 w-3.5" />
-                          GitHub
+                          <SiTiktok className="h-3.5 w-3.5" />
+                          TikTok
                         </Button>
                       ) : null}
                     </div>

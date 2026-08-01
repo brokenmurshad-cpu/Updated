@@ -5,11 +5,11 @@ import Image from "next/image";
 import {
   ChevronDown,
   Download,
-  Github,
   Linkedin,
   Mail,
   MessageCircle,
 } from "lucide-react";
+import { SiTiktok } from "react-icons/si";
 import Button from "@/components/ui/Button";
 import Magnetic from "@/components/ui/Magnetic";
 import HeroVideoCard from "@/components/sections/HeroVideoCard";
@@ -22,7 +22,7 @@ import {
 } from "@/data/content";
 
 const socialItems = [
-  { href: socials.github, icon: Github, label: "GitHub" },
+  { href: socials.tiktok, icon: SiTiktok, label: "TikTok" },
   { href: socials.linkedin, icon: Linkedin, label: "LinkedIn" },
   { href: `mailto:${socials.email}`, icon: Mail, label: "Email" },
   { href: whatsappUrl, icon: MessageCircle, label: "WhatsApp" },
@@ -292,7 +292,7 @@ export default function Hero() {
                 }
                 aria-label={item.label}
                 data-cursor="hover"
-                className="focus-ring flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-white/[0.09] text-white/90 shadow-[0_8px_26px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.24)] backdrop-blur-[3px] transition duration-300 hover:-translate-y-1 hover:border-[#c69eff] hover:bg-white/[0.18] hover:text-white hover:shadow-[0_0_22px_rgba(133,76,230,0.42)]"
+                className="focus-ring flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-white/[0.09] text-white/90 shadow-[0_8px_26px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.24)] backdrop-blur-[3px] transition duration-300 hover:-translate-y-1 hover:border-[#31b8ae] hover:bg-white/[0.18] hover:text-white hover:shadow-[0_0_22px_rgba(10,143,135,0.42)]"
               >
                 <item.icon className="h-4 w-4" />
               </a>
@@ -321,7 +321,7 @@ export default function Hero() {
             variant="outline"
             download
             ariaLabel="Download Muhammad Husnain's CV"
-            className="border-[2px] border-[#b98cff] bg-transparent px-6 py-3 text-[10px] font-extrabold uppercase tracking-[0.24em] text-white shadow-[0_8px_24px_rgba(0,0,0,0.2)] hover:border-[#d9c4ff] hover:bg-[#854ce6] hover:shadow-[0_0_30px_rgba(169,120,255,0.62)]"
+            className="border-[2px] border-[#0a8f87] bg-transparent px-6 py-3 text-[10px] font-extrabold uppercase tracking-[0.24em] text-white shadow-[0_8px_24px_rgba(0,0,0,0.2)] hover:border-[#f0ede5] hover:bg-[#004643] hover:shadow-[0_0_30px_rgba(10,143,135,0.62)]"
           >
             <Download className="h-3.5 w-3.5" />
             Download CV

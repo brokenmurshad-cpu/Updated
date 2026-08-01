@@ -54,7 +54,7 @@ export default function Testimonials() {
             <RotatingStar className="text-[clamp(2.1rem,4vw,4.8rem)] text-white/85" />
             <p className="font-display text-[clamp(1.5rem,3.5vw,3.4rem)] font-extrabold uppercase tracking-[-0.045em] text-white">
               <span className="text-white">Testi</span>
-              <span style={{ color: "var(--color-accent, #854ce6)" }}>
+              <span style={{ color: "var(--color-accent, #0a8f87)" }}>
                 monials
               </span>
             </p>
@@ -199,7 +199,7 @@ export default function Testimonials() {
                   <Link
                     href={`/projects/${activeReview.projectId}`}
                     onClick={() => setActiveReview(null)}
-                    className="focus-ring inline-flex items-center gap-2 rounded-full border border-accent/50 bg-accent/10 px-5 py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#caa9ff] transition hover:-translate-y-1 hover:bg-accent hover:text-white"
+                    className="focus-ring inline-flex items-center gap-2 rounded-full border border-accent/50 bg-accent/10 px-5 py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#31b8ae] transition hover:-translate-y-1 hover:bg-accent hover:text-white"
                   >
                     Project details
                     <ArrowUpRight className="h-4 w-4" />

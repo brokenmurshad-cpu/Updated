@@ -30,7 +30,7 @@ const icons: Record<string, { icon: ElementType; color: string }> = {
   "Next.js": { icon: SiNextdotjs, color: "#ffffff" },
   "Tailwind CSS": { icon: SiTailwindcss, color: "#06b6d4" },
   GSAP: { icon: SiGreensock, color: "#88ce02" },
-  "Framer Motion": { icon: SiFramer, color: "#7b61ff" },
+  "Framer Motion": { icon: SiFramer, color: "#0a8f87" },
   "Node.js": { icon: SiNodedotjs, color: "#53a344" },
   "Express.js": { icon: SiExpress, color: "#ffffff" },
   MongoDB: { icon: SiMongodb, color: "#47a248" },
@@ -61,7 +61,7 @@ export default function TechStack() {
                 ✦
               </motion.span>
               <span>My</span>
-              <span className="text-[#a978ff]">Stack</span>
+              <span className="text-[#0a8f87]">Stack</span>
             </h2>
           </div>
         </Reveal>

@@ -35,7 +35,7 @@ export default function Button({
     "group relative inline-flex items-center justify-center overflow-hidden rounded-full px-7 py-3.5 text-sm font-medium tracking-wide transition-all duration-500",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
     variant === "primary" &&
-      "bg-accent text-white shadow-[0_0_0_1px_rgba(168,85,247,0.35),0_10px_40px_rgba(168,85,247,0.28)] hover:shadow-[0_0_0_1px_rgba(168,85,247,0.55),0_14px_50px_rgba(168,85,247,0.4)]",
+      "bg-accent text-white shadow-[0_0_0_1px_rgba(10,143,135,0.35),0_10px_40px_rgba(0,70,67,0.28)] hover:shadow-[0_0_0_1px_rgba(10,143,135,0.55),0_14px_50px_rgba(0,70,67,0.4)]",
     variant === "secondary" &&
       "glass text-foreground hover:bg-white/10",
     variant === "ghost" && "bg-transparent text-foreground hover:bg-white/5",

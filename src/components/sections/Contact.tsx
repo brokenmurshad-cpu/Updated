@@ -36,14 +36,14 @@ export default function Contact() {
       <div className="relative z-10 mx-auto w-full max-w-[128rem] px-5 py-[4.6rem] sm:px-12 lg:min-h-[100svh] lg:px-[3.1vw] lg:py-[5.25rem]">
         <p className="relative z-10 flex items-center gap-2.5 font-sans text-[clamp(1.25rem,1.65vw,2rem)] font-extrabold uppercase leading-none tracking-[-0.055em] text-white">
           <span className="inline-flex animate-spin text-white/65 [animation-duration:5s]">✦</span>
-          Get in <span className="text-[#854ce6]">touch</span>
+          Get in <span className="text-[#0a8f87]">touch</span>
         </p>
 
         <div className="mt-[clamp(4rem,11vh,9rem)] max-w-[66rem] lg:max-w-[64vw]">
           <h2 className="font-display text-[clamp(3.25rem,7.9vw,10rem)] font-extrabold uppercase leading-[0.9] tracking-[-0.065em] text-white/95 sm:leading-[0.86] sm:tracking-[-0.085em]">
             Let&apos;s talk
-            <span className="mt-[0.17em] block text-[#854ce6]">about your</span>
-            <span className="mt-[0.17em] block text-[#854ce6]">idea.</span>
+            <span className="mt-[0.17em] block text-[#0a8f87]">about your</span>
+            <span className="mt-[0.17em] block text-[#0a8f87]">idea.</span>
           </h2>
         </div>
 
@@ -75,7 +75,7 @@ export default function Contact() {
             action="https://api.web3forms.com/submit"
             method="POST"
             onSubmit={prepareSubmission}
-            className="w-full rounded-[1.35rem] border border-[#854ce6]/45 bg-[#090917]/95 p-5 shadow-[0_20px_55px_rgba(0,0,0,0.48),0_0_32px_rgba(133,76,230,0.16)] sm:rounded-[1.65rem] sm:p-10"
+            className="w-full rounded-[1.35rem] border border-[#0a8f87]/45 bg-[#090917]/95 p-5 shadow-[0_20px_55px_rgba(0,0,0,0.48),0_0_32px_rgba(10,143,135,0.16)] sm:rounded-[1.65rem] sm:p-10"
             aria-label="Contact form"
           >
             <input
@@ -118,7 +118,7 @@ export default function Contact() {
                 required
                 rows={5}
                 placeholder="Tell me about your project..."
-                className="w-full resize-none rounded-xl border border-white/[0.04] bg-[#070817] px-4 py-4 text-sm text-white outline-none transition placeholder:text-white/25 focus:border-[#854ce6] focus:ring-2 focus:ring-[#854ce6]/15"
+                className="w-full resize-none rounded-xl border border-white/[0.04] bg-[#070817] px-4 py-4 text-sm text-white outline-none transition placeholder:text-white/25 focus:border-[#0a8f87] focus:ring-2 focus:ring-[#0a8f87]/15"
               />
             </div>
 
@@ -126,14 +126,14 @@ export default function Contact() {
               type="submit"
               disabled={status === "sending"}
               data-cursor="hover"
-              className="mt-9 w-full rounded-full border-[3px] border-[#854ce6] bg-[#140928]/55 px-4 py-3.5 text-[10px] font-extrabold uppercase tracking-[0.18em] text-white shadow-[7px_6px_0_rgba(14,6,29,0.55)] transition hover:bg-[#854ce6] hover:shadow-[0_0_26px_rgba(133,76,230,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a978ff] disabled:cursor-wait disabled:opacity-60 sm:px-5 sm:text-[11px] sm:tracking-[0.28em]"
+              className="mt-9 w-full rounded-full border-[3px] border-[#0a8f87] bg-[#0b0b12]/55 px-4 py-3.5 text-[10px] font-extrabold uppercase tracking-[0.18em] text-white shadow-[7px_6px_0_rgba(14,6,29,0.55)] transition hover:bg-[#004643] hover:shadow-[0_0_26px_rgba(10,143,135,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#31b8ae] disabled:cursor-wait disabled:opacity-60 sm:px-5 sm:text-[11px] sm:tracking-[0.28em]"
             >
               {status === "sending" ? "Sending..." : "Send message"}
             </button>
 
             <div className="min-h-8" aria-live="polite">
               {status === "sent" ? (
-                <p className="mt-4 text-center text-xs text-[#a978ff]">
+                <p className="mt-4 text-center text-xs text-[#31b8ae]">
                   Message sent successfully. I&apos;ll get back to you soon.
                 </p>
               ) : null}
@@ -172,7 +172,7 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
-        className="w-full rounded-xl border border-white/[0.04] bg-[#070817] px-4 py-4 text-sm text-white outline-none transition placeholder:text-white/25 focus:border-[#854ce6] focus:ring-2 focus:ring-[#854ce6]/15"
+        className="w-full rounded-xl border border-white/[0.04] bg-[#070817] px-4 py-4 text-sm text-white outline-none transition placeholder:text-white/25 focus:border-[#0a8f87] focus:ring-2 focus:ring-[#0a8f87]/15"
       />
     </div>
   );
@@ -195,7 +195,7 @@ function ContactDetail({
         <Icon className="h-4 w-4" />
       </span>
       <div className="min-w-0">
-        <p className="text-[10px] font-extrabold uppercase tracking-[0.1em] text-[#854ce6]">{label}</p>
+        <p className="text-[10px] font-extrabold uppercase tracking-[0.1em] text-[#0a8f87]">{label}</p>
         <p className="mt-1 break-all text-sm font-bold text-white sm:break-words">{value}</p>
       </div>
     </div>

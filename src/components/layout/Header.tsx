@@ -119,13 +119,13 @@ export default function Header() {
           </a>
 
           <div className="hidden items-center gap-2 xl:flex">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_12px_rgba(133,76,230,0.95)]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_12px_rgba(10,143,135,0.95)]" />
             <p className="max-w-[7.5rem] text-[8px] font-extrabold uppercase leading-[1.2] tracking-[0.12em] text-white/65">
               Available for work &amp; freelance
             </p>
           </div>
 
-          <ul className="ml-auto hidden items-center gap-[clamp(0.8rem,1.5vw,1.8rem)] lg:flex">
+          <ul className="ml-auto mr-[clamp(0.75rem,1.5vw,2rem)] hidden items-center gap-[clamp(0.8rem,1.5vw,1.8rem)] lg:flex">
             {navLinks.map((item, index) => (
               <Link
                 key={item.label}

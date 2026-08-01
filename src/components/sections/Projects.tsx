@@ -104,7 +104,7 @@ export default function Projects() {
             <h2 className="max-w-full font-display text-[clamp(2.85rem,8.2vw,9.5rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.075em] lg:whitespace-nowrap lg:leading-[0.78] lg:tracking-[-0.085em]">
               <span>Selected </span>
               <span className="whitespace-nowrap">
-                <span style={{ color: "var(--color-accent, #854ce6)" }}>
+                <span style={{ color: "var(--color-accent, #0a8f87)" }}>
                   Projects
                 </span>
                 <span className="text-white"> / </span>
@@ -235,7 +235,7 @@ export default function Projects() {
                 <RotatingStar className="text-[clamp(2rem,4vw,4.75rem)] text-white/85" />
                 <h3 className="font-display text-[clamp(2.65rem,8vw,9rem)] font-extrabold uppercase leading-[0.84] tracking-[-0.065em] sm:leading-[0.8] sm:tracking-[-0.075em]">
                   <span className="text-white">Project</span>{" "}
-                  <span style={{ color: "var(--color-accent, #854ce6)" }}>
+                  <span style={{ color: "var(--color-accent, #0a8f87)" }}>
                     List
                   </span>
                 </h3>
