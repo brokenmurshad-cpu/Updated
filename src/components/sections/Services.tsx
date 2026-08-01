@@ -14,8 +14,6 @@ type ServiceCardStyle = CSSProperties & {
 
 type ServiceStackStyle = CSSProperties & {
   "--service-stack-tail": string;
-  "--service-heading-height": string;
-  "--service-heading-gap": string;
 };
 
 export default function Services() {
@@ -26,13 +24,11 @@ export default function Services() {
         style={
           {
             "--service-stack-tail": "clamp(5rem, 12svh, 8rem)",
-            "--service-heading-height": "clamp(8.5rem, 18svh, 11rem)",
-            "--service-heading-gap": "clamp(7rem, 15svh, 10rem)",
           } as ServiceStackStyle
         }
       >
         <div className="service-stack-intro z-40 min-h-[58svh] md:min-h-0">
-          <div className="service-stack-intro-panel flex min-h-[58svh] items-center border-b border-white/10 px-5 py-12 sm:px-8 md:min-h-0 md:py-5 lg:px-[3.2vw]">
+          <div className="service-stack-intro-panel flex min-h-[58svh] items-center px-5 py-12 sm:px-8 md:min-h-0 md:py-5 lg:px-[3.2vw]">
             <div className="editorial-grid mx-auto grid h-full w-full max-w-[112rem] items-center gap-7 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
               <div>
                 <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.28em] text-accent md:mb-5">
@@ -40,7 +36,7 @@ export default function Services() {
                 </p>
                 <RevealText
                   as="h2"
-                  text="What I do /"
+                  text="What I do."
                   accentWords={["do"]}
                   className="font-display text-[clamp(2.8rem,9.2vw,11.2rem)] font-extrabold uppercase leading-[0.78] tracking-[-0.07em] text-[#f2f3f4] sm:leading-[0.72] sm:tracking-[-0.085em]"
                 />
@@ -62,7 +58,7 @@ export default function Services() {
               style={
                 {
                   "--service-card-color": cardColors[index],
-                  "--service-stack-top": `calc(4.75rem + var(--service-heading-height) + var(--service-heading-gap) + ${index * 4.25}rem)`,
+                  "--service-stack-top": `calc(4.75rem + ${index * 4.25}rem)`,
                   zIndex: index + 10,
                 } as ServiceCardStyle
               }
@@ -86,7 +82,7 @@ export default function Services() {
                 </span>
               </header>
 
-              <div className="relative z-10 flex min-h-0 flex-1 items-center px-5 py-12 sm:px-8 md:py-14 lg:px-[3.2vw] lg:py-[clamp(2.5rem,5vh,5rem)]">
+              <div className="relative z-10 flex min-h-0 flex-1 items-center px-5 py-12 sm:px-8 md:items-start md:pb-4 md:pt-[clamp(5.5rem,10svh,7rem)] lg:px-[3.2vw]">
                 <div className="mx-auto grid w-full max-w-[112rem] gap-10 lg:grid-cols-[0.31fr_0.69fr] lg:items-center lg:gap-[3vw]">
                   <div className="hidden lg:block" aria-hidden="true" />
 
@@ -94,7 +90,7 @@ export default function Services() {
                     <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.28em] text-accent">
                       Service {service.index}
                     </p>
-                    <p className="max-w-[52rem] text-sm leading-[1.8] text-white/55 md:text-base">
+                    <p className="max-w-[52rem] text-sm leading-[1.8] text-white/70 md:text-base">
                       {service.description}
                     </p>
 

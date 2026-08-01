@@ -917,7 +917,7 @@ body {
 
 .service-stack-intro-panel {
   background: rgba(9, 9, 23, 0.97);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: none;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
@@ -944,22 +944,11 @@ body {
 
 @media (min-width: 768px) {
   .service-stack-intro {
-    position: sticky;
-    top: 4.75rem;
     height: calc(100svh - 4.75rem);
-    pointer-events: none;
-  }
-
-  .service-stack-intro + .service-stack-card {
-    margin-top: calc(
-      var(--service-heading-height) + var(--service-heading-gap) -
-        (100svh - 4.75rem)
-    );
   }
 
   .service-stack-intro-panel {
-    height: var(--service-heading-height);
-    pointer-events: auto;
+    height: 100%;
   }
 
   .service-stack-card {
@@ -1147,11 +1136,15 @@ html[data-theme="light"] .service-stack-card__surface {
   background: #fffdf7 !important;
 }
 
-html[data-theme="light"] .service-stack-intro-panel,
 html[data-theme="light"] .project-list-heading,
 html[data-theme="light"] .testimonial-sticky-heading {
   background: rgba(240, 237, 229, 0.97) !important;
   box-shadow: 0 1px 0 rgba(0, 70, 67, 0.18);
+}
+
+html[data-theme="light"] .service-stack-intro-panel {
+  background: rgba(240, 237, 229, 0.97) !important;
+  box-shadow: none;
 }
 
 html[data-theme="light"] .project-list-heading::after,
