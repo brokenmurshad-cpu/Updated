@@ -21,13 +21,13 @@ function getTheme(): Theme {
 }
 
 export default function ThemeToggle() {
-  const theme = useSyncExternalStore(subscribe, getTheme, () => "dark");
+  const theme = useSyncExternalStore(subscribe, getTheme, () => "light");
   const nextTheme: Theme = theme === "dark" ? "light" : "dark";
 
   const toggleTheme = () => {
     document.documentElement.dataset.theme = nextTheme;
     try {
-      localStorage.setItem("portfolio-theme", nextTheme);
+      localStorage.setItem("portfolio-theme-v2", nextTheme);
     } catch {
       // The selected theme still applies when browser storage is unavailable.
     }

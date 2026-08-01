@@ -161,17 +161,19 @@ export default function Header() {
       >
         <div className="editorial-grid relative flex min-h-0 flex-1 items-center px-6 py-20 sm:px-12 lg:px-[7vw]">
           <div aria-hidden className="pointer-events-none absolute right-[7%] top-[13%] h-[32vw] w-[32vw] rounded-full border border-[#090917]/10 bg-[#31b8ae]/30 blur-[2px]" />
-          <p className="absolute left-6 top-7 font-display text-sm font-extrabold uppercase sm:left-12 lg:left-[7vw]">
-            {personal.fullName}
-          </p>
+          <div className="absolute left-6 top-5 sm:left-12 sm:top-6 lg:left-[7vw] lg:top-7">
+            <p className="text-[9px] font-extrabold uppercase tracking-[0.22em] text-[#090917]/55 sm:text-[10px]">
+              Navigation / {String(navbarLinks.length).padStart(2, "0")}
+            </p>
+            <p className="mt-1 font-display text-sm font-extrabold uppercase sm:mt-1.5">
+              {personal.fullName}
+            </p>
+          </div>
 
           <nav
             className="relative z-10 w-full -translate-y-3 sm:-translate-y-4 lg:-translate-y-5"
             aria-label="Fullscreen navigation"
           >
-            <p className="mb-6 text-[10px] font-extrabold uppercase tracking-[0.24em] text-[#090917]/55">
-              Navigation / {String(navbarLinks.length).padStart(2, "0")}
-            </p>
             <ul className="grid gap-x-16 gap-y-0 lg:grid-cols-2">
               {navbarLinks.map((item, index) => (
                 <li

@@ -26,6 +26,7 @@ type GalleryStyle = CSSProperties & {
   "--gallery-offset": string;
   "--gallery-rotation": string;
   "--gallery-scale": string;
+  "--gallery-shift": string;
 };
 
 export default function Hero() {
@@ -102,7 +103,10 @@ export default function Hero() {
     ).matches;
 
     if (reduceMotion) {
-      cards.forEach((card) => card.style.setProperty("--gallery-scale", "1"));
+      cards.forEach((card) => {
+        card.style.setProperty("--gallery-scale", "1");
+        card.style.setProperty("--gallery-shift", "0px");
+      });
       return;
     }
 
@@ -116,19 +120,40 @@ export default function Hero() {
       const viewportCenter = viewportWidth / 2;
       const edgeDistance = viewportWidth / 2;
 
-      const cardScales = cards.map((card) => {
+      const galleryTransforms = cards.map((card) => {
         const bounds = card.getBoundingClientRect();
-        const cardCenter = bounds.left + bounds.width / 2;
-        const distanceFromCenter = Math.min(
-          Math.abs(cardCenter - viewportCenter) / edgeDistance,
-          1,
-        );
+        const previousShift = Number.parseFloat(
+          card.style.getPropertyValue("--gallery-shift"),
+        ) || 0;
+        const cardCenter = bounds.left + bounds.width / 2 - previousShift;
+        const signedDistance = cardCenter - viewportCenter;
+        const absoluteDistance = Math.abs(signedDistance);
+        const distanceFromCenter = Math.min(absoluteDistance / edgeDistance, 1);
         const easedDistance = Math.pow(distanceFromCenter, 0.82);
-        return (0.62 + easedDistance * 0.38).toFixed(3);
+        const scale = 0.62 + easedDistance * 0.38;
+
+        /* Compress card positions by the integral of the scale curve. This
+           keeps the visual gap consistent while the center card gets smaller,
+           without changing the marquee track width or its seamless loop. */
+        const compressionAtEdge = 0.62 + 0.38 / 1.82;
+        const compressedDistance =
+          absoluteDistance <= edgeDistance
+            ? absoluteDistance * (0.62 + (0.38 / 1.82) * easedDistance)
+            : edgeDistance * compressionAtEdge +
+              (absoluteDistance - edgeDistance);
+        const shift =
+          Math.sign(signedDistance) * (compressedDistance - absoluteDistance);
+
+        return {
+          scale: scale.toFixed(3),
+          shift: `${shift.toFixed(2)}px`,
+        };
       });
 
       cards.forEach((card, index) => {
-        card.style.setProperty("--gallery-scale", cardScales[index] ?? "1");
+        const transform = galleryTransforms[index];
+        card.style.setProperty("--gallery-scale", transform?.scale ?? "1");
+        card.style.setProperty("--gallery-shift", transform?.shift ?? "0px");
       });
 
       animationFrame = window.requestAnimationFrame(updateGalleryDepth);
@@ -204,6 +229,7 @@ export default function Hero() {
                 "--gallery-offset": `${galleryWave[index % galleryWave.length]}px`,
                 "--gallery-rotation": `${galleryRotation[index % galleryRotation.length]}deg`,
                 "--gallery-scale": "1",
+                "--gallery-shift": "0px",
               };
 
               return (

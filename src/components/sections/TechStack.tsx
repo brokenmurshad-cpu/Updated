@@ -51,7 +51,7 @@ export default function TechStack() {
       <div className="relative mx-auto w-full max-w-[112rem]">
         <Reveal>
           <div className="mb-[clamp(4rem,8vw,8rem)]">
-            <h2 className="flex items-center gap-3 font-display text-[clamp(2rem,3.2vw,3.4rem)] font-extrabold uppercase leading-none tracking-[-0.055em] text-white">
+            <h2 className="flex items-center gap-3 font-display text-[clamp(2rem,3.2vw,3.4rem)] font-extrabold uppercase leading-[0.78] tracking-[-0.07em] text-white">
               <motion.span
                 aria-hidden="true"
                 animate={{ rotate: 360 }}
@@ -61,7 +61,7 @@ export default function TechStack() {
                 ✦
               </motion.span>
               <span>My</span>
-              <span className="text-[#0a8f87]">Stack</span>
+              <span className="text-accent">Stack</span>
             </h2>
           </div>
         </Reveal>

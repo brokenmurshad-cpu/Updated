@@ -35,7 +35,7 @@ export default function Footer() {
         <div className="mx-auto max-w-[min(62rem,92vw)] text-center lg:mx-0 lg:max-w-[min(62rem,73vw)] lg:text-left">
           <h2 className="text-balance font-display text-[clamp(3.15rem,8.1vw,10rem)] font-extrabold uppercase leading-[0.86] tracking-[-0.06em] text-white/95 sm:leading-[0.8] sm:tracking-[-0.078em]">
             Let&apos;s build
-            <span className="mt-[0.16em] block text-[#0a8f87]">the future.</span>
+            <span className="mt-[0.16em] block text-accent">the future.</span>
           </h2>
 
           <div className="flex justify-center lg:justify-start">

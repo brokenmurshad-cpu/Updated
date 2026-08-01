@@ -746,10 +746,11 @@ body {
 
 .hero-project-card {
   --gallery-scale: 1;
+  --gallery-shift: 0px;
   width: clamp(11rem, min(21vw, 34vh), 22rem);
   aspect-ratio: 4 / 5;
   border-radius: clamp(0.45rem, 0.75vw, 0.8rem);
-  transform: translateY(var(--gallery-offset)) rotate(var(--gallery-rotation)) scale(var(--gallery-scale));
+  transform: translateX(var(--gallery-shift)) translateY(var(--gallery-offset)) rotate(var(--gallery-rotation)) scale(var(--gallery-scale));
   transform-origin: center;
   transition:
     border-color 350ms ease,
@@ -1100,6 +1101,29 @@ html[data-theme="light"] #hero {
 
 html[data-theme="light"] .hero-last-name {
   color: #004643 !important;
+}
+
+/* Review cards use a clean outline instead of dark drop shadows. */
+.testimonial-card {
+  border-color: rgba(255, 255, 255, 0.34) !important;
+  box-shadow: none !important;
+}
+
+.testimonial-card:hover,
+.testimonial-card:focus-visible {
+  border-color: rgba(255, 255, 255, 0.72) !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="light"] .testimonial-card {
+  border-color: rgba(8, 17, 15, 0.48) !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="light"] .testimonial-card:hover,
+html[data-theme="light"] .testimonial-card:focus-visible {
+  border-color: #08110f !important;
+  box-shadow: none !important;
 }
 
 /* Keep the moving name behind the footer CTA in light mode. The broad light

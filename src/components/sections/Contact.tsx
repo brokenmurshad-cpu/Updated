@@ -34,16 +34,16 @@ export default function Contact() {
       className="reference-contact relative isolate overflow-hidden border-b border-white/10 bg-[#191924] text-white"
     >
       <div className="relative z-10 mx-auto w-full max-w-[128rem] px-5 py-[4.6rem] sm:px-12 lg:min-h-[100svh] lg:px-[3.1vw] lg:py-[5.25rem]">
-        <p className="relative z-10 flex items-center gap-2.5 font-sans text-[clamp(1.25rem,1.65vw,2rem)] font-extrabold uppercase leading-none tracking-[-0.055em] text-white">
+        <p className="relative z-10 flex items-center gap-2.5 font-display text-[clamp(1.25rem,1.65vw,2rem)] font-extrabold uppercase leading-none tracking-[-0.07em] text-white">
           <span className="inline-flex animate-spin text-white/65 [animation-duration:5s]">✦</span>
-          Get in <span className="text-[#0a8f87]">touch</span>
+          Get in <span className="text-accent">touch</span>
         </p>
 
         <div className="mt-[clamp(4rem,11vh,9rem)] max-w-[66rem] lg:max-w-[64vw]">
-          <h2 className="font-display text-[clamp(3.25rem,7.9vw,10rem)] font-extrabold uppercase leading-[0.9] tracking-[-0.065em] text-white/95 sm:leading-[0.86] sm:tracking-[-0.085em]">
+          <h2 className="text-balance font-display text-[clamp(3.25rem,7.9vw,10rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.07em] text-white/95 sm:leading-[0.76] sm:tracking-[-0.085em]">
             Let&apos;s talk
-            <span className="mt-[0.17em] block text-[#0a8f87]">about your</span>
-            <span className="mt-[0.17em] block text-[#0a8f87]">idea.</span>
+            <span className="mt-[0.17em] block text-accent">about your</span>
+            <span className="mt-[0.17em] block text-accent">idea.</span>
           </h2>
         </div>
 

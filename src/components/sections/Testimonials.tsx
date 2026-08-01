@@ -235,7 +235,7 @@ function TestimonialCard({
       onClick={() => onOpen(item)}
       data-cursor="hover"
       aria-label={`View review for ${item.projectName}`}
-      className="group relative flex min-h-[20rem] w-[min(86vw,27rem)] shrink-0 flex-col justify-between overflow-hidden rounded-[1.15rem] border border-white/10 bg-[#0b0b12] p-6 text-left shadow-[0_22px_55px_rgba(0,0,0,0.3)] transition duration-500 hover:-translate-y-1 hover:border-white/24 hover:shadow-[0_26px_70px_rgba(0,0,0,0.48)] focus-visible:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:min-h-[21rem] sm:p-7"
+      className="testimonial-card group relative flex min-h-[20rem] w-[min(86vw,27rem)] shrink-0 flex-col justify-between overflow-hidden rounded-[1.15rem] border bg-[#0b0b12] p-6 text-left transition duration-500 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:min-h-[21rem] sm:p-7"
     >
       <span className="pointer-events-none absolute -right-6 -top-10 font-display text-[9rem] leading-none text-white/[0.035]">
         “
