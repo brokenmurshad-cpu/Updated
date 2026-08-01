@@ -56,7 +56,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </span>
 
           <div className="mt-7 grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
-            <h1 className="max-w-6xl font-display text-[clamp(3.25rem,7vw,8.6rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.075em]">
+            <h1 className="max-w-6xl font-display text-[clamp(2.6rem,5.6vw,6.9rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.075em]">
               {project.title}
             </h1>
 
@@ -141,7 +141,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.25em] text-accent">
               More work
             </p>
-            <h2 className="font-display text-[clamp(2.7rem,6vw,7rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.075em]">
+            <h2 className="font-display text-[clamp(2.15rem,4.8vw,5.6rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.075em]">
               Explore all
               <br />
               projects /

@@ -34,13 +34,13 @@ export default function Contact() {
       className="reference-contact relative isolate overflow-hidden border-b border-white/10 bg-[#191924] text-white"
     >
       <div className="relative z-10 mx-auto w-full max-w-[128rem] px-5 py-[4.6rem] sm:px-12 lg:min-h-[100svh] lg:px-[3.1vw] lg:py-[5.25rem]">
-        <p className="relative z-10 flex items-center gap-2.5 font-display text-[clamp(1.25rem,1.65vw,2rem)] font-extrabold uppercase leading-none tracking-[-0.07em] text-white">
+        <p className="relative z-10 flex items-center gap-2.5 font-display text-[clamp(1rem,1.32vw,1.6rem)] font-extrabold uppercase leading-none tracking-[-0.07em] text-white">
           <span className="inline-flex animate-spin text-white/65 [animation-duration:5s]">✦</span>
           Get in <span className="text-accent">touch</span>
         </p>
 
         <div className="mt-[clamp(4rem,11vh,9rem)] max-w-[66rem] lg:max-w-[64vw]">
-          <h2 className="text-balance font-display text-[clamp(3.25rem,7.9vw,10rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.07em] text-white/95 sm:leading-[0.76] sm:tracking-[-0.085em]">
+          <h2 className="text-balance font-display text-[clamp(2.6rem,6.3vw,8rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.07em] text-white/95 sm:leading-[0.76] sm:tracking-[-0.085em]">
             Let&apos;s talk
             <span
               className="mt-[0.17em] block"
@@ -201,7 +201,7 @@ function ContactDetail({
 }) {
   const content = (
     <div className="flex items-center gap-4">
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 text-white/65">
+      <span className="contact-detail-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 text-white/65">
         <Icon className="h-4 w-4" />
       </span>
       <div className="min-w-0">
@@ -211,7 +211,13 @@ function ContactDetail({
     </div>
   );
 
-  if (!href) return content;
+  if (!href) {
+    return (
+      <div tabIndex={0} className="contact-detail focus-ring w-fit rounded-xl px-3 py-2">
+        {content}
+      </div>
+    );
+  }
 
   return (
     <a
@@ -219,7 +225,7 @@ function ContactDetail({
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
       data-cursor="hover"
-      className="block w-fit transition-opacity hover:opacity-70"
+      className="contact-detail focus-ring block w-fit rounded-xl px-3 py-2"
     >
       {content}
     </a>

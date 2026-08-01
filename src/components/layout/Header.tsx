@@ -4,6 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { FaLinkedinIn } from "react-icons/fa6";
+import { SiTiktok, SiWhatsapp } from "react-icons/si";
 import BurgerMenuBtn from "@/components/ui/BurgerMenuBtn";
 import Magnetic from "@/components/ui/Magnetic";
 import Link from "@/components/ui/Link";
@@ -18,6 +20,12 @@ import {
   personal,
   socialLinks,
 } from "@/data/content";
+
+const menuSocialIcons = {
+  TikTok: SiTiktok,
+  LinkedIn: FaLinkedinIn,
+  WhatsApp: SiWhatsapp,
+};
 
 export default function Header() {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
@@ -185,7 +193,7 @@ export default function Header() {
                       href={item.url}
                       onClick={toggleMenu}
                       data-cursor="hover"
-                      className="group flex items-center justify-between py-3 font-display text-[clamp(1.75rem,6.5vw,6.5rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.06em] text-[#090917] transition-colors hover:text-white lg:py-4"
+                      className="group flex items-center justify-between py-3 font-display text-[clamp(1.4rem,5.2vw,5.2rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.06em] text-[#090917] transition-colors hover:text-white lg:py-4"
                     >
                       <span>{item.label}</span>
                       <span className="text-[10px] font-semibold tracking-[0.16em] text-[#090917]/45 group-hover:text-white">
@@ -211,21 +219,27 @@ export default function Header() {
             {personal.email}
           </a>
           <div className="flex flex-wrap gap-5">
-            {socialLinks.slice(0, 3).map((item) => (
-              <a
-                key={item.label}
-                href={item.url}
-                target={item.url.startsWith("http") ? "_blank" : undefined}
-                rel={
-                  item.url.startsWith("http")
-                    ? "noopener noreferrer"
-                    : undefined
-                }
-                className="transition-colors hover:text-white"
-              >
-                {item.label}
-              </a>
-            ))}
+            {socialLinks.slice(0, 3).map((item) => {
+              const Icon =
+                menuSocialIcons[item.label as keyof typeof menuSocialIcons];
+
+              return (
+                <a
+                  key={item.label}
+                  href={item.url}
+                  target={item.url.startsWith("http") ? "_blank" : undefined}
+                  rel={
+                    item.url.startsWith("http")
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
+                  className="inline-flex items-center gap-2 transition-colors hover:text-white"
+                >
+                  {Icon ? <Icon className="h-3.5 w-3.5" aria-hidden="true" /> : null}
+                  <span>{item.label}</span>
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>

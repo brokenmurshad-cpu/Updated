@@ -221,7 +221,7 @@ export default function Hero() {
         >
           <Marquee
             speed={32}
-            pauseOnHover={false}
+            pauseOnHover
             className="hero-project-track w-full"
           >
             {projects.map((project, index) => {

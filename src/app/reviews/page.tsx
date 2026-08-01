@@ -78,7 +78,7 @@ export default function ReviewsPage() {
               <p className="text-[10px] font-extrabold uppercase tracking-[0.26em] text-accent">
                 Client review profile
               </p>
-              <h1 className="mt-5 max-w-5xl font-display text-[clamp(3.6rem,8vw,9rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.075em]">
+              <h1 className="mt-5 max-w-5xl font-display text-[clamp(2.9rem,6.4vw,7.2rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.075em]">
                 Muhammad
                 <br />
                 Husnain /
@@ -132,7 +132,7 @@ export default function ReviewsPage() {
               <p className="text-[10px] font-extrabold uppercase tracking-[0.24em] text-accent">
                 Project feedback
               </p>
-              <h2 className="mt-3 font-display text-[clamp(2.8rem,6vw,7rem)] font-extrabold uppercase leading-[0.86] tracking-[-0.065em]">
+              <h2 className="mt-3 font-display text-[clamp(2.25rem,4.8vw,5.6rem)] font-extrabold uppercase leading-[0.86] tracking-[-0.065em]">
                 All reviews /
               </h2>
             </div>

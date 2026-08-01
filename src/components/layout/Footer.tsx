@@ -33,7 +33,7 @@ export default function Footer() {
       <div className="relative z-20 min-h-[100svh] px-5 pb-44 pt-[clamp(8rem,17vh,13rem)] sm:px-12 sm:pb-16 lg:px-[3.1vw]">
         {/* Main left-aligned statement */}
         <div className="mx-auto max-w-[min(62rem,92vw)] text-center lg:mx-0 lg:max-w-[min(62rem,73vw)] lg:text-left">
-          <h2 className="text-balance font-display text-[clamp(3.15rem,8.1vw,10rem)] font-extrabold uppercase leading-[0.86] tracking-[-0.06em] text-white/95 sm:leading-[0.8] sm:tracking-[-0.078em]">
+          <h2 className="text-balance font-display text-[clamp(2.5rem,6.5vw,8rem)] font-extrabold uppercase leading-[0.86] tracking-[-0.06em] text-white/95 sm:leading-[0.8] sm:tracking-[-0.078em]">
             Let&apos;s build
             <span
               className="mt-[0.16em] block"

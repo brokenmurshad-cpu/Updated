@@ -51,7 +51,7 @@ export default function TechStack() {
       <div className="relative mx-auto w-full max-w-[112rem]">
         <Reveal>
           <div className="mb-[clamp(4rem,8vw,8rem)]">
-            <h2 className="flex items-center gap-3 font-display text-[clamp(2rem,3.2vw,3.4rem)] font-extrabold uppercase leading-[0.78] tracking-[-0.07em] text-white">
+            <h2 className="flex items-center gap-3 font-display text-[clamp(1.6rem,2.55vw,2.7rem)] font-extrabold uppercase leading-[0.78] tracking-[-0.07em] text-white">
               <motion.span
                 aria-hidden="true"
                 animate={{ rotate: 360 }}

@@ -78,9 +78,39 @@ export default function Projects() {
           });
       }
 
+      if (!reduceMotion) {
+        gsap.utils
+          .toArray<HTMLElement>("[data-project-list-row]")
+          .forEach((row) => {
+            gsap.fromTo(
+              row,
+              { autoAlpha: 1, y: 0 },
+              {
+                autoAlpha: 0,
+                y: -28,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: row,
+                  start: "top 38%",
+                  end: "top 18%",
+                  scrub: true,
+                  invalidateOnRefresh: true,
+                },
+              },
+            );
+          });
+      }
     }, section);
 
     return () => context.revert();
+  }, []);
+
+  useEffect(() => {
+    projectList.forEach((project) => {
+      const preloadImage = new window.Image();
+      preloadImage.decoding = "async";
+      preloadImage.src = project.image;
+    });
   }, []);
 
   useEffect(() => {
@@ -126,8 +156,8 @@ export default function Projects() {
             04 / Selected work
           </p>
           <div className="flex max-w-full flex-col items-center justify-center gap-4 lg:flex-row lg:gap-[clamp(1rem,2vw,2.5rem)]">
-            <RotatingStar className="text-[clamp(2.35rem,4.8vw,5.2rem)] text-white/85" />
-            <h2 className="max-w-full font-display text-[clamp(2.85rem,8.2vw,9.5rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.075em] lg:whitespace-nowrap lg:leading-[0.78] lg:tracking-[-0.085em]">
+            <RotatingStar className="text-[clamp(1.9rem,3.85vw,4.2rem)] text-white/85" />
+            <h2 className="max-w-full font-display text-[clamp(2.3rem,6.6vw,7.6rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.075em] lg:whitespace-nowrap lg:leading-[0.78] lg:tracking-[-0.085em]">
               <span>Selected </span>
               <span className="whitespace-nowrap">
                 <span style={{ color: "var(--color-accent, #0a8f87)" }}>
@@ -250,16 +280,16 @@ export default function Projects() {
 
       <TechStack />
 
-      <div className="relative px-5 py-[clamp(7rem,12vw,12rem)] sm:px-8 lg:px-[3.2vw]">
+      <div className="project-list-section relative px-5 pb-[clamp(7rem,12vw,12rem)] pt-[clamp(5rem,9vw,9rem)] sm:px-8 lg:px-[3.2vw]">
         <div className="mx-auto w-full max-w-[112rem]">
-          <div className="mb-10 flex items-end justify-between gap-8 sm:mb-12">
+          <div className="project-list-heading sticky top-[4.75rem] z-40 -mx-5 mb-[clamp(4rem,6vw,6rem)] flex items-end justify-between gap-8 px-5 py-5 sm:-mx-8 sm:px-8 lg:-mx-[3.2vw] lg:px-[3.2vw]">
             <div>
               <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.28em] text-accent">
                 All projects
               </p>
               <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
-                <RotatingStar className="text-[clamp(2rem,4vw,4.75rem)] text-white/85" />
-                <h3 className="font-display text-[clamp(2.65rem,8vw,9rem)] font-extrabold uppercase leading-[0.84] tracking-[-0.065em] sm:leading-[0.8] sm:tracking-[-0.075em]">
+                <RotatingStar className="text-[clamp(1.6rem,3.2vw,3.8rem)] text-white/85" />
+                <h3 className="font-display text-[clamp(2.15rem,6.4vw,7.2rem)] font-extrabold uppercase leading-[0.84] tracking-[-0.065em] sm:leading-[0.8] sm:tracking-[-0.075em]">
                   <span className="text-white">Project</span>{" "}
                   <span style={{ color: "var(--color-accent, #0a8f87)" }}>
                     List
@@ -282,10 +312,12 @@ export default function Projects() {
                 key={project.id}
                 href={"/projects/" + project.id}
                 onPointerEnter={() => setActiveProject(index)}
+                onPointerMove={() => setActiveProject(index)}
                 onPointerLeave={() => setActiveProject(null)}
                 onPointerCancel={() => setActiveProject(null)}
                 onFocus={() => setActiveProject(index)}
                 onBlur={() => setActiveProject(null)}
+                data-project-list-row
                 data-cursor="hover"
                 className="project-row focus-ring group grid grid-cols-[minmax(0,1fr)_auto] gap-3 border-b border-white/10 py-6 transition-colors hover:bg-white/[0.025] md:grid-cols-[3.5rem_1.15fr_0.5fr_0.9fr_auto] md:items-center md:gap-6 md:px-3 lg:py-8"
               >
@@ -313,14 +345,14 @@ export default function Projects() {
       <div
         className="pointer-events-none fixed right-6 top-1/2 z-[500] hidden -translate-y-1/2 md:block lg:right-10"
       >
-        <AnimatePresence mode="wait">
+        <AnimatePresence initial={false}>
           {currentPreview ? (
             <motion.div
               key={currentPreview.id}
-              initial={{ opacity: 0, scale: 0.86, rotate: -3 }}
+              initial={{ opacity: 0, scale: 0.94, y: 8 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              exit={{ opacity: 0, scale: 0.9, rotate: 2 }}
-              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+              exit={{ opacity: 0, scale: 0.97, y: -5 }}
+              transition={{ duration: 0.12, ease: [0.22, 1, 0.36, 1] }}
               className="project-preview-frame relative aspect-[2.08/1] w-[min(46vw,48rem)] overflow-hidden rounded-[1.1rem] bg-[#090917]"
             >
               <Image

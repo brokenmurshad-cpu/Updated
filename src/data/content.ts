@@ -13,7 +13,7 @@ export const personal = {
   website: "www.personalportfolio.dev",
   heroSubtext:
     "I craft cinematic web products, AI-powered platforms, and scalable SaaS experiences for brands that care about detail, motion, and performance.",
-  aboutTitle: "Programmer, Developer, Interface Craftsman/",
+  aboutTitle: "Programmer & Developer.",
   aboutIntro:
     "With a passion for design, engineering, and AI systems, I take products from idea to launch — making sure every interaction feels intentional and every pixel earns its place.",
   aboutBody:

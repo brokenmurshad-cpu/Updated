@@ -46,13 +46,13 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="editorial-grid relative overflow-hidden border-b border-white/10 bg-[#111119] py-[clamp(7rem,12vw,12rem)]"
+      className="editorial-grid relative overflow-x-clip border-b border-white/10 bg-[#111119] pb-[clamp(7rem,12vw,12rem)] pt-[clamp(5rem,9vw,8rem)]"
     >
-      <div className="mx-auto mb-[clamp(4rem,7vw,7rem)] w-full max-w-[112rem] px-5 sm:px-8 lg:px-[3.2vw]">
-        <div className="flex flex-wrap items-center justify-between gap-6">
+      <div className="testimonial-sticky-heading sticky top-[4.75rem] z-40 px-5 py-5 sm:px-8 lg:px-[3.2vw]">
+        <div className="mx-auto flex w-full max-w-[112rem] flex-wrap items-center justify-between gap-6">
           <div className="flex items-center gap-3 sm:gap-5">
-            <RotatingStar className="text-[clamp(2.1rem,4vw,4.8rem)] text-white/85" />
-            <p className="font-display text-[clamp(1.5rem,3.5vw,3.4rem)] font-extrabold uppercase tracking-[-0.045em] text-white">
+            <RotatingStar className="text-[clamp(1.7rem,3.2vw,3.85rem)] text-white/85" />
+            <p className="font-display text-[clamp(1.2rem,2.8vw,2.7rem)] font-extrabold uppercase tracking-[-0.045em] text-white">
               <span className="text-white">Testi</span>
               <span style={{ color: "var(--color-accent, #0a8f87)" }}>
                 monials
@@ -68,8 +68,10 @@ export default function Testimonials() {
             <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
+      </div>
 
-        <h2 className="mx-auto mt-[clamp(4rem,8vw,8rem)] max-w-[92rem] break-words text-center font-display text-[clamp(2.8rem,6.6vw,8rem)] font-extrabold leading-[0.92] tracking-[-0.06em] text-white sm:leading-[0.88] sm:tracking-[-0.07em]">
+      <div className="mx-auto mb-[clamp(4rem,7vw,7rem)] w-full max-w-[112rem] px-5 sm:px-8 lg:px-[3.2vw]">
+        <h2 className="mx-auto mt-[clamp(3rem,6vw,6rem)] max-w-[92rem] break-words text-center font-display text-[clamp(2.25rem,5.3vw,6.4rem)] font-extrabold leading-[0.92] tracking-[-0.06em] text-white sm:leading-[0.88] sm:tracking-[-0.07em]">
           <span>Kind words from </span>
           <span className="text-accent">satisfied clients</span>
         </h2>
