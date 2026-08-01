@@ -42,8 +42,18 @@ export default function Contact() {
         <div className="mt-[clamp(4rem,11vh,9rem)] max-w-[66rem] lg:max-w-[64vw]">
           <h2 className="text-balance font-display text-[clamp(3.25rem,7.9vw,10rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.07em] text-white/95 sm:leading-[0.76] sm:tracking-[-0.085em]">
             Let&apos;s talk
-            <span className="mt-[0.17em] block text-accent">about your</span>
-            <span className="mt-[0.17em] block text-accent">idea.</span>
+            <span
+              className="mt-[0.17em] block"
+              style={{ color: "var(--color-accent)" }}
+            >
+              about your
+            </span>
+            <span
+              className="mt-[0.17em] block"
+              style={{ color: "var(--color-accent)" }}
+            >
+              idea.
+            </span>
           </h2>
         </div>
 

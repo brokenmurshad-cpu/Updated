@@ -35,7 +35,12 @@ export default function Footer() {
         <div className="mx-auto max-w-[min(62rem,92vw)] text-center lg:mx-0 lg:max-w-[min(62rem,73vw)] lg:text-left">
           <h2 className="text-balance font-display text-[clamp(3.15rem,8.1vw,10rem)] font-extrabold uppercase leading-[0.86] tracking-[-0.06em] text-white/95 sm:leading-[0.8] sm:tracking-[-0.078em]">
             Let&apos;s build
-            <span className="mt-[0.16em] block text-accent">the future.</span>
+            <span
+              className="mt-[0.16em] block"
+              style={{ color: "var(--color-accent)" }}
+            >
+              the future.
+            </span>
           </h2>
 
           <div className="flex justify-center lg:justify-start">
@@ -44,7 +49,7 @@ export default function Footer() {
                 href={personal.cvUrl}
                 download
                 data-cursor="hover"
-                className="mt-[clamp(4.5rem,10vh,8rem)] inline-flex items-center gap-2 rounded-full border-[3px] border-[#0a8f87] bg-[#101018]/55 px-6 py-3.5 text-[10px] font-extrabold uppercase tracking-[0.2em] text-white shadow-[10px_8px_0_rgba(10,6,24,0.55)] transition hover:bg-[#004643] hover:shadow-[0_0_28px_rgba(10,143,135,0.45)] sm:px-8 sm:py-4 sm:text-xs sm:tracking-[0.32em]"
+                className="mt-[clamp(4.5rem,10vh,8rem)] inline-flex items-center gap-2 rounded-full border-[3px] border-[#0a8f87] bg-[#101018]/55 px-6 py-3.5 text-[10px] font-extrabold uppercase tracking-[0.2em] text-white shadow-none transition hover:bg-[#004643] hover:shadow-none sm:px-8 sm:py-4 sm:text-xs sm:tracking-[0.32em]"
               >
                 <Download className="h-4 w-4" />
                 Download CV

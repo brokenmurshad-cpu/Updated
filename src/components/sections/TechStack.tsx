@@ -61,7 +61,7 @@ export default function TechStack() {
                 ✦
               </motion.span>
               <span>My</span>
-              <span className="text-accent">Stack</span>
+              <span style={{ color: "var(--color-accent)" }}>Stack</span>
             </h2>
           </div>
         </Reveal>
