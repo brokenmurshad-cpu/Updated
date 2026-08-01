@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import BurgerMenuBtn from "@/components/ui/BurgerMenuBtn";
@@ -113,9 +114,19 @@ export default function Header() {
           <a
             href="#hero"
             data-cursor="hover"
-            className="focus-ring shrink-0 font-display text-[13px] font-extrabold uppercase tracking-[-0.035em] text-white sm:text-base"
+            className="focus-ring flex shrink-0 items-center gap-2.5 font-display text-[13px] font-extrabold uppercase tracking-[-0.035em] text-white sm:text-base"
           >
-            {personal.fullName}
+            <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full border border-[#0a8f87]/70 bg-[#171721] shadow-[0_0_18px_rgba(10,143,135,0.26)] sm:h-9 sm:w-9">
+              <Image
+                src="/images/profile.jpg"
+                alt=""
+                fill
+                priority
+                sizes="36px"
+                className="object-cover object-[50%_31%]"
+              />
+            </span>
+            <span>{personal.fullName}</span>
           </a>
 
           <div className="hidden items-center gap-2 xl:flex">

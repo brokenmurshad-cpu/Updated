@@ -1,17 +1,8 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import Image from "next/image";
-import { ArrowDownRight } from "lucide-react";
 import RevealText from "@/components/ui/RevealText";
 import { services } from "@/data/content";
-
-const serviceMedia = [
-  "/images/services/web-development.webp",
-  "/images/services/ai-engineering.webp",
-  "/images/services/saas-product-building.webp",
-  "/images/services/performance-optimization.webp",
-];
 
 const cardColors = ["#171721", "#14141f", "#11111b", "#0d0d18"];
 const serviceMarks = ["✦", "✤", "✶", "✥"];
@@ -90,14 +81,14 @@ export default function Services() {
               </header>
 
               <div className="relative z-10 flex min-h-0 flex-1 items-center px-5 py-12 sm:px-8 md:py-14 lg:px-[3.2vw] lg:py-[clamp(2.5rem,5vh,5rem)]">
-                <div className="mx-auto grid w-full max-w-[112rem] gap-10 lg:grid-cols-[0.31fr_0.34fr_0.35fr] lg:items-center lg:gap-[3vw]">
+                <div className="mx-auto grid w-full max-w-[112rem] gap-10 lg:grid-cols-[0.31fr_0.69fr] lg:items-center lg:gap-[3vw]">
                   <div className="hidden lg:block" aria-hidden="true" />
 
                   <div className="relative z-10">
                     <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.28em] text-accent">
                       Service {service.index}
                     </p>
-                    <p className="max-w-[39rem] text-sm leading-[1.8] text-white/55 md:text-base">
+                    <p className="max-w-[52rem] text-sm leading-[1.8] text-white/55 md:text-base">
                       {service.description}
                     </p>
 
@@ -110,22 +101,6 @@ export default function Services() {
                           {tag}
                         </span>
                       ))}
-                    </div>
-                  </div>
-
-                  <div className="relative z-10 hidden lg:block">
-                    <div className="service-hover-preview group invisible relative aspect-[4/3] translate-y-5 overflow-hidden rounded-[1.35rem] border border-white/10 bg-[#090917] opacity-0 shadow-[0_28px_90px_rgba(0,0,0,0.38)] transition duration-500 ease-out group-hover/service:visible group-hover/service:translate-y-0 group-hover/service:opacity-100 group-focus-within/service:visible group-focus-within/service:translate-y-0 group-focus-within/service:opacity-100">
-                      <Image
-                        src={serviceMedia[index]}
-                        alt={`${service.title} service preview`}
-                        fill
-                        sizes="(max-width: 1024px) 92vw, 34vw"
-                        className="object-cover transition duration-700 group-hover:scale-[1.045]"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#090917]/55 via-transparent to-transparent" />
-                      <span className="absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full bg-accent text-white shadow-[0_12px_30px_rgba(10,143,135,0.42)]">
-                        <ArrowDownRight className="h-5 w-5" />
-                      </span>
                     </div>
                   </div>
                 </div>

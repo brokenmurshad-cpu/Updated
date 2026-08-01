@@ -21,16 +21,16 @@ export default function Footer() {
       {/* Oversized moving background name, matching the reference footer. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-[4%] z-0 select-none overflow-hidden"
+        className="footer-name-marquee-layer pointer-events-none absolute inset-x-0 top-[4%] z-0 select-none overflow-hidden"
       >
         <Marquee speed={38} pauseOnHover={false} className="w-full">
-          <span className="block whitespace-nowrap font-sans text-[clamp(8.5rem,19vw,23rem)] font-extrabold uppercase leading-none tracking-[-0.095em] text-white/[0.045]">
+          <span className="footer-name-watermark block whitespace-nowrap font-sans text-[clamp(8.5rem,19vw,23rem)] font-extrabold uppercase leading-none tracking-[-0.095em] text-white/[0.045]">
             Muhammad Husnain
           </span>
         </Marquee>
       </div>
 
-      <div className="relative z-10 min-h-[100svh] px-5 pb-44 pt-[clamp(8rem,17vh,13rem)] sm:px-12 sm:pb-16 lg:px-[3.1vw]">
+      <div className="relative z-20 min-h-[100svh] px-5 pb-44 pt-[clamp(8rem,17vh,13rem)] sm:px-12 sm:pb-16 lg:px-[3.1vw]">
         {/* Main left-aligned statement */}
         <div className="mx-auto max-w-[min(62rem,92vw)] text-center lg:mx-0 lg:max-w-[min(62rem,73vw)] lg:text-left">
           <h2 className="text-balance font-display text-[clamp(3.15rem,8.1vw,10rem)] font-extrabold uppercase leading-[0.86] tracking-[-0.06em] text-white/95 sm:leading-[0.8] sm:tracking-[-0.078em]">

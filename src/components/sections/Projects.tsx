@@ -83,6 +83,32 @@ export default function Projects() {
     return () => context.revert();
   }, []);
 
+  useEffect(() => {
+    const dismissProjectPreview = () => setActiveProject(null);
+
+    window.addEventListener("scroll", dismissProjectPreview, { passive: true });
+    window.addEventListener("wheel", dismissProjectPreview, { passive: true });
+    window.addEventListener("touchmove", dismissProjectPreview, {
+      passive: true,
+    });
+    window.addEventListener("blur", dismissProjectPreview);
+    document.documentElement.addEventListener(
+      "pointerleave",
+      dismissProjectPreview,
+    );
+
+    return () => {
+      window.removeEventListener("scroll", dismissProjectPreview);
+      window.removeEventListener("wheel", dismissProjectPreview);
+      window.removeEventListener("touchmove", dismissProjectPreview);
+      window.removeEventListener("blur", dismissProjectPreview);
+      document.documentElement.removeEventListener(
+        "pointerleave",
+        dismissProjectPreview,
+      );
+    };
+  }, []);
+
   const currentPreview =
     activeProject === null ? null : projectList[activeProject];
   const activeFeaturedProject =
@@ -247,13 +273,17 @@ export default function Projects() {
             </p>
           </div>
 
-          <div className="border-t border-white/10">
+          <div
+            className="border-t border-white/10"
+            onPointerLeave={() => setActiveProject(null)}
+          >
             {projectList.map((project, index) => (
               <Link
                 key={project.id}
                 href={"/projects/" + project.id}
                 onPointerEnter={() => setActiveProject(index)}
                 onPointerLeave={() => setActiveProject(null)}
+                onPointerCancel={() => setActiveProject(null)}
                 onFocus={() => setActiveProject(index)}
                 onBlur={() => setActiveProject(null)}
                 data-cursor="hover"

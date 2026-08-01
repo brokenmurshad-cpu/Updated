@@ -718,6 +718,77 @@ body {
   z-index: 1;
 }
 
+/* Reference-style curved project ribbon in the upgraded hero. */
+.hero-project-marquee {
+  --hero-gallery-mask: #090917;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(1rem, min(2.5vw, 2.4vh), 2rem);
+}
+
+.hero-project-heading {
+  font-size: clamp(3.15rem, min(7.2vw, 11vh), 8.8rem);
+}
+
+.hero-last-name {
+  color: #0a8f87 !important;
+}
+
+.hero-project-track {
+  mask-image: none !important;
+}
+
+.hero-project-marquee .marquee-track {
+  align-items: center;
+  gap: clamp(0.35rem, 0.65vw, 0.7rem);
+  padding-right: clamp(0.35rem, 0.65vw, 0.7rem);
+}
+
+.hero-project-card {
+  width: clamp(11rem, min(21vw, 34vh), 22rem);
+  aspect-ratio: 4 / 5;
+  border-radius: clamp(0.45rem, 0.75vw, 0.8rem);
+  transform: translateY(var(--gallery-offset)) rotate(var(--gallery-rotation));
+  transform-origin: center;
+  transition:
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 350ms ease,
+    box-shadow 350ms ease;
+  will-change: transform;
+}
+
+.hero-project-card:hover,
+.hero-project-card:focus-visible {
+  z-index: 3;
+  border-color: rgba(49, 184, 174, 0.8);
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.5),
+    0 0 34px rgba(10, 143, 135, 0.34);
+  transform: translateY(calc(var(--gallery-offset) - 7px)) rotate(0deg) scale(1.025);
+}
+
+.hero-project-marquee::before,
+.hero-project-marquee::after {
+  content: "";
+  position: absolute;
+  left: -10%;
+  z-index: 5;
+  width: 120%;
+  height: clamp(2.9rem, 5vw, 5.5rem);
+  background: var(--hero-gallery-mask);
+  pointer-events: none;
+}
+
+.hero-project-marquee::before {
+  top: clamp(-3.55rem, -3.2vw, -1.8rem);
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+}
+
+.hero-project-marquee::after {
+  bottom: clamp(-3.55rem, -3.2vw, -1.8rem);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+}
+
 .clarify-slice {
   position: absolute;
   inset: 0;
@@ -1019,6 +1090,22 @@ html[data-theme="light"] footer {
   color: #08110f;
 }
 
+html[data-theme="light"] .hero-project-marquee {
+  --hero-gallery-mask: #f0ede5;
+}
+
+html[data-theme="light"] .hero-last-name {
+  color: #004643 !important;
+}
+
+/* Keep the moving name behind the footer CTA in light mode. The broad light
+   text rule above intentionally darkens normal copy, so this watermark needs
+   its own controlled alpha. */
+html[data-theme="light"] .footer-name-watermark {
+  color: rgba(8, 17, 15, 0.12) !important;
+  opacity: 0.28;
+}
+
 html[data-theme="light"] .theme-toggle,
 html[data-theme="light"] .back-to-top {
   border-color: rgba(0, 70, 67, 0.35) !important;
@@ -1068,6 +1155,15 @@ footer {
 
   .hero-media-mask {
     clip-path: none;
+  }
+
+  .hero-project-marquee {
+    padding-block: 1.15rem;
+  }
+
+  .hero-project-card {
+    width: clamp(9.5rem, 52vw, 13rem);
+    border-radius: 0.55rem;
   }
 
   .editorial-grid::before {

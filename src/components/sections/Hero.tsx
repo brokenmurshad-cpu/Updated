@@ -1,25 +1,16 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import {
-  ChevronDown,
-  Download,
-  Linkedin,
-  Mail,
-  MessageCircle,
-} from "lucide-react";
+import { Download, Linkedin, Mail, MessageCircle } from "lucide-react";
 import { SiTiktok } from "react-icons/si";
 import Button from "@/components/ui/Button";
 import Magnetic from "@/components/ui/Magnetic";
-import HeroVideoCard from "@/components/sections/HeroVideoCard";
+import Marquee from "@/components/ui/Marquee";
+import { personal, socials, whatsappUrl } from "@/data/content";
+import { projects } from "@/data/project-showcase";
 import { getGsap } from "@/lib/gsap";
-import {
-  badgeOuterWords,
-  personal,
-  socials,
-  whatsappUrl,
-} from "@/data/content";
 
 const socialItems = [
   { href: socials.tiktok, icon: SiTiktok, label: "TikTok" },
@@ -27,12 +18,17 @@ const socialItems = [
   { href: `mailto:${socials.email}`, icon: Mail, label: "Email" },
   { href: whatsappUrl, icon: MessageCircle, label: "WhatsApp" },
 ];
-const signatureCharacters = Array.from(personal.fullName);
-const clarifySlices = [0, 1, 2, 3, 4];
+
+const galleryWave = [12, 3, 0, 6, 14, 19, 10, 2, 0, 7, 15, 20, 11, 3, 0, 6, 14];
+const galleryRotation = [-1.2, -0.5, 0.25, 0.75, 1.15, 0.55, -0.35, -0.8];
+
+type GalleryStyle = CSSProperties & {
+  "--gallery-offset": string;
+  "--gallery-rotation": string;
+};
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const badgeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -43,175 +39,50 @@ export default function Hero() {
       "(prefers-reduced-motion: reduce)",
     ).matches;
     let played = false;
-    let reveal = () => {};
     let fallback = 0;
-    let handlePointerMove: ((event: PointerEvent) => void) | null = null;
+
+    const reveal = () => {
+      if (played) return;
+      played = true;
+
+      if (reduceMotion) {
+        gsap.set("[data-hero-reveal]", {
+          autoAlpha: 1,
+          clearProps: "transform,filter",
+        });
+        return;
+      }
+
+      gsap
+        .timeline({ defaults: { ease: "power4.out" } })
+        .fromTo(
+          "[data-hero-heading]",
+          { autoAlpha: 0, y: 34, filter: "blur(12px)" },
+          { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.95 },
+        )
+        .fromTo(
+          "[data-hero-gallery]",
+          { autoAlpha: 0, scale: 0.975, y: 24 },
+          { autoAlpha: 1, scale: 1, y: 0, duration: 1.05 },
+          0.2,
+        )
+        .fromTo(
+          "[data-hero-actions]",
+          { autoAlpha: 0, y: 22 },
+          { autoAlpha: 1, y: 0, duration: 0.75 },
+          0.55,
+        );
+    };
 
     const context = gsap.context(() => {
-      reveal = () => {
-        if (played) return;
-        played = true;
-
-        if (reduceMotion) {
-          gsap.set("[data-hero-reveal]", { autoAlpha: 1, clearProps: "transform" });
-          gsap.set(".hero-name-artwork, .signature-letter", {
-            autoAlpha: 1,
-            clearProps: "transform,clipPath",
-          });
-          gsap.set(".clarify-slice", { autoAlpha: 0 });
-          return;
-        }
-
-        const timeline = gsap.timeline({
-          defaults: { ease: "power4.out" },
-        });
-
-        timeline
-          .set(".hero-wordmark, .hero-signature", { autoAlpha: 1 }, 0)
-          .fromTo(
-            ".hero-media",
-            { autoAlpha: 0, scale: 1.08, clipPath: "inset(0 100% 0 0)" },
-            {
-              autoAlpha: 1,
-              scale: 1,
-              clipPath: "inset(0 0% 0 0)",
-              duration: 1.35,
-            },
-            0,
-          )
-          .fromTo(
-            ".clarify-slice",
-            {
-              autoAlpha: 0,
-              x: (index) => (index % 2 === 0 ? -72 : 72),
-              filter: "blur(16px)",
-            },
-            {
-              autoAlpha: 1,
-              x: 0,
-              filter: "blur(0px)",
-              duration: 0.72,
-              stagger: 0.055,
-              ease: "expo.out",
-            },
-            0.14,
-          )
-          .fromTo(
-            ".hero-name-artwork",
-            {
-              autoAlpha: 0,
-              scale: 0.985,
-              filter: "blur(12px)",
-              clipPath: "inset(0 48% 0 48%)",
-            },
-            {
-              autoAlpha: 1,
-              scale: 1,
-              filter: "blur(0px)",
-              clipPath: "inset(0 0% 0 0%)",
-              duration: 0.62,
-              ease: "power3.out",
-            },
-            0.69,
-          )
-          .to(
-            ".clarify-slice",
-            {
-              autoAlpha: 0,
-              x: (index) => (index % 2 === 0 ? 18 : -18),
-              duration: 0.3,
-              stagger: 0.025,
-              ease: "power2.in",
-            },
-            0.78,
-          )
-          .fromTo(
-            ".signature-letter",
-            {
-              autoAlpha: 0,
-              scale: 0.05,
-            },
-            {
-              autoAlpha: 1,
-              scale: 1,
-              duration: 0.56,
-              stagger: 0.06,
-              ease: "back.out(3.2)",
-            },
-            0.72,
-          )
-          .fromTo(
-            ".hero-detail",
-            { autoAlpha: 0, y: 24 },
-            {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.75,
-              stagger: 0.08,
-            },
-            0.72,
-          );
-
-        gsap.to(badgeRef.current, {
-          rotate: 360,
-          duration: 20,
-          repeat: -1,
-          ease: "none",
-        });
-        gsap.to(".hero-scroll-arrow", {
-          y: 9,
-          duration: 0.85,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-        });
-      };
-
       gsap.set("[data-hero-reveal]", { autoAlpha: 0 });
-      gsap.set(".hero-name-artwork, .clarify-slice, .signature-letter", {
-        autoAlpha: 0,
-      });
-
       window.addEventListener("app:preloader-complete", reveal);
       fallback = window.setTimeout(reveal, 3000);
-
-      if (!reduceMotion && window.matchMedia("(hover: hover)").matches) {
-        const mediaX = gsap.quickTo(".hero-media", "x", {
-          duration: 0.9,
-          ease: "power3.out",
-        });
-        const mediaY = gsap.quickTo(".hero-media", "y", {
-          duration: 0.9,
-          ease: "power3.out",
-        });
-        const titleX = gsap.quickTo(".hero-wordmark", "x", {
-          duration: 1.1,
-          ease: "power3.out",
-        });
-        const titleY = gsap.quickTo(".hero-wordmark", "y", {
-          duration: 1.1,
-          ease: "power3.out",
-        });
-
-        handlePointerMove = (event: PointerEvent) => {
-          const x = event.clientX / window.innerWidth - 0.5;
-          const y = event.clientY / window.innerHeight - 0.5;
-          mediaX(x * -18);
-          mediaY(y * -14);
-          titleX(x * 11);
-          titleY(y * 8);
-        };
-
-        section.addEventListener("pointermove", handlePointerMove);
-      }
     }, section);
 
     return () => {
       window.removeEventListener("app:preloader-complete", reveal);
       window.clearTimeout(fallback);
-      if (handlePointerMove) {
-        section.removeEventListener("pointermove", handlePointerMove);
-      }
       context.revert();
     };
   }, []);
@@ -220,161 +91,114 @@ export default function Hero() {
     <section
       id="hero"
       ref={sectionRef}
-      className="editorial-grid relative min-h-[100svh] overflow-hidden border-b border-white/10 bg-[#090917] px-5 pb-14 pt-24 sm:px-8 md:pt-28 lg:px-[3.2vw]"
+      className="editorial-grid relative min-h-[100svh] overflow-hidden border-b border-white/10 bg-[#090917] px-5 pb-10 pt-[6.5rem] sm:px-8 sm:pb-12 sm:pt-[7.25rem] lg:px-[3.2vw]"
     >
-      <div className="relative mx-auto min-h-[calc(100svh-9.5rem)] w-full max-w-[112rem]">
+      <div className="relative mx-auto flex min-h-[calc(100svh-9rem)] w-full max-w-[112rem] flex-col justify-center">
         <div
           data-hero-reveal
-          className="hero-media hero-media-mask relative z-10 w-full overflow-hidden rounded-[1.25rem] border border-white/10 md:absolute md:left-[7%] md:top-[7%] md:w-[67%] md:rounded-[1.8rem]"
+          data-hero-heading
+          className="relative z-10 mx-auto mb-5 max-w-[74rem] text-center sm:mb-7"
         >
-          <HeroVideoCard />
-        </div>
-
-        <div
-          data-hero-reveal
-          aria-label={personal.fullName}
-          className="hero-wordmark relative z-20 mx-auto -mt-4 aspect-square w-[min(76vw,25rem)] text-center md:absolute md:left-[52%] md:top-[11%] md:mt-0 md:w-[clamp(22rem,24vw,29rem)] md:text-left"
-        >
-          <h1 className="sr-only">{personal.fullName}</h1>
-          <div className="hero-name-frame absolute inset-0" aria-hidden="true">
-            <Image
-              src="/images/hero-name-clarify.png"
-              alt=""
-              fill
-              priority
-              sizes="(min-width: 768px) 35vw, 92vw"
-              className="hero-name-artwork object-contain"
-            />
-            <div className="absolute inset-0">
-              {clarifySlices.map((slice) => (
-                <span
-                  key={slice}
-                  className={`clarify-slice clarify-slice-${slice + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <p
-          data-hero-reveal
-          aria-label={personal.fullName}
-          className="hero-signature pointer-events-none relative z-50 mx-auto -mt-6 w-fit text-center text-[clamp(3.2rem,4.4vw,6rem)] leading-none text-white md:absolute md:left-[8.5%] md:top-[57%] md:mt-0 md:text-left"
-        >
-          {signatureCharacters.map((character, index) => (
-            <span
-              key={`${character}-${index}`}
-              aria-hidden="true"
-              className={
-                character === " "
-                  ? "signature-space inline-block"
-                  : "signature-letter relative inline-block"
-              }
-            >
-              {character === " " ? "\u00A0" : character}
-            </span>
-          ))}
-        </p>
-
-        <div
-          data-hero-reveal
-          className="hero-detail relative z-40 mx-auto mt-10 flex w-fit justify-center gap-3 rounded-full border border-white/25 bg-white/[0.07] p-2 shadow-[0_10px_34px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.22)] backdrop-blur-[4px] md:absolute md:left-[8.5%] md:top-[68%] md:mt-0"
-        >
-          {socialItems.map((item) => (
-            <Magnetic key={item.label} strength={24}>
-              <a
-                href={item.href}
-                target={item.href.startsWith("http") ? "_blank" : undefined}
-                rel={
-                  item.href.startsWith("http")
-                    ? "noopener noreferrer"
-                    : undefined
-                }
-                aria-label={item.label}
-                data-cursor="hover"
-                className="focus-ring flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-white/[0.09] text-white/90 shadow-[0_8px_26px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.24)] backdrop-blur-[3px] transition duration-300 hover:-translate-y-1 hover:border-[#31b8ae] hover:bg-white/[0.18] hover:text-white hover:shadow-[0_0_22px_rgba(10,143,135,0.42)]"
-              >
-                <item.icon className="h-4 w-4" />
-              </a>
-            </Magnetic>
-          ))}
-        </div>
-
-        <div
-          data-hero-reveal
-          className="hero-detail relative z-30 mx-auto mt-8 max-w-md text-center md:absolute md:left-[49.8%] md:top-[66%] md:mt-0 md:max-w-[30rem] md:text-left"
-        >
-          <p className="font-display text-[clamp(1rem,1.35vw,1.45rem)] font-semibold leading-tight text-white">
-            {personal.roles.slice(0, 3).join(" · ")}
+          <h1 className="hero-project-heading text-balance font-display font-extrabold uppercase leading-[0.78] tracking-[-0.075em] text-white">
+            <span className="block">{personal.firstName}</span>
+            <span className="hero-last-name block">{personal.lastName}</span>
+          </h1>
+          <p className="mx-auto mt-5 max-w-[50rem] text-[clamp(0.78rem,1.15vw,1.1rem)] font-semibold leading-relaxed text-white/82 sm:mt-6">
+            {personal.roles.slice(0, 3).join(", ")}
           </p>
-          <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+          <p className="mt-1.5 text-[10px] font-extrabold uppercase tracking-[0.22em] text-accent sm:text-xs sm:tracking-[0.28em]">
             Based in {personal.location}
           </p>
         </div>
 
         <div
           data-hero-reveal
-          className="hero-detail relative z-30 mt-8 flex flex-wrap justify-center gap-3 md:absolute md:left-[49.8%] md:top-[79%] md:mt-0 md:justify-start"
+          data-hero-gallery
+          className="hero-project-marquee relative left-1/2 z-10 w-screen -translate-x-1/2"
+          aria-label="Featured project gallery"
         >
-          <Button
-            href={personal.cvUrl}
-            variant="outline"
-            download
-            ariaLabel="Download Muhammad Husnain's CV"
-            className="border-[2px] border-[#0a8f87] bg-transparent px-6 py-3 text-[10px] font-extrabold uppercase tracking-[0.24em] text-white shadow-[0_8px_24px_rgba(0,0,0,0.2)] hover:border-[#f0ede5] hover:bg-[#004643] hover:shadow-[0_0_30px_rgba(10,143,135,0.62)]"
+          <Marquee
+            speed={32}
+            pauseOnHover={false}
+            className="hero-project-track w-full"
           >
-            <Download className="h-3.5 w-3.5" />
-            Download CV
-          </Button>
-          <Button
-            href="#contact"
-            variant="ghost"
-            className="px-5 py-3 text-[10px] font-extrabold uppercase tracking-[0.24em] text-white/70"
-          >
-            Start a project
-          </Button>
+            {projects.map((project, index) => {
+              const style: GalleryStyle = {
+                "--gallery-offset": `${galleryWave[index % galleryWave.length]}px`,
+                "--gallery-rotation": `${galleryRotation[index % galleryRotation.length]}deg`,
+              };
+
+              return (
+                <a
+                  key={project.id}
+                  href={`/projects/${project.id}`}
+                  aria-label={`View ${project.title}`}
+                  data-cursor="hover"
+                  className="hero-project-card group relative block shrink-0 overflow-hidden border border-white/15 bg-[#111119] shadow-[0_22px_60px_rgba(0,0,0,0.42)]"
+                  style={style}
+                >
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} project preview`}
+                    fill
+                    priority={index < 5}
+                    sizes="(max-width: 767px) 52vw, 21vw"
+                    className="object-cover transition duration-700 ease-out group-hover:scale-[1.055]"
+                  />
+                  <span className="absolute inset-0 bg-gradient-to-t from-[#090917]/40 via-transparent to-transparent opacity-35 transition-opacity duration-500 group-hover:opacity-10" />
+                </a>
+              );
+            })}
+          </Marquee>
         </div>
 
         <div
           data-hero-reveal
-          className="hero-detail relative z-30 mt-12 flex w-fit items-center gap-3 md:absolute md:bottom-[2%] md:right-[3%] md:mt-0"
+          data-hero-actions
+          className="relative z-20 mx-auto mt-4 flex w-full flex-col items-center sm:mt-5"
         >
-          <div className="relative flex h-24 w-24 items-center justify-center">
-            <div ref={badgeRef} className="absolute inset-0">
-              <svg viewBox="0 0 200 200" className="h-full w-full" aria-hidden>
-                <defs>
-                  <path
-                    id="heroBadgeCircle"
-                    d="M 100,100 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0"
-                  />
-                </defs>
-                <text
-                  fill="#d4d5d6"
-                  fontSize="10"
-                  letterSpacing="3.4"
-                  className="uppercase"
+          <div className="flex items-center justify-center gap-2.5 rounded-full border border-white/20 bg-white/[0.055] p-1.5 shadow-[0_10px_34px_rgba(0,0,0,0.24),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-md sm:gap-3 sm:p-2">
+            {socialItems.map((item) => (
+              <Magnetic key={item.label} strength={22}>
+                <a
+                  href={item.href}
+                  target={item.href.startsWith("http") ? "_blank" : undefined}
+                  rel={
+                    item.href.startsWith("http")
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
+                  aria-label={item.label}
+                  data-cursor="hover"
+                  className="focus-ring flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/[0.06] text-white/85 transition duration-300 hover:-translate-y-1 hover:border-[#31b8ae] hover:bg-[#004643] hover:text-[#f0ede5] hover:shadow-[0_0_22px_rgba(10,143,135,0.46)] sm:h-10 sm:w-10"
                 >
-                  <textPath href="#heroBadgeCircle">
-                    {badgeOuterWords.join(" · ")} ·
-                  </textPath>
-                </text>
-              </svg>
-            </div>
-            <span className="font-display text-xl font-bold text-accent">
-              {personal.yearsExperience}+
-            </span>
+                  <item.icon className="h-4 w-4" />
+                </a>
+              </Magnetic>
+            ))}
+          </div>
+
+          <div className="mt-3.5 flex flex-wrap items-center justify-center gap-2.5 sm:mt-4 sm:gap-3">
+            <Button
+              href={personal.cvUrl}
+              variant="outline"
+              download
+              ariaLabel="Download Muhammad Husnain's CV"
+              className="border-[2px] border-[#0a8f87] bg-transparent px-5 py-2.5 text-[9px] font-extrabold uppercase tracking-[0.2em] text-white shadow-[0_8px_24px_rgba(0,0,0,0.22)] hover:border-[#f0ede5] hover:bg-[#004643] hover:shadow-[0_0_30px_rgba(10,143,135,0.58)] sm:px-6 sm:py-3 sm:text-[10px] sm:tracking-[0.24em]"
+            >
+              <Download className="h-3.5 w-3.5" />
+              Download CV
+            </Button>
+            <Button
+              href="#contact"
+              variant="ghost"
+              className="px-5 py-2.5 text-[9px] font-extrabold uppercase tracking-[0.2em] text-white/75 sm:py-3 sm:text-[10px] sm:tracking-[0.24em]"
+            >
+              Start a project
+            </Button>
           </div>
         </div>
       </div>
-
-      <a
-        href="#about"
-        aria-label="Scroll to about"
-        className="hero-detail absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 flex-col items-center gap-1 text-[9px] font-bold uppercase tracking-[0.28em] text-white/45"
-      >
-        Scroll
-        <ChevronDown className="hero-scroll-arrow h-4 w-4 text-accent" />
-      </a>
     </section>
   );
 }
