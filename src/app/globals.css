@@ -945,7 +945,7 @@ body {
 @media (min-width: 768px) {
   .service-stack-intro {
     height: calc(100svh - 4.75rem);
-    margin-bottom: clamp(16rem, 50svh, 32rem);
+    margin-bottom: clamp(20rem, 58svh, 38rem);
   }
 
   .service-stack-intro-panel {
@@ -1143,8 +1143,10 @@ html[data-theme="light"] .testimonial-sticky-heading {
   box-shadow: 0 1px 0 rgba(0, 70, 67, 0.18);
 }
 
+html[data-theme="light"] #services,
+html[data-theme="light"] .service-stack-intro,
 html[data-theme="light"] .service-stack-intro-panel {
-  background: rgba(240, 237, 229, 0.97) !important;
+  background: #ffffff !important;
   box-shadow: none;
 }
 
@@ -1278,6 +1280,10 @@ footer {
 
   .hero-project-marquee {
     padding-block: 1.15rem;
+  }
+
+  .service-stack-intro {
+    margin-bottom: clamp(9rem, 24svh, 14rem);
   }
 
   .hero-project-card {
