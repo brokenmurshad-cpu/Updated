@@ -9,6 +9,29 @@ type ProjectPageProps = {
   params: Promise<{ id: string }>;
 };
 
+function projectRank(seed: string) {
+  let hash = 2166136261;
+
+  for (let index = 0; index < seed.length; index += 1) {
+    hash ^= seed.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+
+  return hash >>> 0;
+}
+
+function suggestedProjects(currentProjectId: string) {
+  return projects
+    .filter((candidate) => candidate.id !== currentProjectId)
+    .map((candidate) => ({
+      project: candidate,
+      rank: projectRank(`${currentProjectId}:${candidate.id}`),
+    }))
+    .sort((first, second) => first.rank - second.rank)
+    .slice(0, 3)
+    .map(({ project }) => project);
+}
+
 export function generateStaticParams() {
   return projects.map((project) => ({ id: project.id }));
 }
@@ -35,6 +58,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   const technology =
     project.technologyLine ?? project.tags.join(" · ");
+  const suggestions = suggestedProjects(project.id);
 
   return (
     <main className="min-h-screen bg-[#191924] pt-28 text-white sm:pt-36">
@@ -135,25 +159,75 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
       </section>
 
-      <section className="border-t border-white/10 px-5 py-20 sm:px-8 lg:px-[3.2vw]">
-        <div className="mx-auto flex w-full max-w-[112rem] items-end justify-between gap-8">
-          <div>
-            <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.25em] text-accent">
-              More work
-            </p>
-            <h2 className="font-display text-[clamp(2.15rem,4.8vw,5.6rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.075em]">
-              Explore all
-              <br />
-              projects /
-            </h2>
+      <section className="border-t border-white/10 px-5 py-24 sm:px-8 lg:px-[3.2vw] lg:py-32">
+        <div className="mx-auto w-full max-w-[112rem]">
+          <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.25em] text-accent">
+                More work
+              </p>
+              <h2 className="font-display text-[clamp(2.15rem,4.8vw,5.6rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.075em]">
+                Suggested
+                <br />
+                projects
+              </h2>
+            </div>
+
+            <Link
+              href="/projects"
+              className="inline-flex w-fit items-center gap-3 rounded-full border border-white/15 px-6 py-4 text-[10px] font-extrabold uppercase tracking-[0.18em] text-white/75 transition duration-300 hover:-translate-y-1 hover:border-accent hover:bg-accent hover:text-white"
+            >
+              Explore all projects
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
           </div>
-          <Link
-            href="/#projects"
-            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-white/15 text-white/70 transition duration-300 hover:rotate-45 hover:border-accent hover:bg-accent hover:text-white"
-            aria-label="Back to all projects"
-          >
-            <ArrowUpRight className="h-5 w-5" />
-          </Link>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-3 lg:mt-20">
+            {suggestions.map((suggestion) => (
+              <Link
+                key={suggestion.id}
+                href={`/projects/${suggestion.id}`}
+                className="group overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/[0.025] transition duration-500 hover:-translate-y-2 hover:border-accent/70 hover:bg-white/[0.045]"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden bg-[#090917]">
+                  <Image
+                    src={suggestion.image}
+                    alt={`${suggestion.title} project preview`}
+                    fill
+                    sizes="(max-width: 767px) 100vw, 33vw"
+                    className="object-cover transition duration-700 ease-out group-hover:scale-[1.045]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#090917]/55 via-transparent to-transparent" />
+                  <span className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-[#090917]/70 text-white backdrop-blur-lg transition duration-300 group-hover:rotate-45 group-hover:border-accent group-hover:bg-accent">
+                    <ArrowUpRight className="h-4 w-4" />
+                  </span>
+                </div>
+
+                <div className="p-5 sm:p-6">
+                  <div className="flex items-center justify-between gap-4 text-[9px] font-bold uppercase tracking-[0.18em]">
+                    <span className="text-accent">Project {suggestion.index}</span>
+                    <span className="text-white/38">{suggestion.category}</span>
+                  </div>
+                  <h3 className="mt-5 font-display text-[clamp(1.45rem,2.2vw,2.25rem)] font-semibold leading-[1.02] tracking-[-0.05em] text-white/90">
+                    {suggestion.title}
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed text-white/52">
+                    {suggestion.description}
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {suggestion.tags.slice(0, 3).map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-white/10 px-3 py-1.5 text-[8px] font-bold uppercase tracking-[0.14em] text-white/48"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
     </main>

@@ -17,7 +17,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative isolate min-h-[100svh] overflow-hidden bg-[#1c1e27] text-white">
+    <footer className="relative z-[90] isolate min-h-[100svh] overflow-hidden bg-[#1c1e27] text-white">
       {/* Oversized moving background name, matching the reference footer. */}
       <div
         aria-hidden
