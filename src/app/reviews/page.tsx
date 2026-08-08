@@ -14,6 +14,7 @@ import { personal, socials, whatsappUrl } from "@/data/content";
 import { projectById, projects } from "@/data/project-showcase";
 import { portfolioTestimonials } from "@/data/testimonials";
 import CountryFlag from "@/components/ui/CountryFlag";
+import ReviewSubmissionForm from "@/components/sections/ReviewSubmissionForm";
 
 export const metadata: Metadata = {
   title: "Client Reviews | Muhammad Husnain",
@@ -212,6 +213,33 @@ export default function ReviewsPage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      <section
+        id="submit-review"
+        className="border-t border-white/10 px-5 py-20 sm:px-8 sm:py-28 lg:px-[3.2vw]"
+      >
+        <div className="mx-auto grid w-full max-w-[112rem] gap-10 lg:grid-cols-[minmax(18rem,0.62fr)_minmax(0,1.38fr)] lg:gap-[7vw]">
+          <div>
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.24em] text-accent">
+              Share your experience
+            </p>
+            <h2 className="mt-4 font-display text-[clamp(2.25rem,4.8vw,5.6rem)] font-extrabold uppercase leading-[0.86] tracking-[-0.065em]">
+              Add your
+              <br />
+              review /
+            </h2>
+            <p className="mt-6 max-w-lg text-sm leading-[1.8] text-white/45">
+              Choose the project, select your country and rating, then share
+              your honest feedback. Approved reviews are added to this client
+              profile.
+            </p>
+          </div>
+
+          <ReviewSubmissionForm
+            projects={projects.map(({ id, title }) => ({ id, title }))}
+          />
         </div>
       </section>
     </main>

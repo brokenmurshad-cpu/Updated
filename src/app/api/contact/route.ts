@@ -1,9 +1,11 @@
 const WEB3FORMS_ACCESS_KEY = "0cede430-6fdf-4abc-aa9e-39bd3b0e2d50";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_PATTERN = /^[+()\d\s.-]{7,30}$/;
 const MAX_MESSAGE_LENGTH = 5000;
 
 type ContactPayload = {
   name?: unknown;
+  phone?: unknown;
   email?: unknown;
   message?: unknown;
   subject?: unknown;
@@ -20,12 +22,28 @@ export async function POST(request: Request) {
     return Response.json({ success: false, message: "Invalid request." }, { status: 400 });
   }
 
+  const name = typeof payload.name === "string" ? payload.name.trim() : "";
+  const phone = typeof payload.phone === "string" ? payload.phone.trim() : "";
   const email = typeof payload.email === "string" ? payload.email.trim() : "";
   const message = typeof payload.message === "string" ? payload.message.trim() : "";
   const botcheck = typeof payload.botcheck === "string" ? payload.botcheck.trim() : "";
 
   if (botcheck) {
     return Response.json({ success: true, message: "Message sent successfully." });
+  }
+
+  if (name.length < 2 || name.length > 80) {
+    return Response.json(
+      { success: false, message: "Please enter your name." },
+      { status: 400 },
+    );
+  }
+
+  if (!PHONE_PATTERN.test(phone)) {
+    return Response.json(
+      { success: false, message: "Please enter a valid phone number." },
+      { status: 400 },
+    );
   }
 
   if (!EMAIL_PATTERN.test(email) || email.length > 254) {
@@ -51,7 +69,8 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         access_key: WEB3FORMS_ACCESS_KEY,
-        name: email,
+        name,
+        phone,
         email,
         message,
         subject: "New portfolio inquiry",

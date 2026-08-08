@@ -99,7 +99,6 @@ export default function Contact() {
               name="from_name"
               value="Muhammad Husnain Portfolio"
             />
-            <input type="hidden" name="name" value="Website Visitor" />
             <input ref={redirectRef} type="hidden" name="redirect" />
 
             <div className="absolute -left-[9999px]" aria-hidden="true">
@@ -113,7 +112,40 @@ export default function Contact() {
               />
             </div>
 
-            <Field label="Email address" name="email" type="email" placeholder="Enter your email" required />
+            <div className="grid gap-6 sm:grid-cols-2">
+              <Field
+                label="Your name"
+                name="name"
+                placeholder="Enter your name"
+                autoComplete="name"
+                minLength={2}
+                maxLength={80}
+                required
+              />
+              <Field
+                label="Phone number"
+                name="phone"
+                type="tel"
+                placeholder="Enter your phone"
+                autoComplete="tel"
+                inputMode="tel"
+                minLength={7}
+                maxLength={30}
+                required
+              />
+            </div>
+
+            <div className="mt-6">
+              <Field
+                label="Email address"
+                name="email"
+                type="email"
+                placeholder="Enter your email"
+                autoComplete="email"
+                maxLength={254}
+                required
+              />
+            </div>
 
             <div className="mt-6">
               <label
@@ -161,12 +193,20 @@ function Field({
   placeholder,
   type = "text",
   required,
+  autoComplete,
+  inputMode,
+  minLength,
+  maxLength,
 }: {
   label: string;
   name: string;
   placeholder: string;
   type?: string;
   required?: boolean;
+  autoComplete?: string;
+  inputMode?: React.HTMLAttributes<HTMLInputElement>["inputMode"];
+  minLength?: number;
+  maxLength?: number;
 }) {
   return (
     <div>
@@ -181,6 +221,10 @@ function Field({
         name={name}
         type={type}
         required={required}
+        autoComplete={autoComplete}
+        inputMode={inputMode}
+        minLength={minLength}
+        maxLength={maxLength}
         placeholder={placeholder}
         className="w-full rounded-xl border border-white/[0.04] bg-[#070817] px-4 py-4 text-sm text-white outline-none transition placeholder:text-white/25 focus:border-[#0a8f87] focus:ring-2 focus:ring-[#0a8f87]/15"
       />
