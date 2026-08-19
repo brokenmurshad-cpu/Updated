@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: seo.url,
-    siteName: `${personal.fullName} — Portfolio`,
+    siteName: "Husnain Portfolio",
     title: seo.title,
     description: seo.description,
     images: [

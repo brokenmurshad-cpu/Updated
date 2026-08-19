@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, ExternalLink } from "lucide-react";
 import { projectById, projects } from "@/data/project-showcase";
+import { seo } from "@/data/content";
 
 type ProjectPageProps = {
   params: Promise<{ id: string }>;
@@ -42,11 +43,50 @@ export async function generateMetadata({
   const { id } = await params;
   const project = projectById(id);
 
+  if (!project) {
+    return {
+      title: "Project | Husnain Portfolio",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  const canonical = `${seo.url}/projects/${project.id}`;
+
+  const projectDescription =
+    `${project.description} Explore this ${project.category.toLowerCase()} case study by Muhammad Husnain, Full Stack Developer and AI Engineer.`;
+
   return {
-    title: project
-      ? project.title + " | Muhammad Husnain"
-      : "Project | Muhammad Husnain",
-    description: project?.description,
+    title: `${project.title} | ${project.category} Project | Husnain Portfolio`,
+    description: projectDescription,
+    keywords: [
+      project.title,
+      project.category,
+      ...project.tags,
+      "Muhammad Husnain",
+      "Husnain Portfolio",
+      "web development project",
+      "portfolio project",
+      project.category + " project",
+    ],
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      type: "article",
+      url: canonical,
+      siteName: "Husnain Portfolio",
+      title: `${project.title} | Husnain Portfolio`,
+      description: projectDescription,
+      images: [
+        {
+          url: project.image,
+          alt: `${project.title} project preview`,
+        },
+      ],
+    },
   };
 }
 
@@ -59,9 +99,74 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const technology =
     project.technologyLine ?? project.tags.join(" · ");
   const suggestions = suggestedProjects(project.id);
+  const canonical = `${seo.url}/projects/${project.id}`;
+
+  const projectJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    description: project.description,
+    url: canonical,
+    image: project.image,
+    creator: {
+      "@type": "Person",
+      name: "Muhammad Husnain",
+      url: seo.url,
+      jobTitle: [
+        "Full Stack Developer",
+        "AI Engineer",
+      ],
+    },
+    keywords: [
+      project.category,
+      ...project.tags,
+      "Web Development",
+      "Portfolio Project",
+    ].join(", "),
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Husnain Portfolio",
+        item: seo.url,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Projects",
+        item: `${seo.url}/projects`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: project.title,
+        item: canonical,
+      },
+    ],
+  };
 
   return (
-    <main className="min-h-screen bg-[#191924] pt-28 text-white sm:pt-36">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(projectJsonLd),
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd),
+        }}
+      />
+
+      <main className="min-h-screen bg-[#191924] pt-28 text-white sm:pt-36">
       <section className="px-5 pb-24 sm:px-8 lg:px-[3.2vw] lg:pb-36">
         <div className="mx-auto w-full max-w-[112rem]">
           <div className="mb-12 flex items-center justify-between gap-5 text-[10px] font-bold uppercase tracking-[0.2em] text-white/48 sm:mb-16">
@@ -230,6 +335,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 }
