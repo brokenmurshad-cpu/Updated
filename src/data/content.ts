@@ -10,7 +10,7 @@ export const personal = {
   phone: "+971 50 5677 023",
   whatsapp: "+971505677023",
   whatsappDigits: "971505677023",
-  website: "www.personalportfolio.dev",
+  website: "husnainportfolio.online",
   heroSubtext:
     "I craft cinematic web products, AI-powered platforms, and scalable SaaS experiences for brands that care about detail, motion, and performance.",
   aboutTitle: "Programmer & Developer.",
@@ -377,10 +377,10 @@ export const ANIMATION_CONFIG = {
 };
 
 export const seo = {
-  title: "Muhammad Husnain | Full Stack Developer, AI Engineer & SaaS Builder",
+  title: "Husnain Portfolio | Muhammad Husnain - Full Stack Developer Muhammad Husnain | Full Stack Developer, AI Engineer & SaaS Builder AI Engineer",
   description:
     "Premium portfolio of Muhammad Husnain — Full Stack Developer, AI Engineer, and SaaS Builder based in Dubai, UAE. Cinematic interfaces, scalable products, and high-performance web experiences.",
-  url: "https://www.personalportfolio.dev",
+  url: "https://husnainportfolio.online",
   keywords: [
     "Muhammad Husnain",
     "Full Stack Developer",
