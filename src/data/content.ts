@@ -377,7 +377,7 @@ export const ANIMATION_CONFIG = {
 };
 
 export const seo = {
-  title: "Husnain Portfolio | Muhammad Husnain - Full Stack Developer Muhammad Husnain | Full Stack Developer, AI Engineer & SaaS Builder AI Engineer",
+  title: "Husnain Portfolio | Muhammad Husnain - Full Stack Developer & AI Engineer",
   description:
     "Premium portfolio of Muhammad Husnain — Full Stack Developer, AI Engineer, and SaaS Builder based in Dubai, UAE. Cinematic interfaces, scalable products, and high-performance web experiences.",
   url: "https://husnainportfolio.online",
