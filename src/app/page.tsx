@@ -5,6 +5,7 @@ import Services from "@/components/sections/Services";
 import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
 import Testimonials from "@/components/sections/Testimonials";
+import ShowreelVideo from "@/components/sections/ShowreelVideo";
 import Contact from "@/components/sections/Contact";
 
 export default function HomePage() {
@@ -17,6 +18,7 @@ export default function HomePage() {
       <Experience />
       <Projects />
       <Testimonials />
+      <ShowreelVideo />
       <Contact />
     </main>
   );
