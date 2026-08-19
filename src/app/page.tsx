@@ -9,18 +9,30 @@ import ShowreelVideo from "@/components/sections/ShowreelVideo";
 import Contact from "@/components/sections/Contact";
 import { seo } from "@/data/content";
 
-const websiteJsonLd = {
+const homepageJsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "Husnain Portfolio",
-  alternateName: [
-    "Muhammad Husnain Portfolio",
-    "Muhammad Husnain Developer Portfolio",
-    "husnainportfolio.online",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${seo.url}/#website`,
+      name: seo.siteName,
+      alternateName: ["Husnain Portfolio", "husnainportfolio.online"],
+      url: `${seo.url}/`,
+      description: seo.description,
+      publisher: { "@id": `${seo.url}/#person` },
+      inLanguage: "en",
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${seo.url}/#profile-page`,
+      name: seo.siteName,
+      url: `${seo.url}/`,
+      dateModified: seo.lastUpdated,
+      isPartOf: { "@id": `${seo.url}/#website` },
+      mainEntity: { "@id": `${seo.url}/#person` },
+      inLanguage: "en",
+    },
   ],
-  url: `${seo.url}/`,
-  description:
-    "Portfolio of Muhammad Husnain, Full Stack Developer and AI Engineer specializing in web development, AI engineering, SaaS products, modern portfolio websites, e-commerce and interactive web experiences.",
 };
 
 export default function HomePage() {
@@ -29,7 +41,7 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(websiteJsonLd),
+          __html: JSON.stringify(homepageJsonLd),
         }}
       />
 

@@ -10,7 +10,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { SiTiktok } from "react-icons/si";
-import { personal, socials, whatsappUrl } from "@/data/content";
+import { personal, seo, socials, whatsappUrl } from "@/data/content";
 import { projectById, projects } from "@/data/project-showcase";
 import { portfolioTestimonials } from "@/data/testimonials";
 import CountryFlag from "@/components/ui/CountryFlag";
@@ -20,6 +20,23 @@ export const metadata: Metadata = {
   title: "Client Reviews | Muhammad Husnain",
   description:
     "Project feedback and client reviews for Muhammad Husnain, Full Stack Developer, AI Engineer, and SaaS Builder.",
+  alternates: { canonical: `${seo.url}/reviews` },
+  openGraph: {
+    type: "website",
+    url: `${seo.url}/reviews`,
+    siteName: seo.siteName,
+    title: "Client Reviews | Muhammad Husnain",
+    description:
+      "Project feedback and client reviews for Full Stack Developer and AI Engineer Muhammad Husnain.",
+    images: ["/og.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Client Reviews | Muhammad Husnain",
+    description:
+      "Project feedback and client reviews for Full Stack Developer and AI Engineer Muhammad Husnain.",
+    images: ["/og.png"],
+  },
 };
 
 const profileLinks = [

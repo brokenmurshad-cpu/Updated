@@ -10,14 +10,19 @@ const canonical = `${seo.url}/portfolio-web-design`;
 export const metadata: Metadata = {
   title: portfolioSeoPage.title,
   description: portfolioSeoPage.description,
-  keywords: portfolioSeoPage.keywords,
   alternates: {
     canonical,
   },
   openGraph: {
     type: "website",
     url: canonical,
-    siteName: "Husnain Portfolio",
+    siteName: seo.siteName,
+    title: portfolioSeoPage.title,
+    description: portfolioSeoPage.description,
+    images: ["/og.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
     title: portfolioSeoPage.title,
     description: portfolioSeoPage.description,
     images: ["/og.png"],
@@ -37,13 +42,12 @@ export default function PortfolioWebDesignPage() {
   const webpageJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
+    "@id": `${canonical}/#webpage`,
     name: portfolioSeoPage.heading,
     description: portfolioSeoPage.description,
     url: canonical,
     isPartOf: {
-      "@type": "WebSite",
-      name: "Husnain Portfolio",
-      url: seo.url,
+      "@id": `${seo.url}/#website`,
     },
     about: [
       "Portfolio Website Design",

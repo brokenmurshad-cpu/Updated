@@ -7,36 +7,42 @@ import {
 } from "@/data/seo-pages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  const lastModified = new Date(seo.lastUpdated);
 
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: seo.url,
-      lastModified: now,
+      lastModified,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
+      url: `${seo.url}/about`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: `${seo.url}/projects`,
-      lastModified: now,
+      lastModified,
       changeFrequency: "weekly",
       priority: 0.95,
     },
     {
       url: `${seo.url}/services`,
-      lastModified: now,
+      lastModified,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${seo.url}/${portfolioSeoPage.slug}`,
-      lastModified: now,
+      lastModified,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${seo.url}/reviews`,
-      lastModified: now,
+      lastModified,
       changeFrequency: "monthly",
       priority: 0.7,
     },
@@ -45,7 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const servicePages: MetadataRoute.Sitemap =
     seoServicePages.map((page) => ({
       url: `${seo.url}/services/${page.slug}`,
-      lastModified: now,
+      lastModified,
       changeFrequency: "monthly",
       priority: 0.85,
     }));
@@ -53,7 +59,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const projectPages: MetadataRoute.Sitemap =
     projects.map((project) => ({
       url: `${seo.url}/projects/${project.id}`,
-      lastModified: now,
+      lastModified,
       changeFrequency: "monthly",
       priority: 0.8,
     }));

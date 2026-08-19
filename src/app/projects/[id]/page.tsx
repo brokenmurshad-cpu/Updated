@@ -110,23 +110,13 @@ export async function generateMetadata({
   return {
     title: seoTitle,
     description: projectDescription,
-    keywords: [
-      project.title,
-      project.category,
-      ...project.tags,
-      "Muhammad Husnain",
-      "Husnain Portfolio",
-      "web development project",
-      "portfolio project",
-      project.category + " project",
-    ],
     alternates: {
       canonical,
     },
     openGraph: {
       type: "article",
       url: canonical,
-      siteName: "Husnain Portfolio",
+      siteName: seo.siteName,
       title: `${project.title} | Husnain Portfolio`,
       description: projectDescription,
       images: [
@@ -135,6 +125,12 @@ export async function generateMetadata({
           alt: `${project.title} project preview`,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} | Husnain Portfolio`,
+      description: projectDescription,
+      images: [project.image],
     },
   };
 }
@@ -154,19 +150,19 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const projectJsonLd = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
+    "@id": `${canonical}/#creative-work`,
     name: project.title,
     description: project.description,
     url: canonical,
-    image: project.image,
+    image: new URL(project.image, seo.url).toString(),
     creator: {
       "@type": "Person",
+      "@id": `${seo.url}/#person`,
       name: "Muhammad Husnain",
       url: seo.url,
-      jobTitle: [
-        "Full Stack Developer",
-        "AI Engineer",
-      ],
+      jobTitle: "Full Stack Developer and AI Engineer",
     },
+    mainEntityOfPage: canonical,
     keywords: [
       project.category,
       ...project.tags,

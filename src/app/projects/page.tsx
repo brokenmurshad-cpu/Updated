@@ -5,30 +5,57 @@ import { projects } from "@/data/project-showcase";
 import { seo } from "@/data/content";
 
 export const metadata: Metadata = {
-  title:
-    "Web Development, AI, SaaS & Portfolio Projects | Husnain Portfolio",
+  title: "Web, AI & SaaS Projects | Muhammad Husnain Portfolio",
   description:
-    "Explore Muhammad Husnain's web development, AI engineering, SaaS, e-commerce, portfolio, healthcare, education, Shopify and interactive web projects.",
-  keywords: [
-    "web development projects",
-    "AI projects",
-    "SaaS projects",
-    "portfolio projects",
-    "ecommerce projects",
-    "Shopify projects",
-    "Next.js projects",
-    "React projects",
-    "GSAP projects",
-    "Muhammad Husnain projects",
-  ],
+    "Explore Muhammad Husnain's selected web development, AI, SaaS, e-commerce and interactive projects built with modern full-stack technologies.",
   alternates: {
     canonical: `${seo.url}/projects`,
+  },
+  openGraph: {
+    type: "website",
+    url: `${seo.url}/projects`,
+    siteName: seo.siteName,
+    title: "Web, AI & SaaS Projects | Muhammad Husnain Portfolio",
+    description:
+      "Selected web development, AI, SaaS, e-commerce and interactive projects by Muhammad Husnain.",
+    images: ["/og.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Web, AI & SaaS Projects | Muhammad Husnain Portfolio",
+    description:
+      "Selected web development, AI, SaaS, e-commerce and interactive projects by Muhammad Husnain.",
+    images: ["/og.png"],
   },
 };
 
 export default function ProjectsIndexPage() {
+  const projectsJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${seo.url}/projects/#webpage`,
+    name: "Muhammad Husnain Projects",
+    description: metadata.description,
+    url: `${seo.url}/projects`,
+    isPartOf: { "@id": `${seo.url}/#website` },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: projects.map((project, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: project.title,
+        url: `${seo.url}/projects/${project.id}`,
+      })),
+    },
+  };
+
   return (
-    <main className="min-h-screen bg-[#090917] px-5 pb-28 pt-32 text-white sm:px-8 lg:px-[3.2vw] lg:pt-40">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectsJsonLd) }}
+      />
+      <main className="min-h-screen bg-[#090917] px-5 pb-28 pt-32 text-white sm:px-8 lg:px-[3.2vw] lg:pt-40">
       <div className="mx-auto w-full max-w-[112rem]">
         <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-accent">
           Husnain Portfolio / Project Archive
@@ -111,6 +138,7 @@ export default function ProjectsIndexPage() {
           ))}
         </div>
       </div>
-    </main>
+      </main>
+    </>
   );
 }

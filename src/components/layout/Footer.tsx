@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowUp, Download, Linkedin, MessageCircle } from "lucide-react";
+import Link from "next/link";
 import { SiTiktok } from "react-icons/si";
 import Marquee from "@/components/ui/Marquee";
 import Magnetic from "@/components/ui/Magnetic";
@@ -104,47 +105,61 @@ export default function Footer() {
               aria-label="Explore web development and portfolio services"
               className="flex max-w-[28rem] flex-wrap justify-center gap-x-4 gap-y-2 text-[10px] font-bold uppercase tracking-[0.12em] text-white/55 lg:justify-end"
             >
-              <a
+              <Link
+                href="/about"
+                className="transition hover:text-[#31b8ae]"
+              >
+                About Muhammad Husnain
+              </Link>
+
+              <Link
+                href="/services"
+                className="transition hover:text-[#31b8ae]"
+              >
+                All Services
+              </Link>
+
+              <Link
                 href="/projects"
                 className="transition hover:text-[#31b8ae]"
               >
                 Web & AI Projects
-              </a>
+              </Link>
 
-              <a
+              <Link
                 href="/services/web-development"
                 className="transition hover:text-[#31b8ae]"
               >
                 Web Development
-              </a>
+              </Link>
 
-              <a
+              <Link
                 href="/services/ai-engineering"
                 className="transition hover:text-[#31b8ae]"
               >
                 AI Engineering
-              </a>
+              </Link>
 
-              <a
+              <Link
                 href="/services/saas-product-development"
                 className="transition hover:text-[#31b8ae]"
               >
                 SaaS Development
-              </a>
+              </Link>
 
-              <a
+              <Link
                 href="/services/performance-optimization"
                 className="transition hover:text-[#31b8ae]"
               >
                 Web Performance
-              </a>
+              </Link>
 
-              <a
+              <Link
                 href="/portfolio-web-design"
                 className="transition hover:text-[#31b8ae]"
               >
                 Portfolio Web Design
-              </a>
+              </Link>
             </nav>
           </div>
         </div>

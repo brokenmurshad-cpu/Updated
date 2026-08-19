@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import NextLink from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { FaLinkedinIn } from "react-icons/fa6";
@@ -119,7 +120,7 @@ export default function Header() {
           aria-label="Primary navigation"
           className="mx-auto flex h-[4.75rem] w-full max-w-[112rem] items-center gap-7 px-5 pr-[5.5rem] sm:px-8 sm:pr-[6.5rem] lg:px-[3.2vw] lg:pr-[7.2rem]"
         >
-          <a
+          <NextLink
             href="/"
             data-cursor="hover"
             className="focus-ring flex shrink-0 items-center gap-2.5 font-display text-[13px] font-extrabold uppercase tracking-[-0.035em] text-white sm:text-base"
@@ -135,7 +136,7 @@ export default function Header() {
               />
             </span>
             <span>{personal.fullName}</span>
-          </a>
+          </NextLink>
 
           <div className="hidden items-center gap-2 xl:flex">
             <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_12px_rgba(10,143,135,0.95)]" />

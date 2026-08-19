@@ -5,18 +5,57 @@ import { seo } from "@/data/content";
 import { seoServicePages } from "@/data/seo-pages";
 
 export const metadata: Metadata = {
-  title:
-    "Web Development, AI Engineering & SaaS Development | Husnain Portfolio",
+  title: "Web, AI & SaaS Development Services | Muhammad Husnain",
   description:
-    "Explore web development, AI engineering, SaaS product development and performance optimization services by Muhammad Husnain.",
+    "Explore web development, AI engineering, SaaS product development and performance optimization services by Dubai developer Muhammad Husnain.",
   alternates: {
     canonical: `${seo.url}/services`,
+  },
+  openGraph: {
+    type: "website",
+    url: `${seo.url}/services`,
+    siteName: seo.siteName,
+    title: "Web, AI & SaaS Development Services | Muhammad Husnain",
+    description:
+      "Web development, AI engineering, SaaS product development and performance optimization services.",
+    images: ["/og.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Web, AI & SaaS Development Services | Muhammad Husnain",
+    description:
+      "Web development, AI engineering, SaaS product development and performance optimization services.",
+    images: ["/og.png"],
   },
 };
 
 export default function ServicesPage() {
+  const servicesJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${seo.url}/services/#webpage`,
+    name: "Web, AI and SaaS Development Services",
+    description: metadata.description,
+    url: `${seo.url}/services`,
+    isPartOf: { "@id": `${seo.url}/#website` },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: seoServicePages.map((service, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: service.heading,
+        url: `${seo.url}/services/${service.slug}`,
+      })),
+    },
+  };
+
   return (
-    <main className="min-h-screen bg-[#090917] px-5 pb-28 pt-32 text-white sm:px-8 lg:px-[3.2vw] lg:pt-40">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd) }}
+      />
+      <main className="min-h-screen bg-[#090917] px-5 pb-28 pt-32 text-white sm:px-8 lg:px-[3.2vw] lg:pt-40">
       <div className="mx-auto w-full max-w-[112rem]">
         <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-accent">
           Husnain Portfolio / Services
@@ -69,6 +108,7 @@ export default function ServicesPage() {
           </Link>
         </div>
       </div>
-    </main>
+      </main>
+    </>
   );
 }

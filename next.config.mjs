@@ -7,7 +7,6 @@ const nextConfig = {
   },
 
   images: {
-    unoptimized: true,
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
@@ -26,6 +25,23 @@ const nextConfig = {
   experimental: {
     workerThreads: true,
     cpus: 1,
+  },
+
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.husnainportfolio.online" }],
+        destination: "https://husnainportfolio.online/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "updated-khaki.vercel.app" }],
+        destination: "https://husnainportfolio.online/:path*",
+        permanent: true,
+      },
+    ];
   },
 };
 

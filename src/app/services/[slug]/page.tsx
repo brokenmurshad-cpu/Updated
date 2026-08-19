@@ -39,14 +39,19 @@ export async function generateMetadata({
   return {
     title: page.title,
     description: page.description,
-    keywords: page.keywords,
     alternates: {
       canonical,
     },
     openGraph: {
       type: "website",
       url: canonical,
-      siteName: "Husnain Portfolio",
+      siteName: seo.siteName,
+      title: page.title,
+      description: page.description,
+      images: ["/og.png"],
+    },
+    twitter: {
+      card: "summary_large_image",
       title: page.title,
       description: page.description,
       images: ["/og.png"],
@@ -65,19 +70,18 @@ export default async function ServicePage({ params }: Props) {
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${canonical}/#service`,
     name: page.heading,
     description: page.description,
     url: canonical,
     provider: {
       "@type": "Person",
+      "@id": `${seo.url}/#person`,
       name: personal.fullName,
       url: seo.url,
-      jobTitle: [
-        "Full Stack Developer",
-        "AI Engineer",
-        "Front-End Developer",
-      ],
+      jobTitle: "Full Stack Developer and AI Engineer",
     },
+    mainEntityOfPage: canonical,
     areaServed: {
       "@type": "Place",
       name: "Dubai, UAE",

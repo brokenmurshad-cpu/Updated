@@ -15,8 +15,7 @@ export type SeoLandingPage = {
 export const seoServicePages: SeoLandingPage[] = [
   {
     slug: "web-development",
-    title:
-      "Web Development Services | Full Stack & Front-End Developer | Husnain Portfolio",
+    title: "Web Development Services | Muhammad Husnain",
     heading: "Web Development for Modern Brands",
     description:
       "Custom web development by Muhammad Husnain, a Full Stack Developer and AI Engineer in Dubai. Modern websites, marketing websites, education platforms, e-commerce websites, Shopify stores and scalable web applications.",
@@ -68,8 +67,7 @@ export const seoServicePages: SeoLandingPage[] = [
 
   {
     slug: "ai-engineering",
-    title:
-      "AI Engineering, AI Agents & LLM Integration | Husnain Portfolio",
+    title: "AI Engineering & LLM Integration | Muhammad Husnain",
     heading: "AI Engineering & Intelligent Product Development",
     description:
       "AI engineering services covering AI agents, LLM integration, OpenAI, intelligent interfaces, agent workflows and AI automation by Muhammad Husnain.",
@@ -117,8 +115,7 @@ export const seoServicePages: SeoLandingPage[] = [
 
   {
     slug: "saas-product-development",
-    title:
-      "SaaS Product Development & Full Stack SaaS Projects | Husnain Portfolio",
+    title: "SaaS Product Development | Muhammad Husnain",
     heading: "SaaS Product Building from MVP to Production",
     description:
       "Full-stack SaaS development for dashboards, admin systems, product workflows and scalable web applications using Next.js, Node.js, PostgreSQL and Prisma.",
@@ -164,8 +161,7 @@ export const seoServicePages: SeoLandingPage[] = [
 
   {
     slug: "performance-optimization",
-    title:
-      "Website Performance & Next.js Optimization | Husnain Portfolio",
+    title: "Next.js Website Performance Optimization | Muhammad Husnain",
     heading: "Performance & Optimization for Modern Websites",
     description:
       "Website performance optimization for Next.js, React, animation-heavy websites, hero videos and Core Web Vitals.",
@@ -209,11 +205,10 @@ export const seoServicePages: SeoLandingPage[] = [
 
 export const portfolioSeoPage: SeoLandingPage = {
   slug: "portfolio-web-design",
-  title:
-    "Portfolio Website Design, Portfolio Theme & Hero Sections | Husnain Portfolio",
+  title: "Portfolio Website Design & Motion | Muhammad Husnain",
   heading: "Portfolio Web Design with Motion, Video & Interactive Hero Sections",
   description:
-    "Modern developer portfolio website built with Next.js, TypeScript, Tailwind CSS, GSAP and Framer Motion. Portfolio theme, portfolio design, hero video, animated hero section, project case studies and modern portfolio architecture.",
+    "A modern developer portfolio by Muhammad Husnain, combining Next.js, TypeScript, GSAP motion, video, responsive design and project case studies.",
   eyebrow: "Portfolio Web / Design & Motion",
   intro:
     "Husnain Portfolio is a modern developer portfolio website focused on premium web design, cinematic motion, project storytelling and production engineering. The experience combines a portfolio hero section, hero background video, interactive project previews, responsive layouts and reusable Next.js architecture.",

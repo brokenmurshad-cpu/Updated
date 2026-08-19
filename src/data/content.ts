@@ -28,7 +28,7 @@ export const socials = {
   email: "Mhusnain0027@outlook.com",
   tiktok: "https://www.tiktok.com/@mh.dev11",
   linkedin:
-    "https://www.linkedin.com/in/muhammad-husnain-4556233a1?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    "https://www.linkedin.com/in/muhammad-husnain-4556233a1",
   twitter: "",
   instagram: "",
 };
@@ -377,10 +377,12 @@ export const ANIMATION_CONFIG = {
 };
 
 export const seo = {
-  title: "Husnain Portfolio | Full Stack Developer, AI Engineer & Web Developer",
+  siteName: "Muhammad Husnain Portfolio",
+  title: "Muhammad Husnain Portfolio | Full Stack & AI Developer",
   description:
-    "Muhammad Husnain is a Full Stack Developer and AI Engineer based in Dubai, building modern websites, AI products, SaaS platforms, e-commerce experiences, portfolio websites and high-performance web applications.",
+    "Explore Muhammad Husnain's portfolio—Dubai-based Full Stack Developer and AI Engineer building Next.js websites, SaaS products and AI experiences.",
   url: "https://husnainportfolio.online",
+  lastUpdated: "2026-08-19T00:00:00.000Z",
   keywords: [
     "Husnain Portfolio",
     "Muhammad Husnain",

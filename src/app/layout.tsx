@@ -37,16 +37,27 @@ export const metadata: Metadata = {
   metadataBase: new URL(seo.url),
   title: seo.title,
   description: seo.description,
-  keywords: seo.keywords,
   authors: [{ name: personal.fullName }],
   creator: personal.fullName,
-  robots: { index: true, follow: true },
+  publisher: personal.fullName,
+  category: "technology",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   alternates: { canonical: seo.url },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: seo.url,
-    siteName: "Husnain Portfolio",
+    siteName: seo.siteName,
     title: seo.title,
     description: seo.description,
     images: [
@@ -80,8 +91,10 @@ export const viewport: Viewport = {
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": `${seo.url}/#person`,
   name: personal.fullName,
-  jobTitle: personal.roles,
+  alternateName: "Husnain",
+  jobTitle: "Full Stack Developer and AI Engineer",
   url: seo.url,
   image: `${seo.url}/images/profile.jpg`,
   knowsAbout: [
@@ -108,7 +121,7 @@ const personJsonLd = {
   address: {
     "@type": "PostalAddress",
     addressLocality: "Dubai",
-    addressCountry: "UAE",
+    addressCountry: "AE",
   },
   email: personal.email,
   sameAs: [

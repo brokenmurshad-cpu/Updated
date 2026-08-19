@@ -245,8 +245,8 @@ export default function Hero() {
                     src={project.image}
                     alt={`${project.title} project preview`}
                     fill
-                    priority={index < 5}
-                    loading="eager"
+                    priority={index === 0}
+                    loading={index < 2 ? "eager" : "lazy"}
                     sizes="(max-width: 767px) 52vw, 21vw"
                     className="object-cover transition duration-700 ease-out group-hover:scale-[1.055]"
                   />
