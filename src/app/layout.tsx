@@ -84,13 +84,37 @@ const personJsonLd = {
   jobTitle: personal.roles,
   url: seo.url,
   image: `${seo.url}/images/profile.jpg`,
+  knowsAbout: [
+    "Full Stack Development",
+    "Front-End Development",
+    "Web Development",
+    "AI Engineering",
+    "AI Agents",
+    "LLM Integration",
+    "SaaS Product Development",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "JavaScript",
+    "Node.js",
+    "OpenAI",
+    "Shopify Development",
+    "E-Commerce Development",
+    "GSAP",
+    "Framer Motion",
+    "Website Performance Optimization",
+    "Portfolio Web Design",
+  ],
   address: {
     "@type": "PostalAddress",
     addressLocality: "Dubai",
     addressCountry: "UAE",
   },
   email: personal.email,
-  sameAs: [socials.tiktok, personal.website],
+  sameAs: [
+    socials.linkedin,
+    socials.tiktok,
+  ],
 };
 
 export default function RootLayout({

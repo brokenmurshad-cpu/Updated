@@ -36,13 +36,13 @@ export const socials = {
 export const whatsappUrl = `https://wa.me/${socials.whatsapp}`;
 
 export const nav = [
-  { label: "Home", href: "#hero" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/#services" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Testimonials", href: "/#testimonials" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const navbarLinks = nav.map((item) => ({
@@ -51,11 +51,11 @@ export const navbarLinks = nav.map((item) => ({
 }));
 
 export const navLinks = [
-  { label: "Services", url: "#services" },
-  { label: "Experience", url: "#experience" },
-  { label: "Projects", url: "#projects" },
-  { label: "Testimonials", url: "#testimonials" },
-  { label: "Contact", url: "#contact" },
+  { label: "Services", url: "/#services" },
+  { label: "Experience", url: "/#experience" },
+  { label: "Projects", url: "/#projects" },
+  { label: "Testimonials", url: "/#testimonials" },
+  { label: "Contact", url: "/#contact" },
 ];
 
 export const socialLinks = [

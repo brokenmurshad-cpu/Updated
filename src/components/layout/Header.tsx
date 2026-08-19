@@ -120,7 +120,7 @@ export default function Header() {
           className="mx-auto flex h-[4.75rem] w-full max-w-[112rem] items-center gap-7 px-5 pr-[5.5rem] sm:px-8 sm:pr-[6.5rem] lg:px-[3.2vw] lg:pr-[7.2rem]"
         >
           <a
-            href="#hero"
+            href="/"
             data-cursor="hover"
             className="focus-ring flex shrink-0 items-center gap-2.5 font-display text-[13px] font-extrabold uppercase tracking-[-0.035em] text-white sm:text-base"
           >

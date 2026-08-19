@@ -94,6 +94,59 @@ export default function Footer() {
               {personal.email}
             </a>
           </div>
+
+          <div>
+            <p className="mb-4 text-xs font-extrabold uppercase tracking-[0.17em] text-[#0a8f87]">
+              Explore
+            </p>
+
+            <nav
+              aria-label="Explore web development and portfolio services"
+              className="flex max-w-[28rem] flex-wrap justify-center gap-x-4 gap-y-2 text-[10px] font-bold uppercase tracking-[0.12em] text-white/55 lg:justify-end"
+            >
+              <a
+                href="/projects"
+                className="transition hover:text-[#31b8ae]"
+              >
+                Web & AI Projects
+              </a>
+
+              <a
+                href="/services/web-development"
+                className="transition hover:text-[#31b8ae]"
+              >
+                Web Development
+              </a>
+
+              <a
+                href="/services/ai-engineering"
+                className="transition hover:text-[#31b8ae]"
+              >
+                AI Engineering
+              </a>
+
+              <a
+                href="/services/saas-product-development"
+                className="transition hover:text-[#31b8ae]"
+              >
+                SaaS Development
+              </a>
+
+              <a
+                href="/services/performance-optimization"
+                className="transition hover:text-[#31b8ae]"
+              >
+                Web Performance
+              </a>
+
+              <a
+                href="/portfolio-web-design"
+                className="transition hover:text-[#31b8ae]"
+              >
+                Portfolio Web Design
+              </a>
+            </nav>
+          </div>
         </div>
 
         <p className="absolute bottom-24 left-1/2 -translate-x-1/2 text-center text-sm font-semibold text-[#0a8f87] sm:bottom-16 sm:left-12 sm:translate-x-0 sm:text-left lg:left-[3.1vw]">
