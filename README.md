@@ -1,84 +1,77 @@
-# Muhammad Husnain — Cinematic Developer Portfolio
+# Muhammad Husnain — Full Stack Developer & AI Engineer
 
-Awwwards-inspired cinematic portfolio for **Muhammad Husnain**  
-Full Stack Developer · AI Engineer · SaaS Builder · Dubai, UAE
+**Web Development · AI Engineering · SaaS Product Development · Portfolio Web Design**
 
-## Stack
+🌐 **Live Portfolio:** https://husnainportfolio.online
 
-- Next.js 16 (App Router)
-- TypeScript
-- Tailwind CSS v4
-- GSAP + ScrollTrigger
-- Lenis smooth scroll
-- Framer Motion utilities
-- Lucide React
+📍 Dubai, UAE
 
-## Features
+Muhammad Husnain is a Full Stack Developer and AI Engineer building modern websites, AI-powered products, SaaS platforms, e-commerce experiences, Shopify storefronts and interactive portfolio websites.
 
-- Scribble preloader transition
-- Fullscreen hamburger menu with curved reveal
-- Editorial hero with overlapping video, animated wordmark, and handwritten signature
-- Custom cursor + Cypress click ripples
-- Magnetic buttons, tilt cards, marquee roles
-- Full-screen GSAP sticky service card stack
-- Five cinematic project cases plus a 13-project cursor-preview index
-- Sticky experience timeline with progress line
-- Testimonials marquee
-- Premium contact section
-- Floating WhatsApp CTA
-- SEO metadata + responsive layout
+## Explore My Work
 
-## Getting Started
+- [Husnain Portfolio](https://husnainportfolio.online)
+- [Web Development Projects](https://husnainportfolio.online/projects)
+- [Web Development Services](https://husnainportfolio.online/services/web-development)
+- [AI Engineering & AI Agents](https://husnainportfolio.online/services/ai-engineering)
+- [SaaS Product Development](https://husnainportfolio.online/services/saas-product-development)
+- [Website Performance & Optimization](https://husnainportfolio.online/services/performance-optimization)
+- [Portfolio Website Design](https://husnainportfolio.online/portfolio-web-design)
 
-```bash
-npm install
-npm run dev
-```
+## Featured Projects
 
-Open [http://localhost:3000](http://localhost:3000).
+### AjMarketing — AI & WhatsApp Automation
+[View Project Case Study](https://husnainportfolio.online/projects/ajmarketing-website-with-ai-whatsapp-automation)
 
-## GitHub Upload Note
+### Education Platform — Admin & Instructor Dashboard
+[View Project Case Study](https://husnainportfolio.online/projects/education-platform-admin-instructor-dashboard)
 
-Media assets are optimized so the full repository stays well under GitHub’s practical upload limits:
+### Wattar — Luxury Perfume E-Commerce Platform
+[View Project Case Study](https://husnainportfolio.online/projects/wattar-luxury-perfume-e-commerce-platform)
 
-- Hero video compressed for web (`public/video/hero-bg.mp4`)
-- Profile + project images optimized as progressive JPEGs
+### COMPUTE — AI Agents for Distributed Computing
+[View Project Case Study](https://husnainportfolio.online/projects/compute-ai-agents-distributed-computing)
 
-If you later add a larger original video, use [Git LFS](https://git-lfs.com) or host the video on CDN/Vercel Blob and keep only a lightweight web version in the repo.
+### Ghadeer Studio — Portfolio with Advanced Motion
+[View Project Case Study](https://husnainportfolio.online/projects/ghadeer-studio-portfolio-with-advanced-motion)
 
-## Production
+## What I Build
 
-```bash
-npm run build
-npm start
-```
+- Modern Websites
+- Marketing Websites
+- Education Platforms
+- E-Commerce Websites
+- Shopify Stores
+- SaaS Products
+- Admin Dashboards
+- AI Agents
+- LLM Integrations
+- Portfolio Websites
+- Animated Hero Sections
+- 3D Interactive Websites
 
-## Project Structure
+## Frontend
 
-```text
-src/
-  app/                 # App router entry + global styles
-  components/
-    layout/            # Header, Preloader, Cursor, Footer...
-    sections/          # Hero, About, Services, Projects...
-    ui/                # Buttons, Magnetic, Reveal, Marquee...
-    design/            # Decorative elements
-  data/content.ts      # All editable site content
-  lib/                 # GSAP helpers + utilities
-public/
-  images/              # Profile + project assets
-  video/hero-bg.mp4    # Hero background video
-```
+JavaScript · TypeScript · React · Next.js · Tailwind CSS · GSAP · Framer Motion
 
-## Content
+## Backend & AI
 
-Edit branding, projects, experience, and social links in:
+Node.js · Express.js · REST APIs · OpenAI · AI Agents · Agent Workflows · LLM Integration
 
-`src/data/content.ts`
+## Database
+
+MongoDB · PostgreSQL · Prisma
+
+## Tools
+
+Git · Docker · Figma · Vercel · Gumloop
 
 ## Contact
 
-- WhatsApp: +971 50 5677 023
+- Website: https://husnainportfolio.online
 - LinkedIn: https://www.linkedin.com/in/muhammad-husnain-4556233a1
 - TikTok: https://www.tiktok.com/@mh.dev11
 - Email: Mhusnain0027@outlook.com
+- WhatsApp: +971 50 5677 023
+
+**Muhammad Husnain — Full Stack Developer · AI Engineer · SaaS Builder · Dubai, UAE**
