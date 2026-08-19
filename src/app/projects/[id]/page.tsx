@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, ExternalLink } from "lucide-react";
 import { projectById, projects } from "@/data/project-showcase";
 import { seo } from "@/data/content";
+import { projectSeoById } from "@/data/project-seo";
 
 type ProjectPageProps = {
   params: Promise<{ id: string }>;
@@ -22,13 +23,56 @@ function projectRank(seed: string) {
 }
 
 function suggestedProjects(currentProjectId: string) {
+  const currentProject = projectById(currentProjectId);
+
+  if (!currentProject) return [];
+
+  const currentTags = currentProject.tags.map((tag) =>
+    tag.toLowerCase()
+  );
+
   return projects
     .filter((candidate) => candidate.id !== currentProjectId)
-    .map((candidate) => ({
-      project: candidate,
-      rank: projectRank(`${currentProjectId}:${candidate.id}`),
-    }))
-    .sort((first, second) => first.rank - second.rank)
+    .map((candidate) => {
+      const candidateTags = candidate.tags.map((tag) =>
+        tag.toLowerCase()
+      );
+
+      const sharedTags = candidateTags.filter((tag) =>
+        currentTags.includes(tag)
+      ).length;
+
+      const sameCategory =
+        candidate.category.toLowerCase() ===
+        currentProject.category.toLowerCase();
+
+      const categoryWords = currentProject.category
+        .toLowerCase()
+        .split(/\s+/)
+        .filter((word) => word.length > 3);
+
+      const relatedCategory = categoryWords.some((word) =>
+        candidate.category.toLowerCase().includes(word)
+      );
+
+      const score =
+        sharedTags * 4 +
+        (sameCategory ? 8 : 0) +
+        (relatedCategory ? 3 : 0);
+
+      return {
+        project: candidate,
+        score,
+        rank: projectRank(
+          `${currentProjectId}:${candidate.id}`
+        ),
+      };
+    })
+    .sort(
+      (first, second) =>
+        second.score - first.score ||
+        first.rank - second.rank
+    )
     .slice(0, 3)
     .map(({ project }) => project);
 }
@@ -58,8 +102,13 @@ export async function generateMetadata({
   const projectDescription =
     `${project.description} Explore this ${project.category.toLowerCase()} case study by Muhammad Husnain, Full Stack Developer and AI Engineer.`;
 
+  const seoTitle =
+    project.title.length > 58
+      ? `${project.title} | Husnain Portfolio`
+      : `${project.title} | ${project.category} | Husnain Portfolio`;
+
   return {
-    title: `${project.title} | ${project.category} Project | Husnain Portfolio`,
+    title: seoTitle,
     description: projectDescription,
     keywords: [
       project.title,
@@ -100,6 +149,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     project.technologyLine ?? project.tags.join(" · ");
   const suggestions = suggestedProjects(project.id);
   const canonical = `${seo.url}/projects/${project.id}`;
+  const seoContent = projectSeoById(project.id);
 
   const projectJsonLd = {
     "@context": "https://schema.org",
@@ -171,7 +221,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <div className="mx-auto w-full max-w-[112rem]">
           <div className="mb-12 flex items-center justify-between gap-5 text-[10px] font-bold uppercase tracking-[0.2em] text-white/48 sm:mb-16">
             <Link
-              href="/#projects"
+              href="/projects"
               className="inline-flex items-center gap-2 transition-colors hover:text-accent"
             >
               <ArrowLeft className="h-4 w-4" />
@@ -263,6 +313,81 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
         </div>
       </section>
+
+      {seoContent && (
+        <section className="border-t border-white/10 px-5 py-24 sm:px-8 lg:px-[3.2vw] lg:py-32">
+          <div className="mx-auto w-full max-w-[112rem]">
+            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-accent">
+              Project Breakdown
+            </p>
+
+            <h2 className="mt-5 max-w-5xl font-display text-[clamp(2.2rem,4.8vw,5.8rem)] font-extrabold uppercase leading-[0.88] tracking-[-0.07em] text-white">
+              About this
+              <br />
+              project.
+            </h2>
+
+            <div className="mt-16 grid gap-10 lg:grid-cols-3 lg:gap-12">
+              <section className="border-t border-white/10 pt-6">
+                <h3 className="font-display text-2xl font-semibold tracking-[-0.04em] text-white">
+                  Project overview
+                </h3>
+
+                <p className="mt-5 text-sm leading-7 text-white/58 sm:text-base">
+                  {seoContent.overview}
+                </p>
+              </section>
+
+              <section className="border-t border-white/10 pt-6">
+                <h3 className="font-display text-2xl font-semibold tracking-[-0.04em] text-white">
+                  Development focus
+                </h3>
+
+                <p className="mt-5 text-sm leading-7 text-white/58 sm:text-base">
+                  {seoContent.buildFocus}
+                </p>
+              </section>
+
+              <section className="border-t border-white/10 pt-6">
+                <h3 className="font-display text-2xl font-semibold tracking-[-0.04em] text-white">
+                  User experience
+                </h3>
+
+                <p className="mt-5 text-sm leading-7 text-white/58 sm:text-base">
+                  {seoContent.experienceFocus}
+                </p>
+              </section>
+            </div>
+
+            <div className="mt-16 border-t border-white/10 pt-8">
+              <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/40">
+                Related expertise
+              </p>
+
+              <div className="mt-5 flex flex-wrap gap-3">
+                {seoContent.internalLinks.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/12 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.14em] text-white/65 transition duration-300 hover:border-accent hover:bg-accent hover:text-white"
+                  >
+                    {item.label}
+                    <ArrowUpRight className="h-3.5 w-3.5" />
+                  </Link>
+                ))}
+
+                <Link
+                  href="/projects"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/12 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.14em] text-white/65 transition duration-300 hover:border-accent hover:text-accent"
+                >
+                  All Web, AI & SaaS Projects
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="border-t border-white/10 px-5 py-24 sm:px-8 lg:px-[3.2vw] lg:py-32">
         <div className="mx-auto w-full max-w-[112rem]">
